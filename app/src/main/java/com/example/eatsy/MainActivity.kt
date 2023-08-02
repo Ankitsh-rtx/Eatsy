@@ -1,10 +1,12 @@
 package com.example.eatsy
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.get
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.eatsy.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -26,11 +28,19 @@ class MainActivity : AppCompatActivity() {
             }
             fragment?.let {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerView, it) // Replace "fragmentContainer" with your actual fragment container ID
+                    .replace(R.id.fragmentContainerView, it)
                     .commit()
             }
 
             true
+        }
+
+        binding.fab.setOnClickListener {
+
+            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+
+            fragmentTransaction.replace(R.id.fragmentContainerView, CartFragment()).commit()
+
         }
     }
 
