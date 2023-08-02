@@ -3,17 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/homeFragment"
         android:icon="@drawable/home"
         android:title="Home" />
     <item
+        android:id="@+id/discoverFragment"
         android:icon="@drawable/search"
         android:title="Discover" />
     <item
         android:title="" />
     <item
+        android:id="@+id/trackOrderFragment"
         android:icon="@drawable/settings"
         android:title="Track Order" />
     <item
+        android:id="@+id/profileFragment"
         android:icon="@drawable/person"
         android:title="About" />
 </menu>
