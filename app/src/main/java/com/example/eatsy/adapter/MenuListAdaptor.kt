@@ -31,9 +31,9 @@ class MenuListAdaptor (private val context: Context? = null) :
 
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
         val item:Item =items[position]
-        holder.item_name.setText(item.getItemName())
-        holder.item_price.setText(item.getItemPrice())
-        holder.item_image.setImageResource(item.getItemImage())
+        holder.item_name.text=item.getitemName()
+        holder.item_price.text=item.getitemPrice().toString()
+        holder.item_image.setImageResource(item.getitemsImage())
     }
 
     override fun getItemCount(): Int {
