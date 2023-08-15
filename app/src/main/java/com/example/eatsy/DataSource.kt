@@ -68,6 +68,12 @@ object DataSource {
         Item(R.drawable.image_pizza_restaurant,"Pizza","",399),
         Item(R.drawable.image_pizza_restaurant,"Mo-burg","",399),
         Item(R.drawable.image_pizza_restaurant,"Burger","",399),
+        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
+        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
+        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
+        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
+        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
+        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
         Item(R.drawable.image_pizza_restaurant,"Sandwich","",399)
     )
 

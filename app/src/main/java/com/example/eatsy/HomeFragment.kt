@@ -31,6 +31,7 @@ class HomeFragment : Fragment() {
         binding.restaurantRecyclerview.layoutManager = LinearLayoutManager(context)
         // Specify fixed size to improve performance
         binding.restaurantRecyclerview.setHasFixedSize(true)
+        binding.restaurantRecyclerview.isNestedScrollingEnabled = false
 
 
         return binding.root

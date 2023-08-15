@@ -34,6 +34,7 @@ class RestaurantDetail  : AppCompatActivity() {
         binding.menuItemRecyclerview.layoutManager = LinearLayoutManager(this)
         // Specify fixed size to improve performance
         binding.menuItemRecyclerview.setHasFixedSize(true)
+        binding.menuItemRecyclerview.isNestedScrollingEnabled = false
 
     }
 
