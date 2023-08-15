@@ -61,7 +61,9 @@ class RestaurantAdapter (private val context: Context? = null) :
 
         //
         holder.itemView.setOnClickListener {
-            context?.startActivity(Intent(context,RestaurantDetail::class.java))
+            context?.startActivity(Intent(context,RestaurantDetail::class.java)
+                .putExtra("restaurant_name",item.getRestaurantName())
+                .putExtra("restaurant_type",item.getRestaurantType()))
         }
     }
 }

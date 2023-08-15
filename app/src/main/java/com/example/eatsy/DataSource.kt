@@ -1,66 +1,74 @@
 package com.example.eatsy
 
 import com.example.eatsy.model.Dishes
+import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
 
 object DataSource {
     val dish: List<Dishes> = listOf(
         Dishes(
-            R.drawable.burger,
+            R.drawable.image_burger,
             "Burger",
 
         ),
         Dishes(
-            R.drawable.pizza,
+            R.drawable.image_pizza,
             "Pizza",
 
         ),
         Dishes(
-            R.drawable.fried_chicken,
+            R.drawable.image_fried_chicken,
             "Chicken",
         ),
         Dishes(
-            R.drawable.spaguetti,
+            R.drawable.image_spaguetti,
             "Noddles",
         ),
         Dishes(
-            R.drawable.sandwich,
+            R.drawable.image_sandwich,
             "Sandwich",
         ),
         Dishes(
-            R.drawable.chinese_noodles,
+            R.drawable.image_chinese_noodles,
             "Chinese",
         ),
         Dishes(
-            R.drawable.ice_cream,
+            R.drawable.image_ice_cream,
             "Ice Cream",
         ),
         Dishes(
-            R.drawable.juice,
+            R.drawable.image_juice,
             "Drinks",
         ),
         Dishes(
-            R.drawable.cake,
+            R.drawable.image_cake,
             "Cake",
         ),
         Dishes(
-            R.drawable.application,
+            R.drawable.image_application,
             "More",
         )
     )
 
     val restaurants: List<Restaurants> = listOf(
         Restaurants(
-            R.drawable.pizza_restaurant_image,
+            R.drawable.image_pizza_restaurant,
             "Pizza Hut",
             "Pizza"
         ),
         Restaurants(
-            R.drawable.wow_momo,
+            R.drawable.image_wow_momo,
             "WOW! Momo",
             "Momo"
         )
 
+    )
+
+    val items: List<Item> = listOf(
+        Item(R.drawable.image_pizza_restaurant,"Pizza","",399),
+        Item(R.drawable.image_pizza_restaurant,"Mo-burg","",399),
+        Item(R.drawable.image_pizza_restaurant,"Burger","",399),
+        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399)
     )
 
 }

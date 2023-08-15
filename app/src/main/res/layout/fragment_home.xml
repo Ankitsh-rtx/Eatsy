@@ -40,13 +40,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-            app:srcCompat="@drawable/profile_pic" />
+            app:srcCompat="@drawable/image_demo_profile_pic" />
 
         <ImageView
             android:id="@+id/dropdown_icon"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:src="@drawable/arrow_down"
+            android:src="@drawable/icon_arrow_down"
             app:layout_constraintBottom_toBottomOf="@+id/location"
             app:layout_constraintStart_toEndOf="@+id/location"
             app:layout_constraintTop_toTopOf="@+id/location"
@@ -58,7 +58,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="4dp"
-            android:src="@drawable/pin"
+            android:src="@drawable/image_pin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/location"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,8 +86,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/search_bg"
-        android:drawableEnd="@drawable/search"
+        android:background="@drawable/background_search"
+        android:drawableEnd="@drawable/icon_search"
         android:drawablePadding="16dp"
         android:drawableTint="#FF1744"
         android:elevation="4dp"
@@ -189,7 +189,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/discount"
+                            app:srcCompat="@drawable/image_discount"
                             tools:src="@tools:sample/avatars" />
 
                         <TextView
@@ -245,7 +245,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ramen"
+                            app:srcCompat="@drawable/image_ramen"
                             tools:src="@tools:sample/avatars" />
 
                         <TextView
@@ -302,7 +302,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/fruits"
+                            app:srcCompat="@drawable/image_fruits"
                             tools:src="@tools:sample/avatars" />
 
                         <TextView
