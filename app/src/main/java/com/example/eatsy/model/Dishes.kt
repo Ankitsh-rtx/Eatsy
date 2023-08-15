@@ -1,3 +1,5 @@
+package com.example.eatsy.model
+
 import androidx.annotation.DrawableRes
 
 class Dishes(

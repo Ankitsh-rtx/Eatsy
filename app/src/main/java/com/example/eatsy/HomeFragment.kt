@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.eatsy.Adapter.TopDishAdapter
+import com.example.eatsy.adapter.RestaurantAdapter
+import com.example.eatsy.adapter.TopDishAdapter
 import com.example.eatsy.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -23,14 +23,14 @@ class HomeFragment : Fragment() {
 
         binding.dishesRecyclerview.adapter = TopDishAdapter(context)
         binding.dishesRecyclerview.layoutManager = StaggeredGridLayoutManager(2,RecyclerView.HORIZONTAL)
-
-
         // Specify fixed size to improve performance
         binding.dishesRecyclerview.setHasFixedSize(true)
 
 
-
-
+        binding.restaurantRecyclerview.adapter = RestaurantAdapter(context)
+        binding.restaurantRecyclerview.layoutManager = LinearLayoutManager(context)
+        // Specify fixed size to improve performance
+        binding.restaurantRecyclerview.setHasFixedSize(true)
 
 
         return binding.root

@@ -1,6 +1,6 @@
-package com.example.eatsy.Adapter
+package com.example.eatsy.adapter
 
-import Dishes
+import com.example.eatsy.model.Dishes
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +27,7 @@ class TopDishAdapter (private val context: Context? = null) :
 
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishCardViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DishCardViewHolder {
             // Use a conditional to determine the layout type and set it accordingly.
             //  if the layout variable is Layout.GRID the grid list item should be used. Otherwise the
             //  the vertical/horizontal list item should be used.

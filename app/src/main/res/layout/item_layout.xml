@@ -61,4 +61,4 @@
             app:layout_anchor="@id/item_image"
             app:layout_anchorGravity="bottom|center_horizontal"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</androidx.cardview.widget.CardView>>
+</androidx.cardview.widget.CardView>

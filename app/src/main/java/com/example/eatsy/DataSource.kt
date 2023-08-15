@@ -1,6 +1,7 @@
 package com.example.eatsy
 
-import Dishes
+import com.example.eatsy.model.Dishes
+import com.example.eatsy.model.Restaurants
 
 object DataSource {
     val dish: List<Dishes> = listOf(
@@ -46,6 +47,20 @@ object DataSource {
             R.drawable.application,
             "More",
         )
+    )
+
+    val restaurants: List<Restaurants> = listOf(
+        Restaurants(
+            R.drawable.pizza_restaurant_image,
+            "Pizza Hut",
+            "Pizza"
+        ),
+        Restaurants(
+            R.drawable.wow_momo,
+            "WOW! Momo",
+            "Momo"
+        )
+
     )
 
 }
