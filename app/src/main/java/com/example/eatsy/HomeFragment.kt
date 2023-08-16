@@ -26,13 +26,11 @@ class HomeFragment : Fragment() {
         // Specify fixed size to improve performance
         binding.dishesRecyclerview.setHasFixedSize(true)
 
-
         binding.restaurantRecyclerview.adapter = RestaurantAdapter(context)
         binding.restaurantRecyclerview.layoutManager = LinearLayoutManager(context)
         // Specify fixed size to improve performance
         binding.restaurantRecyclerview.setHasFixedSize(true)
         binding.restaurantRecyclerview.isNestedScrollingEnabled = false
-
 
         return binding.root
     }

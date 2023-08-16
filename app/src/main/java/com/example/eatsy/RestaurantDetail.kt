@@ -1,17 +1,24 @@
 package com.example.eatsy;
 
+
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.view.WindowManager
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eatsy.adapter.MenuListAdapter
 import com.example.eatsy.databinding.ActivityRestaurantDetailBinding
-
+import com.example.eatsy.databinding.ItemLayoutBinding
 
 class RestaurantDetail  : AppCompatActivity() {
     private lateinit var binding: ActivityRestaurantDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         // Inflate the layout for this fragment
         super.onCreate(savedInstanceState)
@@ -25,16 +32,35 @@ class RestaurantDetail  : AppCompatActivity() {
         binding.restaurantNameTextview.text = name
         binding.restaurantType.text = type
 
-
+        // Status bar color
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = ContextCompat.getColor(this, R.color.off_white)
 
-
-        binding.menuItemRecyclerview.adapter= MenuListAdapter(this)
+        val adapter = MenuListAdapter(this)
+        binding.menuItemRecyclerview.adapter= adapter
         binding.menuItemRecyclerview.layoutManager = LinearLayoutManager(this)
         // Specify fixed size to improve performance
+
         binding.menuItemRecyclerview.setHasFixedSize(true)
         binding.menuItemRecyclerview.isNestedScrollingEnabled = false
+
+        adapter.setOnItemClickListener(object :MenuListAdapter.OnItemClickListener{
+            override fun onItemClick(view: View, position: Int) {
+                Log.d("restaurant details", "this item is clicked : $position")
+            }
+
+            override fun onItemAddClick(view: View, position: Int) {
+                var count = 0
+                Toast.makeText(this@RestaurantDetail, "this button is clicked : $position", Toast.LENGTH_SHORT).show()
+                val itemAddTV: TextView = view.findViewById(R.id.item_add_button)
+                itemAddTV.text = (++count).toString()
+
+            }
+            override fun onItemRemoveClick(view: View, position: Int) {
+
+            }
+
+        })
 
     }
 
