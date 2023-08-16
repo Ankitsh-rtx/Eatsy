@@ -11,8 +11,7 @@
         android:orientation="horizontal"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="10dp">
+        android:paddingTop="10dp">
 
         <TextView
             android:id="@+id/item_name"
@@ -73,8 +72,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:fontFamily="@font/metropolis_semibold"
-
+            android:fontFamily="@font/metropolis_bold"
             android:background="@drawable/background_button"
             android:text="ADD"
             android:textColor="#229C15"
@@ -83,16 +81,43 @@
             app:layout_constraintStart_toStartOf="@+id/cardView3"
             app:layout_constraintTop_toBottomOf="@+id/cardView3" />
 
+
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layerType="software"
+            android:layout_height="2dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/dotted_line_divider"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="5dp"
+            app:srcCompat="@drawable/dotted_line_divider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_add_button" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_add_button"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/item_add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:visibility="invisible"
+            android:elevation="3dp"
+            app:tint="#229B15"
+            app:layout_constraintBottom_toBottomOf="@+id/item_add_button"
+            app:layout_constraintEnd_toEndOf="@+id/item_add_button"
+            app:layout_constraintTop_toTopOf="@+id/item_add_button"
+            app:srcCompat="@drawable/icon_add" />
+
+        <ImageView
+            android:id="@+id/item_remove_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:visibility="invisible"
+            android:elevation="3dp"
+            app:tint="#229B15"
+            app:layout_constraintBottom_toBottomOf="@+id/item_add_button"
+            app:layout_constraintStart_toStartOf="@+id/item_add_button"
+            app:layout_constraintTop_toTopOf="@+id/item_add_button"
+            app:srcCompat="@drawable/icon_minus" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
