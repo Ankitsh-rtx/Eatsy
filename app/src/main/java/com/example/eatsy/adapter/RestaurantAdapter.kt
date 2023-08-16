@@ -59,7 +59,7 @@ class RestaurantAdapter (private val context: Context? = null) :
         holder.restaurantName.text = item.getRestaurantName()
         holder.restaurantType.text = item.getRestaurantType()
 
-        //
+
         holder.itemView.setOnClickListener {
             context?.startActivity(Intent(context,RestaurantDetail::class.java)
                 .putExtra("restaurant_name",item.getRestaurantName())

@@ -32,13 +32,13 @@ class MenuListAdapter (private val context: Context? = null) : RecyclerView.Adap
         //constructor
         init{
             binding.itemAddButton.setOnClickListener {
-                listener.onItemClick(itemView,bindingAdapterPosition)
+                listener.onItemClick(itemView,adapterPosition)
             }
             binding.itemAddBtn.setOnClickListener {
-                listener.onItemAddClick(itemView,bindingAdapterPosition)
+                listener.onItemAddClick(itemView,adapterPosition)
             }
             binding.itemRemoveBtn.setOnClickListener {
-                listener.onItemRemoveClick(itemView,bindingAdapterPosition)
+                listener.onItemRemoveClick(itemView,adapterPosition)
             }
         }
     }
@@ -62,7 +62,5 @@ class MenuListAdapter (private val context: Context? = null) : RecyclerView.Adap
     override fun getItemCount(): Int {
         return DataSource.items.size
     }
-
-
 
 }
