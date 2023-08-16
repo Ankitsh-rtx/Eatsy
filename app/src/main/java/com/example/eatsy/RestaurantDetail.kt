@@ -45,19 +45,28 @@ class RestaurantDetail  : AppCompatActivity() {
         binding.menuItemRecyclerview.isNestedScrollingEnabled = false
 
         adapter.setOnItemClickListener(object :MenuListAdapter.OnItemClickListener{
+            lateinit var itemAddTV: TextView
+            lateinit var itemAddBtn:ImageView
+            lateinit var itemRemoveBtn:ImageView
+            var count = 1
             override fun onItemClick(view: View, position: Int) {
-                Log.d("restaurant details", "this item is clicked : $position")
+                itemAddTV = view.findViewById(R.id.item_add_button)
+                itemAddBtn = view.findViewById(R.id.item_add_btn)
+                itemRemoveBtn= view.findViewById(R.id.item_remove_btn)
+                itemAddBtn.visibility = View.VISIBLE
+                itemRemoveBtn.visibility = View.VISIBLE
+                itemAddTV.text = (count).toString()
             }
 
             override fun onItemAddClick(view: View, position: Int) {
-                var count = 0
-                Toast.makeText(this@RestaurantDetail, "this button is clicked : $position", Toast.LENGTH_SHORT).show()
-                val itemAddTV: TextView = view.findViewById(R.id.item_add_button)
                 itemAddTV.text = (++count).toString()
 
             }
             override fun onItemRemoveClick(view: View, position: Int) {
-
+                if(count<=1){
+                    itemAddTV.text = "ADD"
+                }
+                else itemAddTV.text = (--count).toString()
             }
 
         })

@@ -1,15 +1,12 @@
 package com.example.eatsy.adapter
+
 import android.content.Context
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatsy.DataSource
-import com.example.eatsy.R
+
 import com.example.eatsy.databinding.ItemLayoutBinding
 import com.example.eatsy.model.Item
 
@@ -35,13 +32,13 @@ class MenuListAdapter (private val context: Context? = null) : RecyclerView.Adap
         //constructor
         init{
             binding.itemAddButton.setOnClickListener {
-                listener.onItemAddClick(it,bindingAdapterPosition)
+                listener.onItemClick(itemView,bindingAdapterPosition)
             }
             binding.itemAddBtn.setOnClickListener {
-                listener.onItemAddClick(it,bindingAdapterPosition)
+                listener.onItemAddClick(itemView,bindingAdapterPosition)
             }
             binding.itemRemoveBtn.setOnClickListener {
-                listener.onItemRemoveClick(it,bindingAdapterPosition)
+                listener.onItemRemoveClick(itemView,bindingAdapterPosition)
             }
         }
     }
