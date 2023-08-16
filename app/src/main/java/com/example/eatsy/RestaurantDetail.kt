@@ -47,41 +47,41 @@ class RestaurantDetail  : AppCompatActivity() {
         binding.menuItemRecyclerview.isNestedScrollingEnabled = false
         val countArr = IntArray(DataSource.items.size) { i-> 1 }
 
-        adapter.setOnItemClickListener(object :MenuListAdapter.OnItemClickListener{
-            lateinit var itemAddTV: TextView
-            lateinit var itemAddBtn:ImageView
-            lateinit var itemRemoveBtn:ImageView
-
-            override fun onItemClick(view: View, position: Int) {
-                Log.d("onItemClick:" , "$position: ${countArr[position]}")
-                itemAddTV = view.findViewById(R.id.item_add_button)
-                itemAddBtn = view.findViewById(R.id.item_add_btn)
-                itemRemoveBtn= view.findViewById(R.id.item_remove_btn)
-                if(itemAddBtn.visibility == View.INVISIBLE && itemRemoveBtn.visibility == View.INVISIBLE) {
-                    itemAddBtn.visibility = View.VISIBLE
-                    itemRemoveBtn.visibility = View.VISIBLE
-                }
-                itemAddTV.text = (countArr[position]).toString()
-            }
-
-            override fun onItemAddClick(view: View, position: Int) {
-
-                itemAddTV.text = (++countArr[position]).toString()
-                Log.d("onItemAddClick:" , "$position: ${countArr[position]}")
-            }
-            override fun onItemRemoveClick(view: View, position: Int) {
-
-                if(countArr[position]<=1){
-                    itemAddTV.text = "ADD"
-                    itemAddBtn.visibility = View.INVISIBLE
-                    itemRemoveBtn.visibility = View.INVISIBLE
-                }
-                else itemAddTV.text = (--countArr[position]).toString()
-
-                Log.d("onItemRemoveClick:" , "$position: ${countArr[position]}")
-            }
-
-        })
+//        adapter.setOnItemClickListener(object :MenuListAdapter.OnItemClickListener{
+//            lateinit var itemAddTV: TextView
+//            lateinit var itemAddBtn:ImageView
+//            lateinit var itemRemoveBtn:ImageView
+//
+//            override fun onItemClick(view: View, position: Int) {
+//                Log.d("onItemClick:" , "$position: ${countArr[position]}")
+//                itemAddTV = view.findViewById(R.id.item_add_button)
+//                itemAddBtn = view.findViewById(R.id.item_add_btn)
+//                itemRemoveBtn= view.findViewById(R.id.item_remove_btn)
+//                if(itemAddBtn.visibility == View.INVISIBLE && itemRemoveBtn.visibility == View.INVISIBLE) {
+//                    itemAddBtn.visibility = View.VISIBLE
+//                    itemRemoveBtn.visibility = View.VISIBLE
+//                }
+//                itemAddTV.text = (countArr[position]).toString()
+//            }
+//
+//            override fun onItemAddClick(view: View, position: Int) {
+//
+//                itemAddTV.text = (++countArr[position]).toString()
+//                Log.d("onItemAddClick:" , "$position: ${countArr[position]}")
+//            }
+//            override fun onItemRemoveClick(view: View, position: Int) {
+//
+//                if(countArr[position]<=1){
+//                    itemAddTV.text = "ADD"
+//                    itemAddBtn.visibility = View.INVISIBLE
+//                    itemRemoveBtn.visibility = View.INVISIBLE
+//                }
+//                else itemAddTV.text = (--countArr[position]).toString()
+//
+//                Log.d("onItemRemoveClick:" , "$position: ${countArr[position]}")
+//            }
+//
+//        })
 
     }
 
