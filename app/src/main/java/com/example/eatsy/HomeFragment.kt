@@ -25,7 +25,6 @@ class HomeFragment : Fragment() {
         binding.dishesRecyclerview.layoutManager = StaggeredGridLayoutManager(2,RecyclerView.HORIZONTAL)
         // Specify fixed size to improve performance
         binding.dishesRecyclerview.setHasFixedSize(true)
-
         binding.restaurantRecyclerview.adapter = RestaurantAdapter(context)
         binding.restaurantRecyclerview.layoutManager = LinearLayoutManager(context)
         // Specify fixed size to improve performance
