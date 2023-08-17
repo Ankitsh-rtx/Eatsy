@@ -21,7 +21,7 @@
             android:fontFamily="@font/metropolis_semibold"
             android:text="Moburg"
             android:textSize="20sp"
-            android:textColor="@color/black"
+            android:textColor="#121212"
             app:layout_constraintEnd_toStartOf="@+id/cardView3"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
