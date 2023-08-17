@@ -110,13 +110,12 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="2dp"
+        android:fillViewport="true"
         android:scrollbars="none"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_edittext"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:fillViewport="true">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_edittext">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -358,8 +357,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/metropolis_semibold"
-                android:textSize="12sp"
                 android:text="WHAT'S ON YOUR MIND?"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/explore_layout" />
@@ -367,14 +366,14 @@
             <View
                 android:id="@+id/view4"
                 android:layout_width="0dp"
+                android:layout_height="1dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="#80CCCCCC"
+                app:layout_constraintBottom_toBottomOf="@id/dishes_textview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/dishes_textview"
-                app:layout_constraintTop_toTopOf="@id/dishes_textview"
-                app:layout_constraintBottom_toBottomOf="@id/dishes_textview"
-                android:layout_height="1dp" />
+                app:layout_constraintTop_toTopOf="@id/dishes_textview" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/dishes_recyclerview"
@@ -410,14 +409,14 @@
 
             <View
                 android:layout_width="0dp"
+                android:layout_height="1dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="#80CCCCCC"
+                app:layout_constraintBottom_toBottomOf="@id/restaurant_textview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/restaurant_textview"
-                app:layout_constraintTop_toTopOf="@id/restaurant_textview"
-                app:layout_constraintBottom_toBottomOf="@id/restaurant_textview"
-                android:layout_height="1dp" />
+                app:layout_constraintTop_toTopOf="@id/restaurant_textview" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/restaurant_recyclerview"

@@ -32,6 +32,7 @@
                     android:id="@+id/cart_items_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="#121212"
                     android:padding="10dp"
                     android:text="Cart items"
                     android:textSize="22sp"
@@ -65,6 +66,7 @@
                     android:layout_marginTop="10dp"
                     android:textSize="22sp"
                     android:padding="10dp"
+                    android:textColor="#121212"
                     android:text="Bill Details"
                     android:fontFamily="@font/metropolis_bold"
                     app:layout_constraintStart_toStartOf="@+id/constraint"
@@ -99,6 +101,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/metropolis_medium"
                                 android:layout_weight="@integer/material_motion_duration_short_1"
                                 android:text="Item Total" />
 
@@ -153,7 +156,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="@integer/material_motion_duration_short_1"
-                                android:text="GST and Restaurent charges" />
+                                android:text="GST and Restaurant charges" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -229,6 +232,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/metropolis_bold"
+                        android:textColor="#121212"
                         android:text="Rs. 206"
                         android:textSize="22sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -256,10 +260,10 @@
                     android:backgroundTint="#229B19"
                     android:fontFamily="@font/metropolis_bold"
                     android:gravity="center"
-                    android:padding="12dp"
+                    android:padding="10dp"
                     android:text="Proceed to Pay"
                     android:textColor="@color/white"
-                    android:textSize="22sp"
+                    android:textSize="24sp"
                     android:layout_marginStart="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

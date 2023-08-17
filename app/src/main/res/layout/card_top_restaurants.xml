@@ -16,15 +16,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <ImageView
             android:id="@+id/restaurant_image"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="240dp"
-            android:scaleType="centerCrop"
+            android:background="@drawable/background_image_shadow"
+            android:scaleType="fitXY"
+            android:src="@drawable/image_pizza_restaurant"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/image_pizza_restaurant" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/restaurant_name"

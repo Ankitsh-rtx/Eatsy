@@ -1,56 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DiscoverFragment">
-    <androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <!-- TODO: Update blank fragment layout -->
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="#80CCCCCC"
-        app:layout_constraintBottom_toBottomOf="@id/restaurant_textview"
-        app:layout_constraintEnd_toStartOf="@id/restaurant_textview"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/restaurant_textview"/>
-
-        <TextView
-            android:id="@+id/restaurant_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/metropolis_semibold"
-            android:text="ALL RESTAURANTS"
-            android:textSize="12sp"
+        android:layout_height="match_parent"
+        tools:context=".DiscoverFragment">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/background_search"
+            android:drawableEnd="@drawable/icon_search"
+            android:drawablePadding="16dp"
+            android:backgroundTint="#f3f3f3"
+            android:drawableTint="#FF1744"
+            android:fontFamily="@font/metropolis_regular"
+            android:hint="Dishes, restaurants, groceries - Find it all here"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textCursorDrawable="@drawable/cursor_drawable"
+            android:textSize="15sp"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/restaurant_recyclerview"/>
-
-        <View
-            android:id="@+id/view5"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="#80CCCCCC"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/restaurant_textview"
-            app:layout_constraintTop_toTopOf="@id/restaurant_textview"
-            app:layout_constraintBottom_toBottomOf="@id/restaurant_textview"/>
-
-        <androidx.recyclerview.widget.RecyclerView
+             />
+       <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/restaurant_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/restaurant_textview"
+            app:layout_constraintTop_toBottomOf="@+id/search_edittext"
             tools:listitem="@layout/card_top_restaurants" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
