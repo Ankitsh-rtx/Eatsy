@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="1dp"
+
     tools:context=".HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,8 +90,9 @@
         android:background="@drawable/background_search"
         android:drawableEnd="@drawable/icon_search"
         android:drawablePadding="16dp"
+        android:backgroundTint="#f3f3f3"
+
         android:drawableTint="#FF1744"
-        android:elevation="4dp"
         android:fontFamily="@font/metropolis_regular"
         android:hint="Dishes, restaurants, groceries - Find it all here"
         android:inputType="text"
@@ -109,6 +111,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="2dp"
+        android:scrollbars="none"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_edittext"
