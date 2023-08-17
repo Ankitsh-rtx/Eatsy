@@ -11,7 +11,9 @@
         android:icon="@drawable/icon_search"
         android:title="Discover" />
     <item
-        android:title="" />
+        android:id="@+id/cartFragment"
+        android:icon="@drawable/icon_shopping_cart"
+        android:title="Cart" />
     <item
         android:id="@+id/trackOrderFragment"
         android:icon="@drawable/icon_settings"
