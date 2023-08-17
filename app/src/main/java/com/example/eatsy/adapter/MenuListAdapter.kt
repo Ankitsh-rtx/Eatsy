@@ -26,7 +26,7 @@ class MenuListAdapter (private val context: Context? = null) : RecyclerView.Adap
 
     val item:List<Item> =DataSource.items
 
-    class MenuViewHolder (val binding: ItemLayoutBinding,):
+    class MenuViewHolder (val binding: ItemLayoutBinding):
         RecyclerView.ViewHolder(binding.root){
 
         //constructor

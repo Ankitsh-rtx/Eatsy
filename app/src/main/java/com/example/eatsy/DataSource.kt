@@ -1,5 +1,6 @@
 package com.example.eatsy
 
+import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Dishes
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
@@ -75,6 +76,20 @@ object DataSource {
         Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
         Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
         Item(R.drawable.image_pizza_restaurant,"Sandwich","",399)
+    )
+
+    val orders: List<CartItem> = listOf(
+        CartItem("Chicken Pizza",1,249),
+        CartItem("Chicken Pizza",1,249),
+        CartItem("Chicken Pizza",1,249),
+        CartItem("Chicken Pizza",1,249),
+        CartItem("Chicken Pizza",1,249),
+        CartItem("Chicken Pizza",1,249),
+        CartItem("Chicken Pizza",1,249),
+        CartItem("Chicken Pizza",1,249),
+        CartItem("Chicken Pizza",1,249),
+        CartItem("Chicken Pizza",1,249),
+        CartItem("Chicken Pizza",1,249)
     )
 
 }
