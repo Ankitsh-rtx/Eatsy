@@ -10,7 +10,10 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.databinding.ItemLayoutBinding
 import com.example.eatsy.model.Item
 
-class MenuListAdapter (private val context: Context? = null) : RecyclerView.Adapter<MenuListAdapter.MenuViewHolder>() {
+class MenuListAdapter (
+    private val context: Context? = null,
+    val item: ArrayList<Item> // menu item received from the restaurant details activity
+) : RecyclerView.Adapter<MenuListAdapter.MenuViewHolder>() {
 
 //    private lateinit var mListener: OnItemClickListener
 
@@ -23,8 +26,6 @@ class MenuListAdapter (private val context: Context? = null) : RecyclerView.Adap
 //    fun setOnItemClickListener(listener: OnItemClickListener){
 //        mListener = listener
 //    }
-
-    val item:List<Item> =DataSource.items
 
     class MenuViewHolder (val binding: ItemLayoutBinding):
         RecyclerView.ViewHolder(binding.root){
@@ -52,11 +53,12 @@ class MenuListAdapter (private val context: Context? = null) : RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
-        val item:Item = DataSource.items[position]
+        // arraylist that is passed through restaurant detail activity is used here
+        val items:Item = item[position]
         var value=1
-        holder.binding.itemName.text= item.getItemName()
-        holder.binding.itemPrice.text= "₹ "+item.getItemPrice().toString()
-        holder.binding.itemImage.setImageResource(item.imageResourceId)
+        holder.binding.itemName.text= items.getItemName()
+        holder.binding.itemPrice.text= "₹ "+items.getItemPrice().toString()
+        holder.binding.itemImage.setImageResource(items.imageResourceId)
         holder.binding.itemAddButton.setOnClickListener( object : View.OnClickListener {
             override fun onClick(v: View?) {
 
@@ -88,7 +90,8 @@ class MenuListAdapter (private val context: Context? = null) : RecyclerView.Adap
     }
 
     override fun getItemCount(): Int {
-        return DataSource.items.size
+        // return the size of the current menu list
+        return item.size
     }
 
 }

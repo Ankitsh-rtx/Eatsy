@@ -28,6 +28,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <View
+                    android:id="@+id/view5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="250dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bill_details"
+                     />
+
                 <TextView
                     android:id="@+id/cart_items_text"
                     android:layout_width="wrap_content"
@@ -35,8 +46,8 @@
                     android:textColor="#121212"
                     android:padding="10dp"
                     android:text="Cart items"
-                    android:textSize="22sp"
-                    android:fontFamily="@font/metropolis_bold"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/metropolis_semibold"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/constraint" />
 
@@ -44,7 +55,7 @@
                     android:id="@+id/cart_items"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     app:cardElevation="0dp"
                     app:cardCornerRadius="20dp"
                     app:layout_constraintEnd_toEndOf="@id/constraint"
@@ -55,7 +66,9 @@
                         android:id="@+id/cart_items_recyclerview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="15dp" />
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                         />
 
                 </androidx.cardview.widget.CardView>
 
@@ -64,11 +77,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:textSize="22sp"
+                    android:textSize="18sp"
                     android:padding="10dp"
                     android:textColor="#121212"
                     android:text="Bill Details"
-                    android:fontFamily="@font/metropolis_bold"
+                    android:fontFamily="@font/metropolis_semibold"
                     app:layout_constraintStart_toStartOf="@+id/constraint"
                     app:layout_constraintTop_toBottomOf="@id/cart_items" />
 
@@ -76,11 +89,10 @@
                     android:id="@+id/bill_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:layout_constraintBottom_toBottomOf="@id/constraint"
                     app:layout_constraintEnd_toEndOf="@id/constraint"
                     app:layout_constraintStart_toStartOf="@id/constraint"
                     app:layout_constraintTop_toBottomOf="@+id/bill_details_text">
@@ -90,7 +102,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="15dp">
+                        android:padding="15dp"
+                        >
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -101,15 +114,15 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/metropolis_medium"
                                 android:layout_weight="@integer/material_motion_duration_short_1"
+                                android:fontFamily="@font/metropolis_semibold"
                                 android:text="Item Total" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Rs 196"
-                                android:textStyle="bold" />
+                                android:text="₹ 196"
+                                android:fontFamily="@font/metropolis_semibold" />
                         </LinearLayout>
 
                         <ImageView
@@ -129,14 +142,15 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="@integer/material_motion_duration_short_1"
+                                android:fontFamily="@font/metropolis_regular"
                                 android:text="Item Discount" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="- Rs 70"
+                                android:text="- ₹ 70"
                                 android:textColor="#229B15"
-                                android:textStyle="bold" />
+                                android:fontFamily="@font/metropolis_semibold" />
                         </LinearLayout>
 
                         <ImageView
@@ -156,13 +170,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="@integer/material_motion_duration_short_1"
+                                android:fontFamily="@font/metropolis_regular"
                                 android:text="GST and Restaurant charges" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Rs 80"
-                                android:textStyle="bold" />
+                                android:text="₹ 80"
+                                android:fontFamily="@font/metropolis_semibold" />
                         </LinearLayout>
 
                         <ImageView
@@ -183,13 +198,16 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="@integer/material_motion_duration_short_1"
                                 android:text="To Pay"
-                                android:textStyle="bold" />
+                                android:textColor="#121212"
+
+                                android:fontFamily="@font/metropolis_semibold"/>
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Rs 206"
-                                android:textStyle="bold" />
+                                android:textColor="#121212"
+                                android:fontFamily="@font/metropolis_semibold"
+                                android:text="₹ 206" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -233,8 +251,8 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/metropolis_bold"
                         android:textColor="#121212"
-                        android:text="Rs. 206"
-                        android:textSize="22sp"
+                        android:text="₹ 206"
+                        android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -258,12 +276,12 @@
                     android:layout_height="56dp"
                     android:background="@drawable/background_button"
                     android:backgroundTint="#229B19"
-                    android:fontFamily="@font/metropolis_bold"
+                    android:fontFamily="@font/metropolis_semibold"
                     android:gravity="center"
-                    android:padding="10dp"
+                    android:padding="8dp"
                     android:text="Proceed to Pay"
                     android:textColor="@color/white"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     android:layout_marginStart="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
