@@ -7,14 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatsy.DataSource
-import com.example.eatsy.HomeFragment
 import com.example.eatsy.R
 import com.example.eatsy.RestaurantDetail
-import com.example.eatsy.model.Dishes
 import com.example.eatsy.model.Restaurants
 
 class RestaurantAdapter (private val context: Context? = null) :
@@ -31,6 +27,8 @@ class RestaurantAdapter (private val context: Context? = null) :
         val restaurantImage: ImageView = view!!.findViewById(R.id.restaurant_image)
         val restaurantName: TextView = view!!.findViewById(R.id.restaurant_name)
         val restaurantType: TextView = view!!.findViewById(R.id.restaurant_type)
+        val restaurantRating:TextView = view!!.findViewById(R.id.restaurant_rating_text)
+
 
 
     }
@@ -58,12 +56,19 @@ class RestaurantAdapter (private val context: Context? = null) :
         holder.restaurantImage.setImageResource(item.imageResourceId)
         holder.restaurantName.text = item.getRestaurantName()
         holder.restaurantType.text = item.getRestaurantType()
-
+        holder.restaurantRating.text = item.getRestaurantRating().toString()
 
         holder.itemView.setOnClickListener {
-            context?.startActivity(Intent(context,RestaurantDetail::class.java)
+            context?.startActivity(
+                Intent(context,RestaurantDetail::class.java)
                 .putExtra("restaurant_name",item.getRestaurantName())
-                .putExtra("restaurant_type",item.getRestaurantType()))
+                .putExtra("restaurant_type",item.getRestaurantType())
+                .putExtra("restaurant_rating",item.getRestaurantRating().toString())
+                    .putExtra("restaurant_address",item.getRestaurantAddress())
+                    .putExtra("restaurant_menu", item.getMenu())
+            )
         }
     }
 }
+
+
