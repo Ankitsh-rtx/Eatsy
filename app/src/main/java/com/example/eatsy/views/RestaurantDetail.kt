@@ -1,19 +1,16 @@
-package com.example.eatsy;
+package com.example.eatsy.views;
 
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.ContactsContract.Data
-import android.util.Log
 
-import android.view.View
 import android.view.WindowManager
-import android.widget.ImageView
-import android.widget.TextView
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.eatsy.DataSource
+import com.example.eatsy.R
 import com.example.eatsy.adapter.MenuListAdapter
 import com.example.eatsy.databinding.ActivityRestaurantDetailBinding
 import com.example.eatsy.model.Item

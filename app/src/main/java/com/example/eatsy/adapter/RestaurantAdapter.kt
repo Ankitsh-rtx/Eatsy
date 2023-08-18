@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
-import com.example.eatsy.RestaurantDetail
+import com.example.eatsy.views.RestaurantDetail
 import com.example.eatsy.model.Restaurants
 
 class RestaurantAdapter (private val context: Context? = null) :
@@ -60,7 +60,7 @@ class RestaurantAdapter (private val context: Context? = null) :
 
         holder.itemView.setOnClickListener {
             context?.startActivity(
-                Intent(context,RestaurantDetail::class.java)
+                Intent(context, RestaurantDetail::class.java)
                 .putExtra("restaurant_name",item.getRestaurantName())
                 .putExtra("restaurant_type",item.getRestaurantType())
                 .putExtra("restaurant_rating",item.getRestaurantRating().toString())

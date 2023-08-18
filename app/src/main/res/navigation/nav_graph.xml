@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.eatsy.HomeFragment"
+        android:name="com.example.eatsy.views.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.example.eatsy.CartFragment"
+        android:name="com.example.eatsy.views.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/trackOrderFragment"
-        android:name="com.example.eatsy.TrackOrderFragment"
+        android:name="com.example.eatsy.views.TrackOrderFragment"
         android:label="fragment_track_order"
         tools:layout="@layout/fragment_track_order" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.eatsy.ProfileFragment"
+        android:name="com.example.eatsy.views.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/discoverFragment"
-        android:name="com.example.eatsy.DiscoverFragment"
+        android:name="com.example.eatsy.views.DiscoverFragment"
         android:label="fragment_discover"
         tools:layout="@layout/fragment_discover" >
         <action
@@ -52,7 +52,7 @@
     </fragment>
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.eatsy.MainActivity"
+        android:name="com.example.eatsy.views.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
 </navigation>
