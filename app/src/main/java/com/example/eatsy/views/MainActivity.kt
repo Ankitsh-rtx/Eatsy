@@ -1,9 +1,9 @@
-package com.example.eatsy
+package com.example.eatsy.views
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import com.example.eatsy.R
 import com.example.eatsy.databinding.ActivityMainBinding
 
 

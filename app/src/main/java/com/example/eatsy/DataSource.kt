@@ -59,7 +59,7 @@ object DataSource {
         Item(R.drawable.image_wow_momo,"Sandwich","",399),
 
     )
-    
+
     val items: ArrayList<Item> = arrayListOf(
         Item(R.drawable.image_pizza_restaurant,"Pizza","",399),
         Item(R.drawable.image_pizza_restaurant,"Mo-burg","",399),

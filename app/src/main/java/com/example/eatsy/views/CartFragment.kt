@@ -1,12 +1,11 @@
-package com.example.eatsy
+package com.example.eatsy.views
 
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.eatsy.R
 import com.example.eatsy.adapter.CartViewAdapter
 import com.example.eatsy.databinding.FragmentCartBinding
 
@@ -19,6 +18,11 @@ class CartFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(layoutInflater)
+
+        activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(),
+            R.color.off_white
+        )
 
         binding.cartItemsRecyclerview.adapter = CartViewAdapter(context)
         binding.cartItemsRecyclerview.layoutManager = LinearLayoutManager(context)
