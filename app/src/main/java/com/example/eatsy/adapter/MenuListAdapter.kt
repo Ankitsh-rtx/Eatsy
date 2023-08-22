@@ -1,20 +1,24 @@
 package com.example.eatsy.adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatsy.DataSource
-
 import com.example.eatsy.databinding.ItemLayoutBinding
+import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
+import com.example.eatsy.views.CartFragment
+
 
 class MenuListAdapter (
     private val context: Context? = null,
     val item: ArrayList<Item> // menu item received from the restaurant details activity
 ) : RecyclerView.Adapter<MenuListAdapter.MenuViewHolder>() {
 
+     val cartItemList = DataSource.orderList
 //    private lateinit var mListener: OnItemClickListener
 
 //    interface OnItemClickListener{
@@ -29,6 +33,7 @@ class MenuListAdapter (
 
     class MenuViewHolder (val binding: ItemLayoutBinding):
         RecyclerView.ViewHolder(binding.root){
+
 
         //constructor
 //        init{
@@ -59,32 +64,41 @@ class MenuListAdapter (
         holder.binding.itemName.text= items.getItemName()
         holder.binding.itemPrice.text= "₹ "+items.getItemPrice().toString()
         holder.binding.itemImage.setImageResource(items.imageResourceId)
-        holder.binding.itemAddButton.setOnClickListener( object : View.OnClickListener {
-            override fun onClick(v: View?) {
+        holder.binding.itemAddButton.setOnClickListener {
+            if (holder.binding.itemAddBtn.visibility == View.INVISIBLE && holder.binding.itemRemoveBtn.visibility == View.INVISIBLE) {
+                holder.binding.itemAddBtn.visibility = View.VISIBLE
+                holder.binding.itemRemoveBtn.visibility = View.VISIBLE
+            }
 
-                if(holder.binding.itemAddBtn.visibility == View.INVISIBLE && holder.binding.itemRemoveBtn.visibility == View.INVISIBLE) {
-                    holder.binding.itemAddBtn.visibility = View.VISIBLE
-                    holder.binding.itemRemoveBtn.visibility = View.VISIBLE
-                }
-                holder.binding.itemAddButton.text = (value).toString()
-            }
-        })
-        holder.binding.itemAddBtn.setOnClickListener( object : View.OnClickListener {
-            override fun onClick(v: View?) {
+            cartItemList.put(items.id, CartItem(items, value))
+            holder.binding.itemAddButton.text = (value).toString()
+        }
 
-                holder.binding.itemAddButton.text = (++value).toString()
+        holder.binding.itemAddBtn.setOnClickListener {
+
+            cartItemList.put(items.id, CartItem(items,value+1))
+            holder.binding.itemAddButton.text = (++value).toString()
+
+        }
+
+        holder.binding.itemRemoveBtn.setOnClickListener {
+            if (value <= 1) {
+                holder.binding.itemAddButton.text = "ADD"
+                holder.binding.itemAddBtn.visibility = View.INVISIBLE
+                holder.binding.itemRemoveBtn.visibility = View.INVISIBLE
+                cartItemList.remove(items.id)
+
+            } else{
+                holder.binding.itemAddButton.text = (--value).toString()
+                cartItemList.put(items.id,CartItem(items,value))
             }
-        })
-        holder.binding.itemRemoveBtn.setOnClickListener( object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                if(value<=1){
-                    holder.binding.itemAddButton.text = "ADD"
-                    holder.binding.itemAddBtn.visibility = View.INVISIBLE
-                    holder.binding.itemRemoveBtn.visibility = View.INVISIBLE
-                }
-                else holder.binding.itemAddButton.text = (--value).toString()
-            }
-        })
+
+        }
+
+        val bundle = Bundle()
+        bundle.putSerializable("cartItems",cartItemList)
+        val cartFragment = CartFragment()
+        cartFragment.arguments = bundle
 
 
     }
@@ -93,5 +107,6 @@ class MenuListAdapter (
         // return the size of the current menu list
         return item.size
     }
+
 
 }

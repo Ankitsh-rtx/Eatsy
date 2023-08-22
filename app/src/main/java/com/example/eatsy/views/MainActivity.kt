@@ -7,7 +7,10 @@ import com.example.eatsy.R
 import com.example.eatsy.databinding.ActivityMainBinding
 
 
+
+
 class MainActivity : AppCompatActivity() {
+    private val TAG:String = "Main Activity"
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +37,11 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+
+//        val restaurantViewModel:RestaurantViewModel = ViewModelProvider(this).get(RestaurantViewModel::class.java)
+//        restaurantViewModel.getCart().observe(this, Observer<List<CartItem>>(){
+//            Log.d(TAG,"onChanged: "+ it.size)
+//        })
 
 //        binding.fab.setOnClickListener {
 //

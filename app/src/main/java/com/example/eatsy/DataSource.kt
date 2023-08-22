@@ -52,25 +52,23 @@ object DataSource {
     )
 
     val items1: ArrayList<Item> = arrayListOf(
-        Item(R.drawable.image_wow_momo,"Chicken Momo","",399),
-        Item(R.drawable.image_wow_momo,"Mo-burg","",399),
-        Item(R.drawable.image_wow_momo,"Burger","",399),
-        Item(R.drawable.image_wow_momo,"Sandwich","",399),
-        Item(R.drawable.image_wow_momo,"Sandwich","",399),
+        Item(R.drawable.image_wow_momo,"1","Chicken Momo","",399),
+        Item(R.drawable.image_wow_momo,"2","Mo-burg","",399),
+        Item(R.drawable.image_wow_momo,"3","Burger","",399),
+        Item(R.drawable.image_wow_momo,"4","Sandwich","",399),
+        Item(R.drawable.image_wow_momo,"5","Sandwich","",399),
 
     )
 
     val items: ArrayList<Item> = arrayListOf(
-        Item(R.drawable.image_pizza_restaurant,"Pizza","",399),
-        Item(R.drawable.image_pizza_restaurant,"Mo-burg","",399),
-        Item(R.drawable.image_pizza_restaurant,"Burger","",399),
-        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
-        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
-        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
-        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
-        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
-        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399),
-        Item(R.drawable.image_pizza_restaurant,"Sandwich","",399)
+        Item(R.drawable.image_pizza_restaurant,"1","Pizza","",399),
+        Item(R.drawable.image_pizza_restaurant,"2","Mo-burg","",399),
+        Item(R.drawable.image_pizza_restaurant,"3","Burger","",399),
+        Item(R.drawable.image_pizza_restaurant,"4","Sandwich","",399),
+        Item(R.drawable.image_pizza_restaurant,"5","Sandwich","",399),
+        Item(R.drawable.image_pizza_restaurant,"6","Sandwich","",399),
+        Item(R.drawable.image_pizza_restaurant,"7","Sandwich","",399)
+
     )
 
     val restaurants: List<Restaurants> = listOf(
@@ -95,15 +93,6 @@ object DataSource {
 
     )
 
-
-
-    val orders: List<CartItem> = listOf(
-        CartItem("Chicken Pizza",1,249),
-        CartItem("Chicken Pizza",1,249),
-        CartItem("Chicken Pizza",1,249),
-        CartItem("Chicken Pizza",1,249),
-        CartItem("Chicken Pizza",1,249),
-        CartItem("Chicken Pizza",1,249)
-    )
+    val orderList : HashMap<String,CartItem> = HashMap()
 
 }

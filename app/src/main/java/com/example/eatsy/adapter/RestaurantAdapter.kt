@@ -68,6 +68,7 @@ class RestaurantAdapter (private val context: Context? = null) :
                     .putExtra("restaurant_menu", item.getMenu())
             )
         }
+
     }
 }
 
