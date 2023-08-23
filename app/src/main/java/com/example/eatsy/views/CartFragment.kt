@@ -5,13 +5,16 @@ import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.adapter.CartViewAdapter
 import com.example.eatsy.databinding.FragmentCartBinding
+import com.example.eatsy.model.CartItem
 
 
 class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
+    private lateinit var cartItemList:HashMap<String,CartItem>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,17 +27,34 @@ class CartFragment : Fragment() {
             R.color.off_white
         )
 
-        binding.cartItemsRecyclerview.adapter = CartViewAdapter(context)
+        val cartList = DataSource.orderList
+        var cartListHM = this.arguments?.getSerializable("cartItems")
+
+        if(cartListHM!=null){
+            cartItemList = cartListHM as HashMap<String, CartItem>
+        }
+        else cartItemList = cartList
+
+        binding.cartItemsRecyclerview.adapter = CartViewAdapter(context,cartItemList)
         binding.cartItemsRecyclerview.layoutManager = LinearLayoutManager(context)
-//        binding.cartItemsRecyclerview.addItemDecoration( DividerItemDecoration(getContext(),
-//            DividerItemDecoration.VERTICAL)
-//        )
-        // Specify fixed size to improve performance
-        binding.cartItemsRecyclerview.setHasFixedSize(true)
+            // Specify fixed size to improve performance
+        binding.cartItemsRecyclerview.setHasFixedSize(false)
         binding.cartItemsRecyclerview.isNestedScrollingEnabled = false
 
 
+        binding.totalPrice.text = "₹ "+totalPrice().toString()
+
+        binding.payableAmount.text = "₹ "+ (totalPrice()-70+80).toString()
+        binding.finalAmount.text = "₹ "+ (totalPrice()-70+80).toString()
+
         return binding.root
+    }
+
+    private fun totalPrice():Long{
+        var totalPrice:Long = 0
+        cartItemList.forEach { (key, value) -> totalPrice+=value.getItem().getItemPrice()}
+        return totalPrice
+
     }
 
 

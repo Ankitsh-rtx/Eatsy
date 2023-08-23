@@ -1,20 +1,13 @@
 package com.example.eatsy.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.eatsy.DataSource
 import com.example.eatsy.databinding.CartviewItemLayoutBinding
 import com.example.eatsy.model.CartItem
-import com.example.eatsy.model.Item
 
-class CartViewAdapter(private val context: Context? = null) : RecyclerView.Adapter<CartViewAdapter.CartViewHolder>() {
-
-
-    val orders: List<CartItem> = DataSource.orders
+class CartViewAdapter(private val context: Context? = null, private val cartListHM: HashMap<String,CartItem>) : RecyclerView.Adapter<CartViewAdapter.CartViewHolder>() {
 
     class CartViewHolder (val binding: CartviewItemLayoutBinding):
         RecyclerView.ViewHolder(binding.root){
@@ -30,29 +23,39 @@ class CartViewAdapter(private val context: Context? = null) : RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        val item: CartItem = DataSource.orders[position]
-        var value=1
-        holder.binding.cartItemName.text= item.getItemName()
-        holder.binding.cartItemPrice.text= "₹ "+item.getItemPrice().toString()
+
+        val cartList:ArrayList<CartItem> = ArrayList(cartListHM.values)
+        val item = cartList[position]
+
+        holder.binding.cartItemName.text = item.getItem().getItemName()
+        holder.binding.cartItemPrice.text = "₹ " + (item.getItem().getItemPrice()*item.getItemQuantity()).toString()
         holder.binding.cartItemCount.text = item.getItemQuantity().toString()
 
-        holder.binding.cartItemAddBtn.setOnClickListener( object : View.OnClickListener {
-            override fun onClick(v: View?) {
+        holder.binding.cartItemAddBtn.setOnClickListener {
 
-                holder.binding.cartItemCount.text = (++value).toString()
-            }
-        })
-        holder.binding.cartItemRemoveBtn.setOnClickListener( object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                holder.binding.cartItemCount.text = (--value).toString()
-            }
-        })
+            item.setItemQuantity(item.getItemQuantity()+1)
+            cartListHM.put( item.getItem().id, CartItem(item.getItem(),item.getItemQuantity()))
+            holder.binding.cartItemCount.text = (item.getItemQuantity()).toString()
+            holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()*item.getItem().getItemPrice()).toString()
+        }
+        holder.binding.cartItemRemoveBtn.setOnClickListener {
+            if (item.getItemQuantity() - 1 == 0) {
+                cartListHM.remove(item.getItem().id)
+                notifyItemRemoved(holder.bindingAdapterPosition)
+            } else {
 
+                item.setItemQuantity(item.getItemQuantity()-1)
+                holder.binding.cartItemCount.text = (item.getItemQuantity()).toString()
+                cartListHM.put( item.getItem().id, CartItem(item.getItem(),item.getItemQuantity()) )
+                holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()*item.getItem().getItemPrice()).toString()
+            }
+        }
 
     }
 
     override fun getItemCount(): Int {
-        return DataSource.orders.size
+        return cartListHM.size
     }
+
 
 }

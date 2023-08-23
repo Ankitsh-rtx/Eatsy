@@ -4,10 +4,12 @@ import androidx.annotation.DrawableRes
 
 class Item (
         @DrawableRes val imageResourceId: Int,
+        val id:String,
         val name: String,
         private val type: String,
         private val price: Int
-        ): java.io.Serializable{
+        ): java.io.Serializable
+{
         fun getItemName():String{
                 return name
         }
