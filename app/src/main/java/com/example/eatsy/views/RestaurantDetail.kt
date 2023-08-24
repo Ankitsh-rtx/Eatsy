@@ -23,6 +23,7 @@ import com.example.eatsy.model.Item
 class RestaurantDetail  : AppCompatActivity() {
     private lateinit var binding: ActivityRestaurantDetailBinding
     private lateinit var cartItemList:HashMap<String, CartItem>
+    private lateinit var adapter: MenuListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         // Inflate the layout for this fragment
         super.onCreate(savedInstanceState)
@@ -43,19 +44,18 @@ class RestaurantDetail  : AppCompatActivity() {
 
         // Status bar color
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.off_white)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.ash_white)
 
-        val adapter = MenuListAdapter(this, menu,binding)
+        adapter = MenuListAdapter(this, menu,binding)
         binding.menuItemRecyclerview.adapter= adapter
         binding.menuItemRecyclerview.layoutManager = LinearLayoutManager(this)
+
+        binding.goToCartDialog.setOnClickListener {
+            val i = Intent(applicationContext, MainActivity::class.java)
+            i.putExtra("cart", "cart")
+            startActivity(i)
+        }
         // Specify fixed size to improve performance
-        binding.goToCart.setOnClickListener(object:View.OnClickListener{
-            override fun onClick(p0: View?) {
-                val  i=Intent(applicationContext,MainActivity::class.java)
-                i.putExtra("cart","cart")
-                startActivity(i)
-            }
-        })
         binding.menuItemRecyclerview.setHasFixedSize(true)
         binding.menuItemRecyclerview.isNestedScrollingEnabled = false
         val countArr = IntArray(DataSource.items.size) { i-> 1 }
@@ -64,6 +64,13 @@ class RestaurantDetail  : AppCompatActivity() {
         if(cartItemList.size!=0) {
             binding.goToCartDialog.visibility= View.VISIBLE
         }
+    }
+    override fun onResume(){
+        super.onResume()
+        adapter.notifyDataSetChanged()
+        binding.menuItemRecyclerview.adapter = adapter
+
+
     }
 
 

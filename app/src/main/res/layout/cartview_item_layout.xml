@@ -49,7 +49,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 app:srcCompat="@drawable/icon_minus"
-                app:tint="#229B15" />
+                app:tint="@color/green_500" />
 
             <TextView
                 android:id="@+id/cart_item_count"
@@ -61,16 +61,15 @@
                 android:layout_gravity="center_vertical"
                 android:text="1"
                 android:textSize="16sp"
-                android:textColor="#229C15"
+                android:textColor="@color/green_500"
                 />
 
             <ImageView
                 android:id="@+id/cart_item_add_btn"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-
                 app:srcCompat="@drawable/icon_add"
-                app:tint="#229B15" />
+                app:tint="@color/green_500" />
         </LinearLayout>
 
         <TextView

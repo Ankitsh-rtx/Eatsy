@@ -150,7 +150,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="- ₹ 70"
-                                android:textColor="#229B15"
+                                android:textColor="@color/green_500"
                                 android:fontFamily="@font/metropolis_semibold" />
                         </LinearLayout>
 
@@ -265,7 +265,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/metropolis_semibold"
                         android:text="View Detailed Bill"
-                        android:textColor="#229B15"
+                        android:textColor="@color/green_500"
                         app:layout_constraintBottom_toBottomOf="@+id/textView5"
                         app:layout_constraintStart_toStartOf="@+id/textView2"
                         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -277,13 +277,13 @@
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:background="@drawable/background_button"
-                    android:backgroundTint="#229B19"
+                    android:backgroundTint="@color/green_500"
                     android:fontFamily="@font/metropolis_semibold"
                     android:gravity="center"
                     android:padding="8dp"
                     android:text="Proceed to Pay"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:layout_marginStart="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
