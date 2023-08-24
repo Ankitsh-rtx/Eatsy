@@ -55,6 +55,4 @@ class CartFragment : Fragment() {
         cartItemList.forEach { (key, value) -> totalPrice+=value.getItem().getItemPrice()}
         return totalPrice
     }
-
-
 }
