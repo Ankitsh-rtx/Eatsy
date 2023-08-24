@@ -71,9 +71,9 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         return totalPrice
     }
     private fun setPrice(holder: CartViewHolder) {
-        Log.d("G", totalPrice().toString())
-        cartFragmentBinding.totalPrice.text="₹ "+(totalPrice()).toString()
-        cartFragmentBinding.payableAmount.text = "₹ "+ (totalPrice()-70+80).toString()
-        cartFragmentBinding.finalAmount.text = "₹ "+ (totalPrice()-70+80).toString()
+        var total:Long=totalPrice()
+        cartFragmentBinding.totalPrice.text="₹ "+total.toString()
+        cartFragmentBinding.payableAmount.text = "₹ "+ (total-70+80).toString()
+        cartFragmentBinding.finalAmount.text = "₹ "+ (total-70+80).toString()
     }
 }

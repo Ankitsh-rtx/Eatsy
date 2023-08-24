@@ -32,6 +32,7 @@ class CartFragment : Fragment() {
 
         if(cartListHM!=null){
             cartItemList = cartListHM as HashMap<String, CartItem>
+
         }
         else cartItemList = cartList
 
@@ -42,10 +43,11 @@ class CartFragment : Fragment() {
         binding.cartItemsRecyclerview.isNestedScrollingEnabled = false
 
 
-        binding.totalPrice.text = "₹ "+totalPrice().toString()
+        val total:Long=totalPrice()
+        binding.totalPrice.text = "₹ "+total.toString()
 
-        binding.payableAmount.text = "₹ "+ (totalPrice()-70+80).toString()
-        binding.finalAmount.text = "₹ "+ (totalPrice()-70+80).toString()
+        binding.payableAmount.text = "₹ "+ (total-70+80).toString()
+        binding.finalAmount.text = "₹ "+ (total-70+80).toString()
 
         return binding.root
     }

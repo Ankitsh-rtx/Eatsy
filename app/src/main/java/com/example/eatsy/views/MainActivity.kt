@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.bottomNavigationView.background = null
 
-
         binding.bottomNavigationView.setOnItemSelectedListener{
             var fragment: Fragment? = null
             when (it.itemId) {
@@ -36,6 +35,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             true
+        }
+        if(intent.getStringExtra("cart").equals("cart")) {
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,CartFragment()).commit()
         }
 
 //        val restaurantViewModel:RestaurantViewModel = ViewModelProvider(this).get(RestaurantViewModel::class.java)
