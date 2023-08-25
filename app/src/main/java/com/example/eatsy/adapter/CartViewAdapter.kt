@@ -3,6 +3,7 @@ package com.example.eatsy.adapter
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import com.example.eatsy.R
 import com.example.eatsy.databinding.CartviewItemLayoutBinding
 import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.model.CartItem
+import kotlin.math.log
 
 class CartViewAdapter(private val context: Context? = null, private val cartListHM: HashMap<String,CartItem>,private  val view :FragmentCartBinding ) : RecyclerView.Adapter<CartViewAdapter.CartViewHolder>() {
     private lateinit var cartFragmentBinding:FragmentCartBinding
@@ -30,6 +32,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
 
+        var cartItems=DataSource.orderList
         val cartList:ArrayList<CartItem> = ArrayList(cartListHM.values)
         val item = cartList[position]
 
@@ -47,15 +50,20 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         holder.binding.cartItemRemoveBtn.setOnClickListener {
             if (item.getItemQuantity() - 1 == 0) {
                 cartListHM.remove(item.getItem().id)
+                cartItems.remove(item.getItem().id)
                 notifyItemRemoved(holder.bindingAdapterPosition)
             } else {
-
                 item.setItemQuantity(item.getItemQuantity()-1)
                 holder.binding.cartItemCount.text = (item.getItemQuantity()).toString()
                 cartListHM.put( item.getItem().id, CartItem(item.getItem(),item.getItemQuantity()) )
                 holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()*item.getItem().getItemPrice()).toString()
             }
             setPrice(holder)
+
+            if(cartListHM.size==0){
+                cartFragmentBinding.emptyCart.visibility= View.VISIBLE;
+                cartFragmentBinding.cartLayout.visibility=View.GONE
+            }
         }
 
     }

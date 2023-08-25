@@ -1,5 +1,6 @@
 package com.example.eatsy.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.core.content.ContextCompat
@@ -35,6 +36,18 @@ class CartFragment : Fragment() {
 
         }
         else cartItemList = cartList
+
+        if(cartItemList.size==0) {
+            binding.emptyCart.visibility=View.VISIBLE
+            binding.cartLayout.visibility=View.GONE
+            binding.goToMenu.setOnClickListener(object:View.OnClickListener{
+                override fun onClick(p0: View?) {
+                    var intent= Intent(context,MainActivity::class.java)
+                    intent.putExtra("discover","discover")
+                    startActivity(intent)
+                }
+            })
+        }
 
         binding.cartItemsRecyclerview.adapter = CartViewAdapter(context,cartItemList,binding)
         binding.cartItemsRecyclerview.layoutManager = LinearLayoutManager(context)

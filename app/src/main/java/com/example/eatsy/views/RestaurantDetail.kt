@@ -4,6 +4,7 @@ package com.example.eatsy.views;
 import android.content.Intent
 import android.opengl.Visibility
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 
@@ -69,8 +70,11 @@ class RestaurantDetail  : AppCompatActivity() {
         super.onResume()
         adapter.notifyDataSetChanged()
         binding.menuItemRecyclerview.adapter = adapter
-
-
+        Log.d("g", cartItemList.toString())
+        cartItemList=DataSource.orderList
+        if(cartItemList.size==0) {
+            binding.goToCartDialog.visibility= View.GONE
+        }
     }
 
 
