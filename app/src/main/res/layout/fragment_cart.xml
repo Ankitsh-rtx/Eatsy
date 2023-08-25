@@ -6,15 +6,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.CartFragment">
 
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/empty_cart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/image_boiling"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Good Food is Always Cooking"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your cart is empty. Add something from the menu"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/go_to_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Browse Restaurants"
+            android:padding="15dp"
+            android:background="@drawable/background_button"
+            android:backgroundTint="@color/green_500"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
+        android:layout_height="match_parent"
+        android:id="@+id/cart_layout">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="#f3f3f3"
+            android:background="@color/silver_white"
             android:padding="15dp"
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@+id/payement"
@@ -150,7 +188,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="- ₹ 70"
-                                android:textColor="#229B15"
+                                android:textColor="@color/green_500"
                                 android:fontFamily="@font/metropolis_semibold" />
                         </LinearLayout>
 
@@ -265,7 +303,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/metropolis_semibold"
                         android:text="View Detailed Bill"
-                        android:textColor="#229B15"
+                        android:textColor="@color/green_500"
                         app:layout_constraintBottom_toBottomOf="@+id/textView5"
                         app:layout_constraintStart_toStartOf="@+id/textView2"
                         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -277,7 +315,7 @@
                     android:layout_width="0dp"
                     android:layout_height="56dp"
                     android:background="@drawable/background_button"
-                    android:backgroundTint="#229B19"
+                    android:backgroundTint="@color/green_500"
                     android:fontFamily="@font/metropolis_semibold"
                     android:gravity="center"
                     android:padding="8dp"

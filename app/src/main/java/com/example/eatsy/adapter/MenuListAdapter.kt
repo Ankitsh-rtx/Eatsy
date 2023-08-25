@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatsy.DataSource
+import com.example.eatsy.databinding.ActivityRestaurantDetailBinding
 import com.example.eatsy.databinding.ItemLayoutBinding
 import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
@@ -15,9 +16,12 @@ import com.example.eatsy.views.CartFragment
 
 class MenuListAdapter (
     private val context: Context? = null,
-    val item: ArrayList<Item> // menu item received from the restaurant details activity
+    val item: ArrayList<Item>,
+    // menu item received from the restaurant details activity
+    val view :ActivityRestaurantDetailBinding
 ) : RecyclerView.Adapter<MenuListAdapter.MenuViewHolder>() {
 
+     private  lateinit var v:ActivityRestaurantDetailBinding
      val cartItemList = DataSource.orderList
 //    private lateinit var mListener: OnItemClickListener
 
@@ -53,6 +57,7 @@ class MenuListAdapter (
         parent: ViewGroup,
         viewType: Int
     ): MenuViewHolder {
+        v= ActivityRestaurantDetailBinding.bind(view.root)
         val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MenuViewHolder(binding)
     }
@@ -61,22 +66,45 @@ class MenuListAdapter (
         // arraylist that is passed through restaurant detail activity is used here
         val items:Item = item[position]
         var value=1
+        if(cartItemList.containsKey(items.id)) {
+            value=cartItemList.getValue(items.id).getItemQuantity()
+            holder.binding.itemAddButton.text = (value).toString()
+            holder.binding.itemAddBtn.visibility = View.VISIBLE
+            holder.binding.itemRemoveBtn.visibility = View.VISIBLE
+
+        }
         holder.binding.itemName.text= items.getItemName()
         holder.binding.itemPrice.text= "₹ "+items.getItemPrice().toString()
         holder.binding.itemImage.setImageResource(items.imageResourceId)
+        if(cartItemList.size!=0){
+            v.itemCount.text = cartItemList.size.toString()+" Items"
+            v.price.text = "₹"+totalPrice().toString()
+
+        }
+
         holder.binding.itemAddButton.setOnClickListener {
             if (holder.binding.itemAddBtn.visibility == View.INVISIBLE && holder.binding.itemRemoveBtn.visibility == View.INVISIBLE) {
                 holder.binding.itemAddBtn.visibility = View.VISIBLE
                 holder.binding.itemRemoveBtn.visibility = View.VISIBLE
             }
-
             cartItemList.put(items.id, CartItem(items, value))
+            if(cartItemList.size!=0) {
+                v.goToCartDialog.visibility= View.VISIBLE
+                v.itemCount.text = cartItemList.size.toString()+ " Items"
+                v.price.text = "₹"+totalPrice().toString()
+            }
+            else v.goToCartDialog.visibility= View.GONE
             holder.binding.itemAddButton.text = (value).toString()
         }
 
         holder.binding.itemAddBtn.setOnClickListener {
 
             cartItemList.put(items.id, CartItem(items,value+1))
+            if(cartItemList.size!=0) {
+                v.goToCartDialog.visibility= View.VISIBLE
+                v.price.text = "₹"+totalPrice().toString()
+            }
+            else v.goToCartDialog.visibility= View.GONE
             holder.binding.itemAddButton.text = (++value).toString()
 
         }
@@ -89,9 +117,18 @@ class MenuListAdapter (
                 cartItemList.remove(items.id)
 
             } else{
+                v.itemCount.text = cartItemList.size.toString()+ " Item"
+                v.price.text = "₹"+totalPrice().toString()
                 holder.binding.itemAddButton.text = (--value).toString()
                 cartItemList.put(items.id,CartItem(items,value))
             }
+            if(cartItemList.size!=0) {
+                v.goToCartDialog.visibility= View.VISIBLE
+                v.itemCount.text = cartItemList.size.toString()+ " Item"
+                v.price.text = "₹"+totalPrice().toString()
+
+            }
+            else v.goToCartDialog.visibility= View.GONE
 
         }
 
@@ -108,5 +145,12 @@ class MenuListAdapter (
         return item.size
     }
 
+    private fun totalPrice():Long{
+        var totalPrice:Long = 0
+        var cartItemList:HashMap<String,CartItem>
+        cartItemList= DataSource.orderList
+        cartItemList.forEach { (key, value) -> totalPrice+=(value.getItem().getItemPrice()*value.getItemQuantity())}
+        return totalPrice
+    }
 
 }

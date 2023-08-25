@@ -1,5 +1,6 @@
 package com.example.eatsy.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.core.content.ContextCompat
@@ -32,30 +33,41 @@ class CartFragment : Fragment() {
 
         if(cartListHM!=null){
             cartItemList = cartListHM as HashMap<String, CartItem>
+
         }
         else cartItemList = cartList
 
-        binding.cartItemsRecyclerview.adapter = CartViewAdapter(context,cartItemList)
+        if(cartItemList.size==0) {
+            binding.emptyCart.visibility=View.VISIBLE
+            binding.cartLayout.visibility=View.GONE
+            binding.goToMenu.setOnClickListener(object:View.OnClickListener{
+                override fun onClick(p0: View?) {
+                    var intent= Intent(context,MainActivity::class.java)
+                    intent.putExtra("discover","discover")
+                    startActivity(intent)
+                }
+            })
+        }
+
+        binding.cartItemsRecyclerview.adapter = CartViewAdapter(context,cartItemList,binding)
         binding.cartItemsRecyclerview.layoutManager = LinearLayoutManager(context)
             // Specify fixed size to improve performance
         binding.cartItemsRecyclerview.setHasFixedSize(false)
         binding.cartItemsRecyclerview.isNestedScrollingEnabled = false
 
 
-        binding.totalPrice.text = "₹ "+totalPrice().toString()
+        val total:Long=totalPrice()
+        binding.totalPrice.text = "₹ "+total.toString()
 
-        binding.payableAmount.text = "₹ "+ (totalPrice()-70+80).toString()
-        binding.finalAmount.text = "₹ "+ (totalPrice()-70+80).toString()
+        binding.payableAmount.text = "₹ "+ (total-70+80).toString()
+        binding.finalAmount.text = "₹ "+ (total-70+80).toString()
 
         return binding.root
     }
 
     private fun totalPrice():Long{
         var totalPrice:Long = 0
-        cartItemList.forEach { (key, value) -> totalPrice+=value.getItem().getItemPrice()}
+        cartItemList.forEach { (key, value) -> totalPrice+=value.getItem().getItemPrice()*value.getItemQuantity()}
         return totalPrice
-
     }
-
-
 }

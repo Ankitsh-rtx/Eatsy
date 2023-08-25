@@ -37,6 +37,8 @@ class HomeFragment : Fragment() {
         activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.white)
 
+
+
         return binding.root
     }
 
