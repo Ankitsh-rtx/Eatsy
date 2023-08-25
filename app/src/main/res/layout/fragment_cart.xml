@@ -14,7 +14,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="#f3f3f3"
+            android:background="@color/silver_white"
             android:padding="15dp"
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@+id/payement"

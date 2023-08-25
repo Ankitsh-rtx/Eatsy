@@ -90,11 +90,11 @@
         android:background="@drawable/background_search"
         android:drawableEnd="@drawable/icon_search"
         android:drawablePadding="16dp"
-        android:backgroundTint="#f3f3f3"
-
+        android:backgroundTint="@color/silver_white"
         android:drawableTint="#FF1744"
         android:fontFamily="@font/metropolis_regular"
         android:hint="Dishes, restaurants, groceries - Find it all here"
+        android:textColorHint="#80121212"
         android:inputType="text"
         android:maxLines="1"
         android:paddingStart="16dp"
