@@ -31,22 +31,15 @@ class CartFragment : Fragment() {
         val cartList = DataSource.orderList
         var cartListHM = this.arguments?.getSerializable("cartItems")
 
-        if(cartListHM!=null){
-            cartItemList = cartListHM as HashMap<String, CartItem>
+        cartItemList = if(cartListHM!=null){
+            cartListHM as HashMap<String, CartItem>
 
-        }
-        else cartItemList = cartList
+        } else cartList
 
         if(cartItemList.size==0) {
             binding.emptyCart.visibility=View.VISIBLE
             binding.cartLayout.visibility=View.GONE
-            binding.goToMenu.setOnClickListener(object:View.OnClickListener{
-                override fun onClick(p0: View?) {
-                    var intent= Intent(context,MainActivity::class.java)
-                    intent.putExtra("discover","discover")
-                    startActivity(intent)
-                }
-            })
+
         }
 
         binding.cartItemsRecyclerview.adapter = CartViewAdapter(context,cartItemList,binding)
@@ -54,6 +47,12 @@ class CartFragment : Fragment() {
             // Specify fixed size to improve performance
         binding.cartItemsRecyclerview.setHasFixedSize(false)
         binding.cartItemsRecyclerview.isNestedScrollingEnabled = false
+
+        binding.goToMenu.setOnClickListener {
+            var intent = Intent(context, MainActivity::class.java)
+            intent.putExtra("discover", "discover")
+            startActivity(intent)
+        }
 
 
         val total:Long=totalPrice()
