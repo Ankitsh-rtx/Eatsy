@@ -2,14 +2,15 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+    >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
-        android:paddingTop="10dp">
+        android:paddingTop="15dp">
 
         <TextView
             android:id="@+id/item_name"
@@ -17,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:fontFamily="@font/metropolis_semibold"
-            android:text="Moburg"
+            android:text="Margherita Pizza"
             android:textSize="20sp"
             android:textColor="#121212"
             app:layout_constraintEnd_toStartOf="@+id/cardView3"
@@ -29,6 +30,8 @@
             android:id="@+id/item_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
             android:fontFamily="@font/metropolis_semibold"
             android:textColor="#ED1C1C1C"
             android:text="Rs 200"
@@ -40,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/metropolis_regular"
+            android:layout_marginTop="8dp"
             android:text="More details"
             app:layout_constraintStart_toStartOf="@+id/item_price"
             app:layout_constraintTop_toBottomOf="@+id/item_price" />
@@ -48,7 +52,8 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
             android:layout_width="150dp"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
+            app:layout_constraintDimensionRatio="1:1"
             app:cardElevation="0dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,11 +71,12 @@
         <TextView
             android:id="@+id/item_add_button"
             android:layout_width="0dp"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
             android:elevation="2dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
+            android:textSize="16sp"
             android:fontFamily="@font/metropolis_bold"
             android:background="@drawable/background_button"
             android:text="ADD"
@@ -84,8 +90,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/dotted_line_divider"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

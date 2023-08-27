@@ -2,16 +2,20 @@ package com.example.eatsy.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
-import com.example.eatsy.views.RestaurantDetail
 import com.example.eatsy.model.Restaurants
+import com.example.eatsy.views.CartFragment
+import com.example.eatsy.views.RestaurantDetail
+import com.example.eatsy.views.RestaurantDetailFragment
 
 class RestaurantAdapter (private val context: Context? = null) :
     RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
@@ -59,6 +63,19 @@ class RestaurantAdapter (private val context: Context? = null) :
         holder.restaurantRating.text = item.getRestaurantRating().toString()
 
         holder.itemView.setOnClickListener {
+
+//            val cartFragment = CartFragment()
+//            val args = Bundle()
+//            args.putString("restaurant_name",item.getRestaurantName())
+//            args.putString("restaurant_type",item.getRestaurantType())
+//            args.putString("restaurant_rating",item.getRestaurantRating().toString())
+//            args.putString("restaurant_address",item.getRestaurantAddress())
+//            args.putSerializable("restaurant_menu", item.getMenu())
+//            cartFragment.arguments = args
+//            val fragmentManager =
+//            cartFragment.fragmentManager?.beginTransaction()?.add(R.id.homeFragment, cartFragment)
+//                ?.commit()
+
             context?.startActivity(
                 Intent(context, RestaurantDetail::class.java)
                 .putExtra("restaurant_name",item.getRestaurantName())

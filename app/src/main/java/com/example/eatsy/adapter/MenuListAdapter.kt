@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatsy.DataSource
 import com.example.eatsy.databinding.ActivityRestaurantDetailBinding
+import com.example.eatsy.databinding.FragmentRestaurantDetailBinding
 import com.example.eatsy.databinding.ItemLayoutBinding
 import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
@@ -18,7 +19,8 @@ class MenuListAdapter (
     private val context: Context? = null,
     val item: ArrayList<Item>,
     // menu item received from the restaurant details activity
-    val view :ActivityRestaurantDetailBinding
+//    val view :FragmentRestaurantDetailBinding
+    val view: ActivityRestaurantDetailBinding
 ) : RecyclerView.Adapter<MenuListAdapter.MenuViewHolder>() {
 
      private  lateinit var v:ActivityRestaurantDetailBinding

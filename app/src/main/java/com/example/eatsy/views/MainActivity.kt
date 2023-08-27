@@ -1,12 +1,12 @@
 package com.example.eatsy.views
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import com.example.eatsy.R
 import com.example.eatsy.databinding.ActivityMainBinding
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.bottomNavigationView.background = null
 
+
         binding.bottomNavigationView.setOnItemSelectedListener{
             var fragment: Fragment? = null
             when (it.itemId) {
@@ -28,6 +29,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.profileFragment -> ProfileFragment().also { fragment = it }
                 else -> {}
             }
+//            if(it.itemId == R.id.cartFragment){
+//                binding.bottomAppBar.visibility = View.GONE
+//            }
+//            else {
+//                binding.bottomAppBar.visibility = View.VISIBLE
+//            }
             fragment?.let {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView, it)
@@ -36,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+
         if(intent.getStringExtra("cart").equals("cart")) {
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,CartFragment()).commit()
         }

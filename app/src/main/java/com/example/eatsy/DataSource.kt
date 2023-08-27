@@ -89,6 +89,96 @@ object DataSource {
             4.0,
             "Park Circus",
             items1
+        ),
+        Restaurants(
+            "3",
+            R.drawable.image_pizza_restaurant,
+            "Pizza Huts",
+            "Pizza",
+            4.2,
+            "Lake Mall",
+            items
+        ),
+        Restaurants(
+            "4",
+            R.drawable.image_wow_momo,
+            "WOW! Momo",
+            "Momo",
+            4.0,
+            "Park Circus",
+            items1
+        ),
+        Restaurants(
+            "5",
+            R.drawable.image_pizza_restaurant,
+            "Pizza Huts",
+            "Pizza",
+            4.2,
+            "Lake Mall",
+            items
+        ),
+        Restaurants(
+            "6",
+            R.drawable.image_wow_momo,
+            "WOW! Momo",
+            "Momo",
+            4.0,
+            "Park Circus",
+            items1
+        ),
+        Restaurants(
+            "5",
+            R.drawable.image_pizza_restaurant,
+            "Pizza Huts",
+            "Pizza",
+            4.2,
+            "Lake Mall",
+            items
+        ),
+        Restaurants(
+            "6",
+            R.drawable.image_wow_momo,
+            "WOW! Momo",
+            "Momo",
+            4.0,
+            "Park Circus",
+            items1
+        ),
+        Restaurants(
+            "5",
+            R.drawable.image_pizza_restaurant,
+            "Pizza Huts",
+            "Pizza",
+            4.2,
+            "Lake Mall",
+            items
+        ),
+        Restaurants(
+            "6",
+            R.drawable.image_wow_momo,
+            "WOW! Momo",
+            "Momo",
+            4.0,
+            "Park Circus",
+            items1
+        ),
+        Restaurants(
+            "5",
+            R.drawable.image_pizza_restaurant,
+            "Pizza Huts",
+            "Pizza",
+            4.2,
+            "Lake Mall",
+            items
+        ),
+        Restaurants(
+            "6",
+            R.drawable.image_wow_momo,
+            "WOW! Momo",
+            "Momo",
+            4.0,
+            "Park Circus",
+            items1
         )
 
     )

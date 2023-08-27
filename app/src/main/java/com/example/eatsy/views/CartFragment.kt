@@ -11,6 +11,10 @@ import com.example.eatsy.R
 import com.example.eatsy.adapter.CartViewAdapter
 import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.model.CartItem
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
+
+
 
 
 class CartFragment : Fragment() {
