@@ -1,5 +1,7 @@
 package com.example.eatsy.views
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -67,6 +69,16 @@ class MainActivity : AppCompatActivity() {
 //
 //        }
 
+    }
+
+    // function to override large font size into normal font size
+    override fun attachBaseContext(newBase: Context?) {
+
+        val newOverride = Configuration(newBase?.resources?.configuration)
+        newOverride.fontScale = 1.0f
+        applyOverrideConfiguration(newOverride)
+
+        super.attachBaseContext(newBase)
     }
 
 
