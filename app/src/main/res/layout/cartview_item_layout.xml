@@ -16,13 +16,12 @@
 
         <TextView
             android:id="@+id/cart_item_name"
-            android:layout_width="160dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/metropolis_medium"
             android:text="Chicken Zinger Burger - Classic"
             android:textSize="16sp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/count_linear_layout"
             app:layout_constraintHorizontal_bias="0.0"
@@ -32,14 +31,12 @@
 
         <LinearLayout
             android:id="@+id/count_linear_layout"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:background="@drawable/divider"
-            android:layout_marginStart="28dp"
-            app:layout_constraintStart_toEndOf="@id/cart_item_name"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-
+            app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintTop_toTopOf="parent">
 
 
@@ -54,13 +51,12 @@
                 android:id="@+id/cart_item_count"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
                 android:fontFamily="@font/metropolis_bold"
                 android:gravity="center"
-                android:layout_gravity="center_vertical"
-                android:text="10"
-                android:textSize="16sp"
+                android:text="100"
                 android:textColor="@color/green_500"
-                />
+                android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/cart_item_add_btn"
@@ -72,16 +68,24 @@
 
         <TextView
             android:id="@+id/cart_item_price"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/metropolis_semibold"
-            android:text="Rs 207"
+            android:text="Rs 251542107"
             android:textSize="14sp"
+            android:gravity="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/count_linear_layout"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="1.0" />
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.5"
+            android:orientation="vertical" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
