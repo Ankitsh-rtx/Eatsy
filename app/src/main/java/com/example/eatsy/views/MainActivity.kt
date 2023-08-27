@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.background = null
 
 
+
         binding.bottomNavigationView.setOnItemSelectedListener{
             var fragment: Fragment? = null
             when (it.itemId) {
@@ -46,9 +47,11 @@ class MainActivity : AppCompatActivity() {
 
         if(intent.getStringExtra("cart").equals("cart")) {
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,CartFragment()).commit()
+            binding.bottomNavigationView.selectedItemId=R.id.cartFragment
         }
         else if(intent.getStringExtra("discover").equals("discover")) {
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,DiscoverFragment()).commit()
+            binding.bottomNavigationView.selectedItemId=R.id.discoverFragment
         }
 
 //        val restaurantViewModel:RestaurantViewModel = ViewModelProvider(this).get(RestaurantViewModel::class.java)
