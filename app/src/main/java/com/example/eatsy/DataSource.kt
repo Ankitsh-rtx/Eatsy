@@ -1,9 +1,6 @@
 package com.example.eatsy
 
-import com.example.eatsy.model.CartItem
-import com.example.eatsy.model.Dishes
-import com.example.eatsy.model.Item
-import com.example.eatsy.model.Restaurants
+import com.example.eatsy.model.*
 
 object DataSource {
     val dish: List<Dishes> = listOf(
@@ -46,7 +43,7 @@ object DataSource {
             "Cake",
         ),
         Dishes(
-            R.drawable.image_application,
+            R.drawable.image_more,
             "More",
         )
     )
@@ -70,119 +67,23 @@ object DataSource {
         Item(R.drawable.image_pizza_restaurant,"7","Sandwich","",399)
 
     )
-
-    val restaurants: List<Restaurants> = listOf(
+    private val address = Address("Kolkata","India",700039,"Bidhannagar")
+    val restaurants: MutableList<Restaurants> = mutableListOf(
         Restaurants(
             "1",
-            R.drawable.image_pizza_restaurant,
+            null,
             "Pizza Huts",
             "Pizza",
             4.2,
-            "Lake Mall",
+            "Kolkata","India","1000",700039,"Bidhannagar",
+            true,true,
             items
-        ),
-        Restaurants(
-            "2",
-            R.drawable.image_wow_momo,
-            "WOW! Momo",
-            "Momo",
-            4.0,
-            "Park Circus",
-            items1
-        ),
-        Restaurants(
-            "3",
-            R.drawable.image_pizza_restaurant,
-            "Pizza Huts",
-            "Pizza",
-            4.2,
-            "Lake Mall",
-            items
-        ),
-        Restaurants(
-            "4",
-            R.drawable.image_wow_momo,
-            "WOW! Momo",
-            "Momo",
-            4.0,
-            "Park Circus",
-            items1
-        ),
-        Restaurants(
-            "5",
-            R.drawable.image_pizza_restaurant,
-            "Pizza Huts",
-            "Pizza",
-            4.2,
-            "Lake Mall",
-            items
-        ),
-        Restaurants(
-            "6",
-            R.drawable.image_wow_momo,
-            "WOW! Momo",
-            "Momo",
-            4.0,
-            "Park Circus",
-            items1
-        ),
-        Restaurants(
-            "5",
-            R.drawable.image_pizza_restaurant,
-            "Pizza Huts",
-            "Pizza",
-            4.2,
-            "Lake Mall",
-            items
-        ),
-        Restaurants(
-            "6",
-            R.drawable.image_wow_momo,
-            "WOW! Momo",
-            "Momo",
-            4.0,
-            "Park Circus",
-            items1
-        ),
-        Restaurants(
-            "5",
-            R.drawable.image_pizza_restaurant,
-            "Pizza Huts",
-            "Pizza",
-            4.2,
-            "Lake Mall",
-            items
-        ),
-        Restaurants(
-            "6",
-            R.drawable.image_wow_momo,
-            "WOW! Momo",
-            "Momo",
-            4.0,
-            "Park Circus",
-            items1
-        ),
-        Restaurants(
-            "5",
-            R.drawable.image_pizza_restaurant,
-            "Pizza Huts",
-            "Pizza",
-            4.2,
-            "Lake Mall",
-            items
-        ),
-        Restaurants(
-            "6",
-            R.drawable.image_wow_momo,
-            "WOW! Momo",
-            "Momo",
-            4.0,
-            "Park Circus",
-            items1
         )
 
     )
 
     val orderList : HashMap<String,CartItem> = HashMap()
+
+
 
 }

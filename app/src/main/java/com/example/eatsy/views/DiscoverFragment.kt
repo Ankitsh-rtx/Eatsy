@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.adapter.RestaurantAdapter
 import com.example.eatsy.databinding.FragmentDiscoverBinding
+import com.example.eatsy.model.Restaurants
 
 
 class DiscoverFragment : Fragment() {
@@ -23,7 +25,7 @@ class DiscoverFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentDiscoverBinding.inflate(layoutInflater)
-        binding.restaurantRecyclerview.adapter = RestaurantAdapter(context)
+        binding.restaurantRecyclerview.adapter = RestaurantAdapter(context, DataSource.restaurants)
         binding.restaurantRecyclerview.layoutManager = LinearLayoutManager(context)
         // Specify fixed size to improve performance
         binding.restaurantRecyclerview.setHasFixedSize(true)

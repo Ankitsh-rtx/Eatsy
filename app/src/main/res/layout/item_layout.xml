@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
         android:layout_height="wrap_content"
     >
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,41 +13,78 @@
         android:paddingEnd="20dp"
         android:paddingTop="15dp">
 
-        <TextView
-            android:id="@+id/item_name"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:fontFamily="@font/metropolis_semibold"
-            android:text="Margherita Pizza"
-            android:textSize="20sp"
-            android:textColor="#121212"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView3"
             app:layout_constraintEnd_toStartOf="@+id/cardView3"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/cardView3">
 
-        <TextView
-            android:id="@+id/item_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="14sp"
-            android:fontFamily="@font/metropolis_semibold"
-            android:textColor="#ED1C1C1C"
-            android:text="Rs 200"
-            app:layout_constraintStart_toStartOf="@+id/item_name"
-            app:layout_constraintTop_toBottomOf="@+id/item_name" />
+            <ImageView
+                android:id="@+id/item_veg"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/icon_veg"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/green_700" />
 
-        <TextView
-            android:id="@+id/item_details"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/metropolis_regular"
-            android:layout_marginTop="8dp"
-            android:text="More details"
-            app:layout_constraintStart_toStartOf="@+id/item_price"
-            app:layout_constraintTop_toBottomOf="@+id/item_price" />
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/metropolis_semibold"
+                android:text="Margherita Pizza"
+                android:textColor="#121212"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/cardView3"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_veg" />
+
+            <TextView
+                android:id="@+id/item_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/metropolis_semibold"
+                android:text="Rs 200"
+                android:textColor="#ED1C1C1C"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/item_name"
+                app:layout_constraintTop_toBottomOf="@+id/item_name" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/divider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_price">
+                <TextView
+                    android:id="@+id/item_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/metropolis_regular"
+                    android:text="More details"
+                    android:paddingStart="2dp"
+                    android:layout_gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/item_price"
+                    app:layout_constraintTop_toBottomOf="@+id/item_price" />
+                <ImageView
+                    android:id="@+id/dropdown_icon"
+                    android:layout_width="18dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/icon_arrow_right"
+                    />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
         <androidx.cardview.widget.CardView
@@ -88,15 +126,16 @@
 
 
         <ImageView
+            android:id="@+id/imageView4"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="20dp"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/dotted_line_divider"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_add_button"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/dotted_line_divider" />
 
         <ImageView
             android:id="@+id/item_add_btn"

@@ -19,6 +19,7 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.adapter.MenuListAdapter
 import com.example.eatsy.databinding.ActivityRestaurantDetailBinding
+import com.example.eatsy.model.Address
 import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
 

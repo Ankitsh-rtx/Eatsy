@@ -16,4 +16,6 @@
     <color name="silver_white">#f0f0f5</color>
     <color name="ash_white">#e6e6ee</color>
     <color name="gray">#c4c4c4</color>
+    <color name="red_500">#e43b4f</color>
+    <color name="gray_700">#80000000</color>
 </resources>

@@ -2,26 +2,22 @@ package com.example.eatsy.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.eatsy.DataSource
+import com.bumptech.glide.Glide
 import com.example.eatsy.R
 import com.example.eatsy.model.Restaurants
-import com.example.eatsy.views.CartFragment
 import com.example.eatsy.views.RestaurantDetail
-import com.example.eatsy.views.RestaurantDetailFragment
 
-class RestaurantAdapter (private val context: Context? = null) :
+class RestaurantAdapter (private val context: Context? = null, private val restaurants: MutableList<Restaurants>) :
     RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
     // Initialize the data using the List found in data/DataSource
-    private val restaurants:List<Restaurants> = DataSource.restaurants
+//    private val restaurants:List<Restaurants> = DataSource.restaurants
 
     /**
      * Initialize view elements
@@ -57,7 +53,11 @@ class RestaurantAdapter (private val context: Context? = null) :
         //  Set the image resource for the current restaurant
         //  Set the text for the current restaurant's name
         //  Set the text for the current restaurant's type
-        holder.restaurantImage.setImageResource(item.imageResourceId)
+        if (context != null) {
+            Glide.with(context).load(item.image).into(holder.restaurantImage)
+        };
+
+//        holder.restaurantImage.setImageResource(item.imageResourceId)
         holder.restaurantName.text = item.getRestaurantName()
         holder.restaurantType.text = item.getRestaurantType()
         holder.restaurantRating.text = item.getRestaurantRating().toString()
@@ -76,13 +76,15 @@ class RestaurantAdapter (private val context: Context? = null) :
 //            cartFragment.fragmentManager?.beginTransaction()?.add(R.id.homeFragment, cartFragment)
 //                ?.commit()
 
+
             context?.startActivity(
                 Intent(context, RestaurantDetail::class.java)
                 .putExtra("restaurant_name",item.getRestaurantName())
                 .putExtra("restaurant_type",item.getRestaurantType())
                 .putExtra("restaurant_rating",item.getRestaurantRating().toString())
-                    .putExtra("restaurant_address",item.getRestaurantAddress())
+                    .putExtra("restaurant_address",item.city)
                     .putExtra("restaurant_menu", item.getMenu())
+
             )
         }
 

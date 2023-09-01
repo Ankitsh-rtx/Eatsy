@@ -70,7 +70,8 @@ class CartFragment : Fragment() {
 
     private fun totalPrice():Long{
         var totalPrice:Long = 0
-        cartItemList.forEach { (key, value) -> totalPrice+=value.getItem().getItemPrice()*value.getItemQuantity()}
+        cartItemList.forEach { (key, value) -> totalPrice+= value.getItem().getItemPrice()
+            ?.times(value.getItemQuantity()) ?: 0 }
         return totalPrice
     }
 }
