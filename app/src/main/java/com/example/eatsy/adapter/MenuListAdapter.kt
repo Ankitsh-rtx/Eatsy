@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.eatsy.DataSource
 import com.example.eatsy.databinding.ActivityRestaurantDetailBinding
 import com.example.eatsy.databinding.ItemLayoutBinding
@@ -76,7 +77,9 @@ class MenuListAdapter (
         }
         holder.binding.itemName.text= items.getItemName()
         holder.binding.itemPrice.text= "₹ "+items.getItemPrice().toString()
-        items.image?.let { holder.binding.itemImage.setImageResource(it) }
+        if (context != null) {
+            Glide.with(context).load(items.image).into(holder.binding.itemImage)
+        };
         if(cartItemList.size!=0){
             v.itemCount.text = cartItemList.size.toString()+" Items"
             v.price.text = "₹"+totalPrice().toString()

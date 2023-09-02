@@ -17,7 +17,7 @@ data class Restaurants@JvmOverloads constructor(
     val street: String = "",
     val isActive: Boolean = false,
     val isOpen: Boolean = false,
-    var menuItemList: ArrayList<Item>? = null
+    var menuItemList: ArrayList<Item>? = ArrayList()
 
     ): Serializable {
 
