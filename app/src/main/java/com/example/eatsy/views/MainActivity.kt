@@ -1,12 +1,14 @@
 package com.example.eatsy.views
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import com.example.eatsy.R
 import com.example.eatsy.databinding.ActivityMainBinding
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.bottomNavigationView.background = null
 
+
+
         binding.bottomNavigationView.setOnItemSelectedListener{
             var fragment: Fragment? = null
             when (it.itemId) {
@@ -28,6 +32,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.profileFragment -> ProfileFragment().also { fragment = it }
                 else -> {}
             }
+//            if(it.itemId == R.id.cartFragment){
+//                binding.bottomAppBar.visibility = View.GONE
+//            }
+//            else {
+//                binding.bottomAppBar.visibility = View.VISIBLE
+//            }
             fragment?.let {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView, it)
@@ -36,11 +46,14 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+
         if(intent.getStringExtra("cart").equals("cart")) {
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,CartFragment()).commit()
+            binding.bottomNavigationView.selectedItemId=R.id.cartFragment
         }
         else if(intent.getStringExtra("discover").equals("discover")) {
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,DiscoverFragment()).commit()
+            binding.bottomNavigationView.selectedItemId=R.id.discoverFragment
         }
 
 //        val restaurantViewModel:RestaurantViewModel = ViewModelProvider(this).get(RestaurantViewModel::class.java)
@@ -56,6 +69,16 @@ class MainActivity : AppCompatActivity() {
 //
 //        }
 
+    }
+
+    // function to override large font size into normal font size
+    override fun attachBaseContext(newBase: Context?) {
+
+        val newOverride = Configuration(newBase?.resources?.configuration)
+        newOverride.fontScale = 1.0f
+        applyOverrideConfiguration(newOverride)
+
+        super.attachBaseContext(newBase)
     }
 
 

@@ -1,7 +1,9 @@
 package com.example.eatsy.views;
 
 
+import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +19,7 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.adapter.MenuListAdapter
 import com.example.eatsy.databinding.ActivityRestaurantDetailBinding
+import com.example.eatsy.model.Address
 import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
 
@@ -75,6 +78,15 @@ class RestaurantDetail  : AppCompatActivity() {
         if(cartItemList.size==0) {
             binding.goToCartDialog.visibility= View.GONE
         }
+    }
+    // function to override large font size into normal font size
+    override fun attachBaseContext(newBase: Context?) {
+
+        val newOverride = Configuration(newBase?.resources?.configuration)
+        newOverride.fontScale = 1.0f
+        applyOverrideConfiguration(newOverride)
+
+        super.attachBaseContext(newBase)
     }
 
 

@@ -1,22 +1,23 @@
 package com.example.eatsy.model
 
-import androidx.annotation.DrawableRes
-
 class Item (
-        @DrawableRes val imageResourceId: Int,
-        val id:String,
-        val name: String,
-        private val type: String,
-        private val price: Int
+        val image: String? = null,
+        val id:String? = "",
+        val restaurantId: String?="",
+        val name: String?="",
+        val type: String?="",
+        val price: Int?=0,
+        val isVeg: Boolean?=false
         ): java.io.Serializable
 {
-        fun getItemName():String{
+        fun getItemName(): String? {
                 return name
+
         }
-        fun getItemPrice():Int{
+        fun getItemPrice(): Int? {
                 return price
         }
-        fun getItemType(): String{
+        fun getItemType(): String? {
                 return type
         }
 }

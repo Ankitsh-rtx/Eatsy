@@ -11,6 +11,10 @@ import com.example.eatsy.R
 import com.example.eatsy.adapter.CartViewAdapter
 import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.model.CartItem
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
+
+
 
 
 class CartFragment : Fragment() {
@@ -66,7 +70,8 @@ class CartFragment : Fragment() {
 
     private fun totalPrice():Long{
         var totalPrice:Long = 0
-        cartItemList.forEach { (key, value) -> totalPrice+=value.getItem().getItemPrice()*value.getItemQuantity()}
+        cartItemList.forEach { (key, value) -> totalPrice+= value.getItem().getItemPrice()
+            ?.times(value.getItemQuantity()) ?: 0 }
         return totalPrice
     }
 }
