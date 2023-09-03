@@ -79,11 +79,7 @@ class RestaurantAdapter (private val context: Context? = null, private val resta
 
             context?.startActivity(
                 Intent(context, RestaurantDetail::class.java)
-                .putExtra("restaurant_name",item.getRestaurantName())
-                .putExtra("restaurant_type",item.getRestaurantType())
-                .putExtra("restaurant_rating",item.getRestaurantRating().toString())
-                    .putExtra("restaurant_address",item.city)
-                    .putExtra("restaurant_menu", item.getMenu())
+                    .putExtra("restaurant",item)
 
             )
         }

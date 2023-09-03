@@ -17,7 +17,7 @@ import com.example.eatsy.views.CartFragment
 
 class MenuListAdapter (
     private val context: Context? = null,
-    val item: ArrayList<Item>,
+    val item: MutableList<Item>,
     // menu item received from the restaurant details activity
 //    val view :FragmentRestaurantDetailBinding
     val view: ActivityRestaurantDetailBinding

@@ -37,15 +37,15 @@ class HomeFragment : Fragment() {
             restaurants.clear()
             for (document in querySnapshot.documents) {
                 val res = document.toObject(Restaurants::class.java)
-                res?.menus?.forEach { item ->
-                    item?.get()?.addOnSuccessListener { data ->
-                        val it = data.toObject(Item::class.java)
-                        Log.d("yo", it?.name.toString())
-                        if (it != null) {
-                            res?.menuItemList?.add(it)
-                        };
-                    }
-                }
+//                res?.menus?.forEach { id ->
+//                    val item=firebaseDB.collection("Items").document(id)
+//                    item?.get()?.addOnSuccessListener { data ->
+//                        val it = data.toObject(Item::class.java)
+//                        if (it != null) {
+//                            res?.menuItemList?.add(it)
+//                        };
+//                    }
+//                }
                 restaurants.add(res!!)
             }
             binding.restaurantRecyclerview.adapter = RestaurantAdapter(context,restaurants)

@@ -22,12 +22,15 @@ import com.example.eatsy.databinding.ActivityRestaurantDetailBinding
 import com.example.eatsy.model.Address
 import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
+import com.example.eatsy.model.Restaurants
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class RestaurantDetail  : AppCompatActivity() {
     private lateinit var binding: ActivityRestaurantDetailBinding
     private lateinit var cartItemList:HashMap<String, CartItem>
     private lateinit var adapter: MenuListAdapter
+    private lateinit var firebaseDB: FirebaseFirestore
     override fun onCreate(savedInstanceState: Bundle?) {
         // Inflate the layout for this fragment
         super.onCreate(savedInstanceState)
@@ -35,11 +38,25 @@ class RestaurantDetail  : AppCompatActivity() {
         setContentView(binding.root)
 
         val intent:Intent = intent
-        val name = intent.getStringExtra("restaurant_name")
-        val type = intent.getStringExtra("restaurant_type")
-        val rating = intent.getStringExtra("restaurant_rating")
-        val address = intent.getStringExtra("restaurant_address")
-        val menu= (intent.getSerializableExtra("restaurant_menu"))as ArrayList<Item>
+        val restaurant= (intent.getSerializableExtra("restaurant")) as Restaurants
+//        Log.d("hi",restaurant.toString())
+        val name = restaurant.name
+        val type = restaurant.type
+        val rating = restaurant.rating.toString()
+        val address = restaurant.address?.city
+//        val menu= (intent.getSerializableExtra("menulist"))as ArrayList<Item>
+        val menu= mutableListOf<Item>()
+        firebaseDB  = FirebaseFirestore.getInstance()
+        restaurant?.menus?.forEach { id ->
+                    val item=firebaseDB.collection("Items").document(id)
+                    item?.get()?.addOnSuccessListener { data ->
+                        val it = data.toObject(Item::class.java)
+                        Log.d("hello", it.toString())
+                        if (it != null) {
+                            menu.add(it)
+                        }
+                    }
+        }
 
         binding.restaurantNameTextview.text = name
         binding.restaurantType.text = type
@@ -49,7 +66,6 @@ class RestaurantDetail  : AppCompatActivity() {
         // Status bar color
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = ContextCompat.getColor(this, R.color.ash_white)
-
         adapter = MenuListAdapter(this, menu,binding)
         binding.menuItemRecyclerview.adapter= adapter
         binding.menuItemRecyclerview.layoutManager = LinearLayoutManager(this)
