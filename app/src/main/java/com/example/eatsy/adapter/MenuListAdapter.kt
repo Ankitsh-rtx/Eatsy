@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
-import com.example.eatsy.databinding.ActivityRestaurantDetailBinding
+import com.example.eatsy.databinding.FragmentRestaurantDetailsBinding
 import com.example.eatsy.databinding.ItemLayoutBinding
 import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
@@ -22,10 +22,10 @@ class MenuListAdapter (
     val item: MutableList<Item>,
     // menu item received from the restaurant details activity
 //    val view :FragmentRestaurantDetailBinding
-    val view: ActivityRestaurantDetailBinding
+    val view: FragmentRestaurantDetailsBinding
 ) : RecyclerView.Adapter<MenuListAdapter.MenuViewHolder>() {
 
-     private  lateinit var v:ActivityRestaurantDetailBinding
+     private  lateinit var v:FragmentRestaurantDetailsBinding
      val cartItemList = DataSource.orderList
 //    private lateinit var mListener: OnItemClickListener
 
@@ -61,7 +61,7 @@ class MenuListAdapter (
         parent: ViewGroup,
         viewType: Int
     ): MenuViewHolder {
-        v= ActivityRestaurantDetailBinding.bind(view.root)
+        v= FragmentRestaurantDetailsBinding.bind(view.root)
         val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MenuViewHolder(binding)
     }

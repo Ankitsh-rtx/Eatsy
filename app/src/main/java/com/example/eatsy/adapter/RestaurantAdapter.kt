@@ -1,19 +1,25 @@
 package com.example.eatsy.adapter
 
 import android.content.Context
-import android.content.Intent
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.findFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eatsy.R
 import com.example.eatsy.model.Restaurants
-import com.example.eatsy.views.RestaurantDetail
+import com.example.eatsy.views.HomeFragment
+import com.example.eatsy.views.RestaurantDetailsFragment
 
-class RestaurantAdapter (private val context: Context? = null, private val restaurants: MutableList<Restaurants>) :
+class RestaurantAdapter (private val context: Context? = null,
+                         private val restaurants: MutableList<Restaurants>
+                         ) :
     RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
     // Initialize the data using the List found in data/DataSource
@@ -77,12 +83,22 @@ class RestaurantAdapter (private val context: Context? = null, private val resta
 //                ?.commit()
 
 
-            context?.startActivity(
-                Intent(context, RestaurantDetail::class.java)
-                    .putExtra("restaurant",item)
+//            context?.startActivity(
+//                Intent(context, RestaurantDetail::class.java)
+//                    .putExtra("restaurant",item)
+//
+//            )
+            val args = Bundle()
+            args.putSerializable("res",item)
+            val newFragment = RestaurantDetailsFragment()
+            newFragment.arguments = args
+            Log.d("Restaurant Adapter", "onBindViewHolder: ${item.name}")
 
-            )
+            holder.itemView.findFragment<HomeFragment>().activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(R.id.homeFragment.toString())
+                ?.replace(R.id.fragmentContainerView, newFragment)?.commit()
         }
+
+
 
     }
 }

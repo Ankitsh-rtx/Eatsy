@@ -11,11 +11,8 @@ import com.example.eatsy.R
 import com.example.eatsy.adapter.CartViewAdapter
 import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.model.CartItem
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
-
-
-
 
 class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
@@ -28,9 +25,13 @@ class CartFragment : Fragment() {
         binding = FragmentCartBinding.inflate(layoutInflater)
 
         activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(),
+        activity?.window?.statusBarColor = ContextCompat.getColor(
+            requireContext(),
             R.color.off_white
         )
+
+        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        navBar.visibility = View.VISIBLE
 
         val cartList = DataSource.orderList
         var cartListHM = this.arguments?.getSerializable("cartItems")
@@ -43,12 +44,12 @@ class CartFragment : Fragment() {
         if(cartItemList.size==0) {
             binding.emptyCart.visibility=View.VISIBLE
             binding.cartLayout.visibility=View.GONE
-
         }
 
         binding.cartItemsRecyclerview.adapter = CartViewAdapter(context,cartItemList,binding)
         binding.cartItemsRecyclerview.layoutManager = LinearLayoutManager(context)
-            // Specify fixed size to improve performance
+
+        // Specify fixed size to improve performance
         binding.cartItemsRecyclerview.setHasFixedSize(false)
         binding.cartItemsRecyclerview.isNestedScrollingEnabled = false
 
@@ -58,10 +59,8 @@ class CartFragment : Fragment() {
             startActivity(intent)
         }
 
-
         val total:Long=totalPrice()
         binding.totalPrice.text = "₹ "+total.toString()
-
         binding.payableAmount.text = "₹ "+ (total-70+80).toString()
         binding.finalAmount.text = "₹ "+ (total-70+80).toString()
 

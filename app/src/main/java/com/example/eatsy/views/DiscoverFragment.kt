@@ -15,6 +15,7 @@ import com.example.eatsy.adapter.RestaurantAdapter
 import com.example.eatsy.databinding.FragmentDiscoverBinding
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -29,6 +30,9 @@ class DiscoverFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentDiscoverBinding.inflate(layoutInflater)
+
+        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        navBar.visibility = View.VISIBLE
 
         //instantiation of database
         firebaseDB  = FirebaseFirestore.getInstance()
@@ -56,8 +60,8 @@ class DiscoverFragment : Fragment() {
             Log.d("firebase", "onCreateView: error on loading data",it)
         }
 
-//        binding.restaurantRecyclerview.adapter = RestaurantAdapter(context, DataSource.restaurants)
         binding.restaurantRecyclerview.layoutManager = LinearLayoutManager(context)
+
         // Specify fixed size to improve performance
         binding.restaurantRecyclerview.setHasFixedSize(true)
         binding.restaurantRecyclerview.isNestedScrollingEnabled = false
