@@ -69,16 +69,16 @@ object DataSource {
     )
     private val address = Address("Kolkata","India",700039,"Bidhannagar")
     val restaurants: MutableList<Restaurants> = mutableListOf(
-        Restaurants(
-            "1",
-            null,
-            "Pizza Huts",
-            "Pizza",
-            4.2,
-            "Kolkata","India","1000",700039,"Bidhannagar",
-            true,true,
-            items
-        )
+//        Restaurants(
+//            "1",
+//            null,
+//            "Pizza Huts",
+//            "Pizza",
+//            4.2,
+//            "Kolkata","India","1000",700039,"Bidhannagar",
+//            true,true,
+//            items
+//        )
 
     )
 

@@ -59,17 +59,18 @@ class RestaurantDetail  : AppCompatActivity() {
         adapter = MenuListAdapter(this, menu,binding)
         binding.menuItemRecyclerview.adapter= adapter
         binding.menuItemRecyclerview.layoutManager = LinearLayoutManager(this)
-        restaurant?.menus?.forEach { id ->
+        restaurant.menus?.forEach { id ->
             val item=firebaseDB.collection("Items").document(id)
-            item?.get()?.addOnSuccessListener { data ->
+            item.get().addOnSuccessListener { data ->
                 val it = data.toObject(Item::class.java)
-                Log.d("hello", it.toString())
+                Log.d("firebase menu item", it.toString())
                 if (it != null) {
                     menu.add(it)
                     (binding.menuItemRecyclerview.adapter)?.notifyDataSetChanged()
                 }
             }
         }
+
 
 
         binding.goToCartDialog.setOnClickListener {

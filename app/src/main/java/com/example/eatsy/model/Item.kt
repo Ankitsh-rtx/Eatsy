@@ -7,7 +7,8 @@ data class Item @JvmOverloads constructor(
         val restaurantId: String?="",
         val type: String?="",
         val price: Int?=0,
-        val isVeg: Boolean?=false
+        @field:JvmField
+        val isVeg: Boolean?=null
         ): java.io.Serializable
 {
         fun getItemName(): String? {

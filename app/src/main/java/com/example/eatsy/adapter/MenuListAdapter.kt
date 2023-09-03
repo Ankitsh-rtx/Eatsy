@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eatsy.DataSource
+import com.example.eatsy.R
 import com.example.eatsy.databinding.ActivityRestaurantDetailBinding
 import com.example.eatsy.databinding.ItemLayoutBinding
 import com.example.eatsy.model.CartItem
@@ -80,6 +82,14 @@ class MenuListAdapter (
         if (context != null) {
             Glide.with(context).load(items.image).into(holder.binding.itemImage)
         };
+        if(items.isVeg==false){
+            context?.let { ContextCompat.getColor(it,R.color.red_500) }
+                ?.let { holder.binding.itemVeg.drawable.setTint(it) }
+        }
+        else if(items.isVeg==true) {
+            context?.let { ContextCompat.getColor(it,R.color.green_700) }
+                ?.let { holder.binding.itemVeg.drawable.setTint(it) }
+        }
         if(cartItemList.size!=0){
             v.itemCount.text = cartItemList.size.toString()+" Items"
             v.price.text = "₹"+totalPrice().toString()

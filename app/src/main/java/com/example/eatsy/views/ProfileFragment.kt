@@ -1,11 +1,14 @@
 package com.example.eatsy.views
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.eatsy.R
+import com.example.eatsy.databinding.ActivityMainBinding
+import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class ProfileFragment : Fragment() {
@@ -15,6 +18,10 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        navBar.visibility = View.GONE
+
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 

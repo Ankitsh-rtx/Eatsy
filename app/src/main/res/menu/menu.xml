@@ -18,8 +18,5 @@
         android:id="@+id/trackOrderFragment"
         android:icon="@drawable/icon_settings"
         android:title="Track Order" />
-    <item
-        android:id="@+id/profileFragment"
-        android:icon="@drawable/icon_person"
-        android:title="About" />
+
 </menu>

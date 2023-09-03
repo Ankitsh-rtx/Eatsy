@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -17,6 +19,7 @@ import com.example.eatsy.adapter.TopDishAdapter
 import com.example.eatsy.databinding.FragmentHomeBinding
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -29,6 +32,9 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
+
+        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        navBar.visibility = View.VISIBLE
 
         //instantiation of database
         firebaseDB  = FirebaseFirestore.getInstance()
@@ -53,13 +59,13 @@ class HomeFragment : Fragment() {
         }.addOnFailureListener {
             Log.d("firebase", "onCreateView: error on loading data",it)
         }
-
+        //Pop all backstack once Home Fragment is reached..
+//        fragmentManager?.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
         binding.dishesRecyclerview.adapter = TopDishAdapter(context)
         binding.dishesRecyclerview.layoutManager = StaggeredGridLayoutManager(2,RecyclerView.HORIZONTAL)
         // Specify fixed size to improve performance
         binding.dishesRecyclerview.setHasFixedSize(true)
-//        binding.restaurantRecyclerview.adapter = RestaurantAdapter(context)
         binding.restaurantRecyclerview.layoutManager = LinearLayoutManager(context)
         // Specify fixed size to improve performance
         binding.restaurantRecyclerview.setHasFixedSize(true)
@@ -69,6 +75,11 @@ class HomeFragment : Fragment() {
         activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.white)
 
 
+        binding.profileImage.setOnClickListener{
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainerView, ProfileFragment())?.addToBackStack(R.id.homeFragment.toString())
+                ?.commit()
+        }
 
         return binding.root
     }

@@ -3,10 +3,9 @@ package com.example.eatsy.views
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.eatsy.R
 import com.example.eatsy.databinding.ActivityMainBinding
 
@@ -22,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        binding.bottomNavigationView.setOnItemSelectedListener{
+        binding.bottomNavigationView.setOnItemSelectedListener{ it ->
             var fragment: Fragment? = null
             when (it.itemId) {
                 R.id.homeFragment -> HomeFragment().also { fragment = it }
@@ -40,21 +39,30 @@ class MainActivity : AppCompatActivity() {
 //            }
             fragment?.let {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerView, it)
-                    .commit()
-            }
-
+                        .replace(R.id.fragmentContainerView, it)
+                        .commit()
+                }
             true
         }
 
         if(intent.getStringExtra("cart").equals("cart")) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,CartFragment()).commit()
+
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,CartFragment())
             binding.bottomNavigationView.selectedItemId=R.id.cartFragment
         }
         else if(intent.getStringExtra("discover").equals("discover")) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,DiscoverFragment()).commit()
+
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,DiscoverFragment())
             binding.bottomNavigationView.selectedItemId=R.id.discoverFragment
         }
+
+//        supportFragmentManager.addOnBackStackChangedListener(FragmentManager.OnBackStackChangedListener {
+//            // If the stack decreases it means I clicked the back button
+//            if (fragmentManager.backStackEntryCount) {
+//                //check your position based on selected fragment and set it accordingly.
+//                navigation.getMenu().getItem(your_pos).setChecked(true)
+//            }
+//        })
 
 //        val restaurantViewModel:RestaurantViewModel = ViewModelProvider(this).get(RestaurantViewModel::class.java)
 //        restaurantViewModel.getCart().observe(this, Observer<List<CartItem>>(){

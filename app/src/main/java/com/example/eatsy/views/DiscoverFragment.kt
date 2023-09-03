@@ -38,20 +38,20 @@ class DiscoverFragment : Fragment() {
             for (document in querySnapshot.documents){
                 val obj = document.toObject(Restaurants::class.java)
 
-                firebaseDB.collection("restaurants").document(document.id)
-                    .collection("items").get().addOnSuccessListener {
-                        for(item in it){
-                            val menuItem = item.toObject(Item::class.java)
-                            if (obj != null) {
-                                obj.menuItemList?.add(menuItem)
-                            }
-                        }
-                    }
+//                firebaseDB.collection("restaurants").document(document.id)
+//                    .collection("items").get().addOnSuccessListener {
+//                        for(item in it){
+//                            val menuItem = item.toObject(Item::class.java)
+//                            if (obj != null) {
+//                                obj.menuItemList?.add(menuItem)
+//                            }
+//                        }
+//                    }
                 restaurants.add(obj!!)
 //                Log.d("firebase","${document.id} => ${document.data}")
             }
             binding.restaurantRecyclerview.adapter = RestaurantAdapter(context,restaurants)
-
+//
         }.addOnFailureListener {
             Log.d("firebase", "onCreateView: error on loading data",it)
         }
