@@ -94,8 +94,8 @@ class RestaurantAdapter (private val context: Context? = null,
             newFragment.arguments = args
             Log.d("Restaurant Adapter", "onBindViewHolder: ${item.name}")
 
-            holder.itemView.findFragment<HomeFragment>().activity?.supportFragmentManager?.beginTransaction()?.addToBackStack(R.id.homeFragment.toString())
-                ?.replace(R.id.fragmentContainerView, newFragment)?.commit()
+            holder.itemView.findFragment<HomeFragment>().activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainerView, newFragment)?.addToBackStack(R.id.homeFragment.toString())?.commit()
         }
 
 

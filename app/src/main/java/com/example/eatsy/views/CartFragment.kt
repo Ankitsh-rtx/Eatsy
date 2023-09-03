@@ -73,4 +73,5 @@ class CartFragment : Fragment() {
             ?.times(value.getItemQuantity()) ?: 0 }
         return totalPrice
     }
+
 }

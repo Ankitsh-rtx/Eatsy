@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var firebaseDB: FirebaseFirestore
+    private lateinit var restaurants: MutableList<Restaurants>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,7 +39,9 @@ class HomeFragment : Fragment() {
 
         //instantiation of database
         firebaseDB  = FirebaseFirestore.getInstance()
-        var restaurants: MutableList<Restaurants> = mutableListOf()
+
+        restaurants = mutableListOf()
+
         firebaseDB.collection("restaurants").get().addOnSuccessListener { querySnapshot ->
             restaurants.clear()
             for (document in querySnapshot.documents) {
@@ -83,5 +86,10 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
+
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        super.onSaveInstanceState(outState)
+//        outState.putParcelableArrayList("homeFragmentSavedInstance",restaurants)
+//    }
 
 }

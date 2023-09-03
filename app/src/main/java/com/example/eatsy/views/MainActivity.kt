@@ -39,22 +39,13 @@ class MainActivity : AppCompatActivity() {
 //            }
             fragment?.let {
                 supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainerView, it)
+                        .replace(R.id.fragmentContainerView, it).addToBackStack(null)
                         .commit()
                 }
             true
         }
 
-        if(intent.getStringExtra("cart").equals("cart")) {
 
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,CartFragment())
-            binding.bottomNavigationView.selectedItemId=R.id.cartFragment
-        }
-        else if(intent.getStringExtra("discover").equals("discover")) {
-
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,DiscoverFragment())
-            binding.bottomNavigationView.selectedItemId=R.id.discoverFragment
-        }
 
 //        supportFragmentManager.addOnBackStackChangedListener(FragmentManager.OnBackStackChangedListener {
 //            // If the stack decreases it means I clicked the back button

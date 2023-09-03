@@ -67,8 +67,8 @@ class RestaurantDetailsFragment : Fragment() {
 
         binding.goToCartDialog.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-            ?.addToBackStack(R.id.restaurantDetailsFragment.toString())
-                ?.replace(R.id.fragmentContainerView,CartFragment())?.commit()
+                ?.replace(R.id.fragmentContainerView,CartFragment())?.addToBackStack(R.id.restaurantDetailsFragment.toString())
+                ?.commit()
             val navView = activity!!.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
             navView.selectedItemId = R.id.cartFragment
         }
