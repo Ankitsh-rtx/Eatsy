@@ -63,7 +63,7 @@ class HomeFragment : Fragment() {
             Log.d("firebase", "onCreateView: error on loading data",it)
         }
         //Pop all backstack once Home Fragment is reached..
-//        fragmentManager?.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        fragmentManager?.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
         binding.dishesRecyclerview.adapter = TopDishAdapter(context)
         binding.dishesRecyclerview.layoutManager = StaggeredGridLayoutManager(2,RecyclerView.HORIZONTAL)

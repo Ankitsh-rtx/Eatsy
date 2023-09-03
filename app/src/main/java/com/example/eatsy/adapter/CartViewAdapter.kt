@@ -12,6 +12,9 @@ import com.example.eatsy.R
 import com.example.eatsy.databinding.CartviewItemLayoutBinding
 import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.model.CartItem
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 import kotlin.math.log
 
 class CartViewAdapter(private val context: Context? = null, private val cartListHM: HashMap<String,CartItem>,private  val view :FragmentCartBinding ) : RecyclerView.Adapter<CartViewAdapter.CartViewHolder>() {
@@ -36,7 +39,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         val cartList:ArrayList<CartItem> = ArrayList(cartListHM.values)
         val item = cartList[position]
 
-        holder.binding.cartItemName.text = item.getItem().getItemName()
+        holder.binding.cartItemName.text = item.getItem().getItemName()?.toTitleCase() ?: item.getItem().getItemName()
         holder.binding.cartItemPrice.text = "₹ " + (item.getItem().getItemPrice()
             ?.times(item.getItemQuantity())).toString()
         holder.binding.cartItemCount.text = item.getItemQuantity().toString()
@@ -85,5 +88,9 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         cartFragmentBinding.totalPrice.text="₹ "+total.toString()
         cartFragmentBinding.payableAmount.text = "₹ "+ (total-70+80).toString()
         cartFragmentBinding.finalAmount.text = "₹ "+ (total-70+80).toString()
+    }
+    private fun String.toTitleCase() = replaceFirstChar { text ->
+        if (text.isLowerCase()) text.titlecase(Locale.getDefault())
+        else text.toString()
     }
 }

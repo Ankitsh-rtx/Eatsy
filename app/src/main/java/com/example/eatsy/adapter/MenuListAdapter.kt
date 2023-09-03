@@ -15,6 +15,8 @@ import com.example.eatsy.databinding.ItemLayoutBinding
 import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
 import com.example.eatsy.views.CartFragment
+import java.util.*
+import kotlin.collections.HashMap
 
 
 class MenuListAdapter (
@@ -77,7 +79,8 @@ class MenuListAdapter (
             holder.binding.itemRemoveBtn.visibility = View.VISIBLE
 
         }
-        holder.binding.itemName.text= items.getItemName()
+
+        holder.binding.itemName.text= items.getItemName()?.toTitleCase() ?: items.getItemName()
         holder.binding.itemPrice.text= "₹ "+items.getItemPrice().toString()
         if (context != null) {
             Glide.with(context).load(items.image).into(holder.binding.itemImage)
@@ -166,6 +169,11 @@ class MenuListAdapter (
         cartItemList.forEach { (key, value) -> totalPrice+=(value.getItem().getItemPrice()
             ?.times(value.getItemQuantity())!!)}
         return totalPrice
+    }
+
+    private fun String.toTitleCase() = replaceFirstChar { text ->
+        if (text.isLowerCase()) text.titlecase(Locale.getDefault())
+        else text.toString()
     }
 
 }

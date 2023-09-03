@@ -70,11 +70,14 @@ class RestaurantDetailsFragment : Fragment() {
                 ?.replace(R.id.fragmentContainerView,CartFragment())?.addToBackStack(R.id.restaurantDetailsFragment.toString())
                 ?.commit()
             val navView = activity!!.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+            navBar.visibility = View.VISIBLE
             navView.selectedItemId = R.id.cartFragment
+
         }
 
         binding.backBtn.setOnClickListener {
             activity?.supportFragmentManager?.popBackStackImmediate()
+            navBar.visibility = View.VISIBLE
         }
 
         // Specify fixed size to improve performance

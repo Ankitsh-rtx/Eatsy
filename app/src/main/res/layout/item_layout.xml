@@ -36,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="20dp"
+
                 android:fontFamily="@font/metropolis_semibold"
                 android:text="Margherita Pizza"
                 android:textColor="#121212"
@@ -70,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/metropolis_regular"
                     android:text="More details"
-                    android:paddingStart="2dp"
+                    android:paddingStart="4dp"
                     android:layout_gravity="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/item_price"

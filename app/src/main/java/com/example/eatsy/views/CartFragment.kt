@@ -30,9 +30,6 @@ class CartFragment : Fragment() {
             R.color.off_white
         )
 
-        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
-        navBar.visibility = View.VISIBLE
-
         val cartList = DataSource.orderList
         var cartListHM = this.arguments?.getSerializable("cartItems")
 
