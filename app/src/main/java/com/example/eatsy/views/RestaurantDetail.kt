@@ -47,16 +47,22 @@ class RestaurantDetail  : AppCompatActivity() {
 //        val menu= (intent.getSerializableExtra("menulist"))as ArrayList<Item>
         val menu= mutableListOf<Item>()
         firebaseDB  = FirebaseFirestore.getInstance()
-        restaurant?.menus?.forEach { id ->
-                    val item=firebaseDB.collection("Items").document(id)
-                    item?.get()?.addOnSuccessListener { data ->
-                        val it = data.toObject(Item::class.java)
-                        Log.d("hello", it.toString())
-                        if (it != null) {
-                            menu.add(it)
-                        }
-                    }
+        restaurant.menus?.forEach { id ->
+            val item=firebaseDB.collection("Items").document(id)
+            item.get().addOnSuccessListener { data ->
+                val it = data.toObject(Item::class.java)
+                Log.d("hello", it.toString())
+                if (it != null) {
+                    menu.add(it)
+                }
+            }
         }
+//        firebaseDB.collection("Items").get().addOnSuccessListener {
+//
+//        }.addOnFailureListener {
+//
+//        }
+
 
         binding.restaurantNameTextview.text = name
         binding.restaurantType.text = type
@@ -67,8 +73,10 @@ class RestaurantDetail  : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = ContextCompat.getColor(this, R.color.ash_white)
         adapter = MenuListAdapter(this, menu,binding)
+        adapter.notifyDataSetChanged()
         binding.menuItemRecyclerview.adapter= adapter
         binding.menuItemRecyclerview.layoutManager = LinearLayoutManager(this)
+        adapter.notifyDataSetChanged()
 
         binding.goToCartDialog.setOnClickListener {
             val i = Intent(applicationContext, MainActivity::class.java)
