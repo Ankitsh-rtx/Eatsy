@@ -19,6 +19,7 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.adapter.MenuListAdapter
 import com.example.eatsy.databinding.ActivityRestaurantDetailBinding
+import com.example.eatsy.databinding.CartviewItemLayoutBinding
 import com.example.eatsy.model.Address
 import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
@@ -28,7 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class RestaurantDetail  : AppCompatActivity() {
     private lateinit var binding: ActivityRestaurantDetailBinding
-    private lateinit var cartItemList:HashMap<String, CartItem>
+    private lateinit var cartItemList:HashMap<String,CartItem>
     private lateinit var adapter: MenuListAdapter
     private lateinit var firebaseDB: FirebaseFirestore
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,17 +48,6 @@ class RestaurantDetail  : AppCompatActivity() {
 //        val menu= (intent.getSerializableExtra("menulist"))as ArrayList<Item>
         val menu= mutableListOf<Item>()
         firebaseDB  = FirebaseFirestore.getInstance()
-        restaurant?.menus?.forEach { id ->
-                    val item=firebaseDB.collection("Items").document(id)
-                    item?.get()?.addOnSuccessListener { data ->
-                        val it = data.toObject(Item::class.java)
-                        Log.d("hello", it.toString())
-                        if (it != null) {
-                            menu.add(it)
-                        }
-                    }
-        }
-
         binding.restaurantNameTextview.text = name
         binding.restaurantType.text = type
         binding.restaurantRating.text = rating
@@ -69,12 +59,25 @@ class RestaurantDetail  : AppCompatActivity() {
         adapter = MenuListAdapter(this, menu,binding)
         binding.menuItemRecyclerview.adapter= adapter
         binding.menuItemRecyclerview.layoutManager = LinearLayoutManager(this)
+        restaurant?.menus?.forEach { id ->
+            val item=firebaseDB.collection("Items").document(id)
+            item?.get()?.addOnSuccessListener { data ->
+                val it = data.toObject(Item::class.java)
+                Log.d("hello", it.toString())
+                if (it != null) {
+                    menu.add(it)
+                    (binding.menuItemRecyclerview.adapter)?.notifyDataSetChanged()
+                }
+            }
+        }
+
 
         binding.goToCartDialog.setOnClickListener {
             val i = Intent(applicationContext, MainActivity::class.java)
             i.putExtra("cart", "cart")
             startActivity(i)
         }
+
         // Specify fixed size to improve performance
         binding.menuItemRecyclerview.setHasFixedSize(true)
         binding.menuItemRecyclerview.isNestedScrollingEnabled = false
