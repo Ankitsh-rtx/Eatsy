@@ -1,10 +1,10 @@
 package com.example.eatsy.model
 
-class Item (
+data class Item @JvmOverloads constructor(
+        val name: String?="",
         val image: String? = null,
         val id:String? = "",
         val restaurantId: String?="",
-        val name: String?="",
         val type: String?="",
         val price: Int?=0,
         val isVeg: Boolean?=false
@@ -12,7 +12,6 @@ class Item (
 {
         fun getItemName(): String? {
                 return name
-
         }
         fun getItemPrice(): Int? {
                 return price
@@ -21,3 +20,4 @@ class Item (
                 return type
         }
 }
+

@@ -17,9 +17,7 @@ import com.example.eatsy.adapter.TopDishAdapter
 import com.example.eatsy.databinding.FragmentHomeBinding
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 
 
 class HomeFragment : Fragment() {
@@ -37,26 +35,25 @@ class HomeFragment : Fragment() {
         var restaurants: MutableList<Restaurants> = mutableListOf()
         firebaseDB.collection("restaurants").get().addOnSuccessListener { querySnapshot ->
             restaurants.clear()
-            for (document in querySnapshot.documents){
-                val obj = document.toObject(Restaurants::class.java)
-
-                firebaseDB.collection("restaurants").document(document.id)
-                    .collection("items").get().addOnSuccessListener {
-                    for(item in it){
-                        val menuItem = item.toObject(Item::class.java)
-                        if (obj != null) {
-                            obj.menuItemList?.add(menuItem)
-                        }
+            for (document in querySnapshot.documents) {
+                val res = document.toObject(Restaurants::class.java)
+                res?.menus?.forEach { item ->
+                    item?.get()?.addOnSuccessListener { data ->
+                        val it = data.toObject(Item::class.java)
+                        Log.d("yo", it?.name.toString())
+                        if (it != null) {
+                            res?.menuItemList?.add(it)
+                        };
                     }
                 }
-                restaurants.add(obj!!)
-//                Log.d("firebase","${document.id} => ${document.data}")
+                restaurants.add(res!!)
             }
             binding.restaurantRecyclerview.adapter = RestaurantAdapter(context,restaurants)
 
         }.addOnFailureListener {
             Log.d("firebase", "onCreateView: error on loading data",it)
         }
+
 
         binding.dishesRecyclerview.adapter = TopDishAdapter(context)
         binding.dishesRecyclerview.layoutManager = StaggeredGridLayoutManager(2,RecyclerView.HORIZONTAL)

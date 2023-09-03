@@ -1,6 +1,7 @@
 package com.example.eatsy.model
 
 import androidx.annotation.DrawableRes
+import com.google.firebase.firestore.DocumentReference
 import java.io.Serializable
 import java.net.URL
 
@@ -17,7 +18,8 @@ data class Restaurants@JvmOverloads constructor(
     val street: String = "",
     val isActive: Boolean = false,
     val isOpen: Boolean = false,
-    var menuItemList: ArrayList<Item>? = ArrayList()
+    var menuItemList: ArrayList<Item>? = ArrayList(),
+    var menus: ArrayList<DocumentReference>? = ArrayList()
 
     ): Serializable {
 
