@@ -30,7 +30,7 @@ class CartFragment : Fragment() {
             R.color.off_white
         )
 
-        val cartList = DataSource.orderList
+        val cartList = DataSource.orderList.second
         var cartListHM = this.arguments?.getSerializable("cartItems")
 
         cartItemList = if(cartListHM!=null){

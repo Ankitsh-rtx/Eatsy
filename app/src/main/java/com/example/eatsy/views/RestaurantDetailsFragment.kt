@@ -47,7 +47,7 @@ class RestaurantDetailsFragment : Fragment() {
         val menu= mutableListOf<Item>()
         firebaseDB  = FirebaseFirestore.getInstance()
 
-        adapter = MenuListAdapter(context, menu,binding)
+        adapter = MenuListAdapter(context, menu,binding,restaurants?.id)
         binding.menuItemRecyclerview.adapter= adapter
         binding.menuItemRecyclerview.layoutManager = LinearLayoutManager(context)
         restaurants?.menus?.forEach { id ->
@@ -85,7 +85,7 @@ class RestaurantDetailsFragment : Fragment() {
         binding.menuItemRecyclerview.isNestedScrollingEnabled = false
         val countArr = IntArray(DataSource.items.size) { i-> 1 }
 
-        cartItemList= DataSource.orderList
+        cartItemList= DataSource.orderList.second
         if(cartItemList.size!=0) {
             binding.goToCartDialog.visibility= View.VISIBLE
         }

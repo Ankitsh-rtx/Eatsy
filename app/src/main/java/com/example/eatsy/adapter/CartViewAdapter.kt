@@ -35,7 +35,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
 
-        var cartItems=DataSource.orderList
+        var cartItems=DataSource.orderList.second
         val cartList:ArrayList<CartItem> = ArrayList(cartListHM.values)
         val item = cartList[position]
 
@@ -78,7 +78,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
     private fun totalPrice():Long{
         var totalPrice:Long = 0
         var cartItemList:HashMap<String,CartItem>
-        cartItemList= DataSource.orderList
+        cartItemList= DataSource.orderList.second
         cartItemList.forEach { (key, value) -> totalPrice+=(value.getItem().getItemPrice()
             ?.times(value.getItemQuantity())!!)}
         return totalPrice

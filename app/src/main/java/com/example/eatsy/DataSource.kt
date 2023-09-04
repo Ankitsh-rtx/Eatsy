@@ -82,7 +82,7 @@ object DataSource {
 
     )
 
-    val orderList : HashMap<String,CartItem> = HashMap()
+    var orderList : Pair<String, HashMap<String,CartItem>> = Pair("", HashMap())
 
 
 
