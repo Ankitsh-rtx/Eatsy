@@ -106,6 +106,9 @@ class MenuListAdapter (
 
         holder.binding.itemAddButton.setOnClickListener {
             if(DataSource.orderList.first!=resId.toString() || Id=="") {
+
+                //TODO: Add dialog when user adds item from different restaurant
+
                 cartItemList.clear()
                 DataSource.orderList= Pair(resId.toString(),cartItemList)
             }
