@@ -65,19 +65,28 @@ class RestaurantDetailsFragment : Fragment() {
         activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         activity?.window?.statusBarColor = context?.let { ContextCompat.getColor(it, R.color.ash_white) }!!
 
+        val navView = activity!!.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+
         binding.goToCartDialog.setOnClickListener {
+//            if(navBar.isScrolledUp || navBar.visibility!=View.VISIBLE){
+//                navBar.hideOnScroll = false
+//                navBar.visibility = View.VISIBLE
+//            }
+
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.fragmentContainerView,CartFragment())?.addToBackStack(R.id.restaurantDetailsFragment.toString())
                 ?.commit()
-            val navView = activity!!.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-            navBar.visibility = View.VISIBLE
             navView.selectedItemId = R.id.cartFragment
 
         }
 
         binding.backBtn.setOnClickListener {
+            if(navBar.visibility!=View.VISIBLE)
+                navBar.visibility = View.VISIBLE
+            navView.selectedItemId = R.id.homeFragment
             activity?.supportFragmentManager?.popBackStackImmediate()
-            navBar.visibility = View.VISIBLE
+
+
         }
 
         // Specify fixed size to improve performance

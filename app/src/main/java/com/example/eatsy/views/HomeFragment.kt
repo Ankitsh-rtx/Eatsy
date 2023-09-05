@@ -17,7 +17,6 @@ import com.example.eatsy.R
 import com.example.eatsy.adapter.RestaurantAdapter
 import com.example.eatsy.adapter.TopDishAdapter
 import com.example.eatsy.databinding.FragmentHomeBinding
-import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore

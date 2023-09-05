@@ -32,7 +32,8 @@ class DiscoverFragment : Fragment() {
         binding = FragmentDiscoverBinding.inflate(layoutInflater)
 
         val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
-        navBar.visibility = View.VISIBLE
+        if(navBar.visibility==View.GONE)
+            navBar.visibility = View.VISIBLE
 
         //instantiation of database
         firebaseDB  = FirebaseFirestore.getInstance()

@@ -26,6 +26,8 @@
                 android:textColor="@color/black_900"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
+
+
             <TextView
                 android:id="@+id/dialog_text"
                 android:layout_width="wrap_content"
@@ -35,44 +37,50 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/replaceText"
-                android:text="Your cart contains dishes from other restaurant. Do you want to discard the selections and add new dishes?"
+                android:text="@string/your_cart_contains_dishes_from_other_restaurant_do_you_want_to_discard_the_selections_and_add_new_dishes"
                 android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/cancel"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/background_button"
-                android:backgroundTint="@color/orange_200"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:fontFamily="@font/metropolis_semibold"
-                android:textColor="@color/orange_500"
-                android:textAllCaps="true"
-                android:text="cancel"
-                app:layout_constraintStart_toStartOf="@+id/dialog_text"
-                app:layout_constraintTop_toBottomOf="@+id/dialog_text" />
-
-            <TextView
-                android:id="@+id/replace"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/background_button"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textAllCaps="true"
-                android:backgroundTint="@color/orange_500"
-                android:textColor="@color/white"
-                android:fontFamily="@font/metropolis_semibold"
-                android:text="replace"
+                android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="@+id/dialog_text"
-                app:layout_constraintTop_toBottomOf="@+id/dialog_text" />
+                app:layout_constraintStart_toStartOf="@+id/dialog_text"
+                app:layout_constraintTop_toBottomOf="@+id/dialog_text"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/background_button"
+                    android:backgroundTint="@color/orange_200"
+                    android:fontFamily="@font/metropolis_semibold"
+                    android:padding="12dp"
+                    android:text="cancel"
+                    android:textAllCaps="true"
+                    android:textColor="@color/orange_500" />
+
+                <TextView
+                    android:id="@+id/replace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/background_button"
+                    android:backgroundTint="@color/orange_500"
+                    android:fontFamily="@font/metropolis_semibold"
+                    android:padding="12dp"
+                    android:text="replace"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
