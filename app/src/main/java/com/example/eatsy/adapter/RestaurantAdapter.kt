@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eatsy.R
 import com.example.eatsy.model.Restaurants
+import com.example.eatsy.views.DiscoverFragment
 import com.example.eatsy.views.HomeFragment
 import com.example.eatsy.views.RestaurantDetailsFragment
 
@@ -93,9 +94,17 @@ class RestaurantAdapter (private val context: Context? = null,
             val newFragment = RestaurantDetailsFragment()
             newFragment.arguments = args
             Log.d("Restaurant Adapter", "onBindViewHolder: ${item.name}")
-
-            holder.itemView.findFragment<HomeFragment>().activity?.supportFragmentManager?.beginTransaction()
+            try{
+                holder.itemView.findFragment<HomeFragment>().activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.fragmentContainerView, newFragment)?.addToBackStack(R.id.homeFragment.toString())?.commit()
+            }
+            catch(e:ClassCastException) {
+                holder.itemView.findFragment<DiscoverFragment>().activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainerView, newFragment)?.addToBackStack(R.id.homeFragment.toString())?.commit()
+        }
+
+
+
         }
 
 

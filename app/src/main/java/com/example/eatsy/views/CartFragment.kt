@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.adapter.CartViewAdapter
+import com.example.eatsy.databinding.ActivityMainBinding
 import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.model.CartItem
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -30,7 +31,7 @@ class CartFragment : Fragment() {
             requireContext(),
             R.color.off_white
         )
-
+        requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar).visibility=View.VISIBLE
 
         val cartList = DataSource.orderList.second
         var cartListHM = this.arguments?.getSerializable("cartItems")
@@ -53,9 +54,9 @@ class CartFragment : Fragment() {
         binding.cartItemsRecyclerview.isNestedScrollingEnabled = false
 
         binding.goToMenu.setOnClickListener {
-            var intent = Intent(context, MainActivity::class.java)
-            intent.putExtra("discover", "discover")
-            startActivity(intent)
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainerView, DiscoverFragment())?.addToBackStack(R.id.homeFragment.toString())
+                ?.commit()
         }
 
         val total:Long=totalPrice()

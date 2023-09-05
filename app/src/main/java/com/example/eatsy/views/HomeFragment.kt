@@ -34,7 +34,8 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
         val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
-        navBar.visibility = View.VISIBLE
+        navBar.hideOnScroll=true
+        navBar.visibility=View.VISIBLE
 
         //instantiation of database
         firebaseDB  = FirebaseFirestore.getInstance()

@@ -124,6 +124,9 @@ class MenuListAdapter (
             v.itemCount.text = cartItemList.size.toString()+" Items"
             v.price.text = "₹"+totalPrice().toString()
         }
+        else {
+            DataSource.orderList= Pair(null,cartItemList)
+        }
 
         holder.binding.itemAddButton.setOnClickListener {
             if( DataSource.orderList.first==null) {

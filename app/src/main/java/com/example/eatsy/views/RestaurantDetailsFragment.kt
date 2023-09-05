@@ -78,6 +78,7 @@ class RestaurantDetailsFragment : Fragment() {
                 ?.commit()
             navView.selectedItemId = R.id.cartFragment
 
+
         }
 
         binding.backBtn.setOnClickListener {
