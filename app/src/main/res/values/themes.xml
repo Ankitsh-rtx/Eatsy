@@ -15,5 +15,10 @@
         <!-- Navigation bar color. -->
 <!--        <item name="android:navigationBarColor">@color/white</item>-->
         <!-- Customize your theme here. -->
+
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+
     </style>
+
+
 </resources>

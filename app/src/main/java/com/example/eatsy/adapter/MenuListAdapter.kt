@@ -3,7 +3,9 @@ package com.example.eatsy.adapter
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,6 +20,7 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.databinding.FragmentRestaurantDetailsBinding
 import com.example.eatsy.databinding.ItemLayoutBinding
+
 import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
@@ -189,6 +192,8 @@ class MenuListAdapter (
             val dialog = BottomSheetDialog(context)
             val bottomSheetDialog =
                 LayoutInflater.from(context).inflate(R.layout.bottom_detail_dialog, null)
+
+
             dialog.setContentView(bottomSheetDialog)
             val image = dialog.findViewById<ImageView>(R.id.itemImage)
             if (image != null) {
@@ -206,6 +211,7 @@ class MenuListAdapter (
             }else {
                 vegIcon?.setColorFilter(ContextCompat.getColor(context, R.color.red_500), android.graphics.PorterDuff.Mode.SRC_IN)
             }
+
             dialog.show()
         }
 
