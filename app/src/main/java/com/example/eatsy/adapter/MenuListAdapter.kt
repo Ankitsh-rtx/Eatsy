@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -83,17 +84,18 @@ class MenuListAdapter (
         // arraylist that is passed through restaurant detail activity is used here
         val items:Item = item[position]
         var value=1
-        val replaceDialog:Dialog=Dialog(context)
+
+        val replaceDialog =Dialog(context)
         replaceDialog.setContentView(LayoutInflater.from(context).inflate(R.layout.clear_dialog,null,false))
         replaceDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val replace =replaceDialog.findViewById<Button>(R.id.replace)
+        val replace =replaceDialog.findViewById<TextView>(R.id.replace)
         replace.setOnClickListener{
             cartItemList.clear()
             DataSource.orderList= Pair(res,cartItemList)
             addItem(holder,items,value)
             replaceDialog.dismiss()
         }
-        val cancel =replaceDialog.findViewById<Button>(R.id.cancel)
+        val cancel = replaceDialog.findViewById<TextView>(R.id.cancel)
         cancel.setOnClickListener{
             replaceDialog.dismiss()
             return@setOnClickListener

@@ -12,7 +12,7 @@ import com.example.eatsy.adapter.CartViewAdapter
 import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.model.CartItem
 import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
@@ -29,6 +29,9 @@ class CartFragment : Fragment() {
             requireContext(),
             R.color.off_white
         )
+        val bottomNavBar = activity?.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        if(bottomNavBar?.visibility==View.GONE)
+            bottomNavBar.visibility =View.VISIBLE
 
         val cartList = DataSource.orderList.second
         var cartListHM = this.arguments?.getSerializable("cartItems")
