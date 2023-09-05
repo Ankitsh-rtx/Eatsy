@@ -57,7 +57,13 @@ class HomeFragment : Fragment() {
 //                }
                 restaurants.add(res!!)
             }
-            binding.restaurantRecyclerview.adapter = RestaurantAdapter(context,restaurants)
+            val activity = activity
+            binding.restaurantRecyclerview.adapter =
+                activity?.let {
+                    RestaurantAdapter(context,restaurants,
+                        it
+                    )
+                }
 
         }.addOnFailureListener {
             Log.d("firebase", "onCreateView: error on loading data",it)

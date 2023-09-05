@@ -83,6 +83,7 @@ class MenuListAdapter (
         val items:Item = item[position]
         var value=1
 
+        // Dialog Box Appears when we choose items from different restaurant
         val replaceDialog =Dialog(context)
         replaceDialog.setContentView(LayoutInflater.from(context).inflate(R.layout.clear_dialog,null,false))
         replaceDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -195,8 +196,7 @@ class MenuListAdapter (
 
     private fun totalPrice():Long{
         var totalPrice:Long = 0
-        var cartItemList:HashMap<String,CartItem>
-        cartItemList= DataSource.orderList.second
+        val cartItemList:HashMap<String,CartItem> = DataSource.orderList.second
         cartItemList.forEach { (key, value) -> totalPrice+=(value.getItem().getItemPrice()
             ?.times(value.getItemQuantity())!!)}
         return totalPrice
