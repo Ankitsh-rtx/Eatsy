@@ -1,11 +1,16 @@
 package com.example.eatsy.adapter
 
+import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,24 +20,24 @@ import com.example.eatsy.databinding.FragmentRestaurantDetailsBinding
 import com.example.eatsy.databinding.ItemLayoutBinding
 import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
+import com.example.eatsy.model.Restaurants
 import com.example.eatsy.views.CartFragment
 import java.util.*
 import kotlin.collections.HashMap
 
 
 class MenuListAdapter (
-    private val context: Context? = null,
+    private val context: Context,
     val item: MutableList<Item>,
     // menu item received from the restaurant details activity
 //    val view :FragmentRestaurantDetailBinding
     val view: FragmentRestaurantDetailsBinding,
-    val resId: String?
+    val res: Restaurants?
 ) : RecyclerView.Adapter<MenuListAdapter.MenuViewHolder>() {
 
      private  lateinit var v:FragmentRestaurantDetailsBinding
      val cartItemList = DataSource.orderList.second
     private var cart = DataSource.orderList
-    var Id=DataSource.orderList.first
 //    private lateinit var mListener: OnItemClickListener
 
 //    interface OnItemClickListener{
@@ -73,11 +78,28 @@ class MenuListAdapter (
         return MenuViewHolder(binding)
     }
 
+    @SuppressLint("ResourceType")
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
         // arraylist that is passed through restaurant detail activity is used here
         val items:Item = item[position]
         var value=1
-        if(Id==resId.toString()) {
+        val replaceDialog:Dialog=Dialog(context)
+        replaceDialog.setContentView(LayoutInflater.from(context).inflate(R.layout.clear_dialog,null,false))
+        replaceDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        val replace =replaceDialog.findViewById<Button>(R.id.replace)
+        replace.setOnClickListener{
+            cartItemList.clear()
+            DataSource.orderList= Pair(res,cartItemList)
+            addItem(holder,items,value)
+            replaceDialog.dismiss()
+        }
+        val cancel =replaceDialog.findViewById<Button>(R.id.cancel)
+        cancel.setOnClickListener{
+            replaceDialog.dismiss()
+            return@setOnClickListener
+        }
+
+        if(DataSource.orderList.first==res) {
             if (cartItemList.containsKey(items.id)) {
                 value = cartItemList.getValue(items.id.toString()).getItemQuantity()
                 holder.binding.itemAddButton.text = (value).toString()
@@ -85,7 +107,6 @@ class MenuListAdapter (
                 holder.binding.itemRemoveBtn.visibility = View.VISIBLE
             }
         }
-
         holder.binding.itemName.text= items.getItemName()?.toTitleCase() ?: items.getItemName()
         holder.binding.itemPrice.text= "₹ "+items.getItemPrice().toString()
         if (context != null) {
@@ -105,25 +126,18 @@ class MenuListAdapter (
         }
 
         holder.binding.itemAddButton.setOnClickListener {
-            if(DataSource.orderList.first!=resId.toString() || Id=="") {
-
-                //TODO: Add dialog when user adds item from different restaurant
-
+            if( DataSource.orderList.first==null) {
                 cartItemList.clear()
-                DataSource.orderList= Pair(resId.toString(),cartItemList)
+                DataSource.orderList= Pair(res,cartItemList)
+                addItem(holder,items,value)
             }
-            if (holder.binding.itemAddBtn.visibility == View.INVISIBLE && holder.binding.itemRemoveBtn.visibility == View.INVISIBLE) {
-                holder.binding.itemAddBtn.visibility = View.VISIBLE
-                holder.binding.itemRemoveBtn.visibility = View.VISIBLE
+            else if( DataSource.orderList.first!=res) {
+                replaceDialog.show()
             }
-            cartItemList.put(items.id.toString(), CartItem(items, value))
-            if(cartItemList.size!=0) {
-                v.goToCartDialog.visibility= View.VISIBLE
-                v.itemCount.text = cartItemList.size.toString()+ " Items"
-                v.price.text = "₹"+totalPrice().toString()
+            else {
+                addItem(holder,items,value)
             }
-            else v.goToCartDialog.visibility= View.GONE
-            holder.binding.itemAddButton.text = (value).toString()
+
         }
 
         holder.binding.itemAddBtn.setOnClickListener {
@@ -144,7 +158,6 @@ class MenuListAdapter (
                 holder.binding.itemAddBtn.visibility = View.INVISIBLE
                 holder.binding.itemRemoveBtn.visibility = View.INVISIBLE
                 cartItemList.remove(items.id)
-
             } else{
                 v.itemCount.text = cartItemList.size.toString()+ " Item"
                 v.price.text = "₹"+totalPrice().toString()
@@ -186,6 +199,21 @@ class MenuListAdapter (
     private fun String.toTitleCase() = replaceFirstChar { text ->
         if (text.isLowerCase()) text.titlecase(Locale.getDefault())
         else text.toString()
+    }
+
+    private fun addItem(holder :MenuViewHolder,items:Item ,value:Int){
+        if (holder.binding.itemAddBtn.visibility == View.INVISIBLE && holder.binding.itemRemoveBtn.visibility == View.INVISIBLE) {
+            holder.binding.itemAddBtn.visibility = View.VISIBLE
+            holder.binding.itemRemoveBtn.visibility = View.VISIBLE
+        }
+        cartItemList.put(items.id.toString(), CartItem(items, value))
+        if(cartItemList.size!=0) {
+            v.goToCartDialog.visibility= View.VISIBLE
+            v.itemCount.text = cartItemList.size.toString()+ " Items"
+            v.price.text = "₹"+totalPrice().toString()
+        }
+        else v.goToCartDialog.visibility= View.GONE
+        holder.binding.itemAddButton.text = (value).toString()
     }
 
 }

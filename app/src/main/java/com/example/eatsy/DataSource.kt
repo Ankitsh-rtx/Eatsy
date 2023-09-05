@@ -82,7 +82,7 @@ object DataSource {
 
     )
 
-    var orderList : Pair<String, HashMap<String,CartItem>> = Pair("", HashMap())
+    var orderList : Pair<Restaurants?, HashMap<String,CartItem>> = Pair(null, HashMap())
 
 
 

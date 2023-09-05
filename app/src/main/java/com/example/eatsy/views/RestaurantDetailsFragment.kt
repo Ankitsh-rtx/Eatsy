@@ -47,7 +47,7 @@ class RestaurantDetailsFragment : Fragment() {
         val menu= mutableListOf<Item>()
         firebaseDB  = FirebaseFirestore.getInstance()
 
-        adapter = MenuListAdapter(context, menu,binding,restaurants?.id)
+        adapter = context?.let { MenuListAdapter(it, menu,binding,restaurants) }!!
         binding.menuItemRecyclerview.adapter= adapter
         binding.menuItemRecyclerview.layoutManager = LinearLayoutManager(context)
         restaurants?.menus?.forEach { id ->
