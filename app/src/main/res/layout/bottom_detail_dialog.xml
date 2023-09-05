@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/metropolis_regular"
+
                 android:text="this is sample info about the item. this is sample info about the item.this is sample info about the item.this is sample info about the item."
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -93,6 +93,7 @@
                 android:paddingTop="8dp"
                 android:paddingEnd="36dp"
                 android:paddingBottom="8dp"
+                android:textSize="16sp"
                 android:text="ADD"
                 android:textColor="@color/green_500"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -3,15 +3,17 @@ package com.example.eatsy.views
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.databinding.ActivityMainBinding
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MainActivity : AppCompatActivity() {
-    private val TAG:String = "Main Activity"
+    private val TAG: String = "Main Activity"
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,12 +23,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        binding.bottomNavigationView.setOnItemSelectedListener{ it ->
+        binding.bottomNavigationView.setOnItemSelectedListener { it ->
             var fragment: Fragment? = null
             when (it.itemId) {
                 R.id.homeFragment -> HomeFragment().also { fragment = it }
                 R.id.discoverFragment -> DiscoverFragment().also { fragment = it }
-                R.id.cartFragment -> CartFragment().also {fragment = it}
+                R.id.cartFragment -> CartFragment().also { fragment = it }
                 R.id.trackOrderFragment -> TrackOrderFragment().also { fragment = it }
                 R.id.profileFragment -> ProfileFragment().also { fragment = it }
                 else -> {}
@@ -39,12 +41,19 @@ class MainActivity : AppCompatActivity() {
 //            }
             fragment?.let {
                 supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragmentContainerView, it).addToBackStack(null)
-                        .commit()
-                }
+                    .replace(R.id.fragmentContainerView, it).addToBackStack(null)
+                    .commit()
+            }
             true
         }
 
+
+//        val firebaseDB = FirebaseFirestore.getInstance()
+//
+//        for (i in 0..2) {
+//            val res = DataSource.sampleRestaurantDataList.get(i)
+//            firebaseDB.collection("restaurants").document("res${i + 3}").set(res)
+//        }
 
 
 //        supportFragmentManager.addOnBackStackChangedListener(FragmentManager.OnBackStackChangedListener {
@@ -60,15 +69,8 @@ class MainActivity : AppCompatActivity() {
 //            Log.d(TAG,"onChanged: "+ it.size)
 //        })
 
-//        binding.fab.setOnClickListener {
-//
-//            val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-//
-//            fragmentTransaction.replace(R.id.fragmentContainerView, CartFragment()).commit()
-//
-//        }
-
     }
+
 
     // function to override large font size into normal font size
     override fun attachBaseContext(newBase: Context?) {

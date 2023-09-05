@@ -103,7 +103,7 @@
                 android:id="@+id/item_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/image_pizza_restaurant" />
 
         </androidx.cardview.widget.CardView>
