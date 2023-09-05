@@ -57,14 +57,13 @@ class RestaurantAdapter (private val context: Context? = null,
         // Get the data at the current position
         val item = restaurants[position]
         //  Set the image resource for the current restaurant
-        //  Set the text for the current restaurant's name
-        //  Set the text for the current restaurant's type
         if (context != null) {
             Glide.with(context).load(item.image).into(holder.restaurantImage)
         };
-
-//        holder.restaurantImage.setImageResource(item.imageResourceId)
+        //  holder.restaurantImage.setImageResource(item.imageResourceId)
+        //  Set the text for the current restaurant's name
         holder.restaurantName.text = item.getRestaurantName()
+        //  Set the text for the current restaurant's type
         holder.restaurantType.text = item.getRestaurantType()
         holder.restaurantRating.text = item.getRestaurantRating().toString()
 
@@ -74,7 +73,7 @@ class RestaurantAdapter (private val context: Context? = null,
             args.putSerializable("res",item)
             val newFragment = RestaurantDetailsFragment()
             newFragment.arguments = args
-//            Log.d("Restaurant Adapter", "onBindViewHolder: ${item.name}")
+            // Log.d("Restaurant Adapter", "onBindViewHolder: ${item.name}")
 
             activity.supportFragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainerView, newFragment).addToBackStack(R.id.homeFragment.toString())

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -21,8 +22,9 @@ import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
 import com.example.eatsy.views.CartFragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.*
-import kotlin.collections.HashMap
+
 
 
 class MenuListAdapter (
@@ -34,7 +36,7 @@ class MenuListAdapter (
     val res: Restaurants?
 ) : RecyclerView.Adapter<MenuListAdapter.MenuViewHolder>() {
 
-     private  lateinit var v:FragmentRestaurantDetailsBinding
+     private  lateinit var v: FragmentRestaurantDetailsBinding
      val cartItemList = DataSource.orderList.second
     private var cart = DataSource.orderList
 //    private lateinit var mListener: OnItemClickListener
@@ -89,6 +91,7 @@ class MenuListAdapter (
         replaceDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val replaceText = replaceDialog.findViewById<TextView>(R.id.dialog_text)
+        // replace button working
         val replace =replaceDialog.findViewById<TextView>(R.id.replace)
         replace.setOnClickListener{
             cartItemList.clear()
@@ -96,6 +99,7 @@ class MenuListAdapter (
             addItem(holder,items,value)
             replaceDialog.dismiss()
         }
+        // cancel button working
         val cancel = replaceDialog.findViewById<TextView>(R.id.cancel)
         cancel.setOnClickListener{
             replaceDialog.dismiss()
@@ -179,6 +183,30 @@ class MenuListAdapter (
             }
             else v.goToCartDialog.visibility= View.GONE
 
+        }
+        // get item details page
+        holder.binding.itemDetailsLayout.setOnClickListener {
+            val dialog = BottomSheetDialog(context)
+            val bottomSheetDialog =
+                LayoutInflater.from(context).inflate(R.layout.bottom_detail_dialog, null)
+            dialog.setContentView(bottomSheetDialog)
+            val image = dialog.findViewById<ImageView>(R.id.itemImage)
+            if (image != null) {
+                Glide.with(context).load(items.image).into(image)
+            }
+            val title = dialog.findViewById<TextView>(R.id.titleText)
+            title?.text = items.name?.toTitleCase()
+            val price = dialog.findViewById<TextView>(R.id.itemPrice)
+            price?.text = "₹ "+items.price.toString()
+            val description = dialog.findViewById<TextView>(R.id.itemDescription)
+            description?.text = items.type?.toTitleCase()
+            val vegIcon = dialog.findViewById<ImageView>(R.id.vegIcon)
+            if(items.isVeg==true) {
+                vegIcon?.setColorFilter(ContextCompat.getColor(context, R.color.green_700), android.graphics.PorterDuff.Mode.SRC_IN)
+            }else {
+                vegIcon?.setColorFilter(ContextCompat.getColor(context, R.color.red_500), android.graphics.PorterDuff.Mode.SRC_IN)
+            }
+            dialog.show()
         }
 
         val bundle = Bundle()

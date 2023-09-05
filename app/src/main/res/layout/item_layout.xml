@@ -58,6 +58,7 @@
                 app:layout_constraintStart_toStartOf="@+id/item_name"
                 app:layout_constraintTop_toBottomOf="@+id/item_name" />
             <LinearLayout
+                android:id="@+id/item_details_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

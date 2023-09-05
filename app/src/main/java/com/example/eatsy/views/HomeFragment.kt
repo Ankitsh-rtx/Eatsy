@@ -37,24 +37,15 @@ class HomeFragment : Fragment() {
         navBar.hideOnScroll=true
         navBar.visibility=View.VISIBLE
 
-        //instantiation of database
+        // instantiation of database
         firebaseDB  = FirebaseFirestore.getInstance()
-
+        // instantiation of the restaurants list that stores the values received from firebase
         restaurants = mutableListOf()
 
         firebaseDB.collection("restaurants").get().addOnSuccessListener { querySnapshot ->
             restaurants.clear()
             for (document in querySnapshot.documents) {
                 val res = document.toObject(Restaurants::class.java)
-//                res?.menus?.forEach { id ->
-//                    val item=firebaseDB.collection("Items").document(id)
-//                    item?.get()?.addOnSuccessListener { data ->
-//                        val it = data.toObject(Item::class.java)
-//                        if (it != null) {
-//                            res?.menuItemList?.add(it)
-//                        };
-//                    }
-//                }
                 restaurants.add(res!!)
             }
             val activity = activity
@@ -69,7 +60,7 @@ class HomeFragment : Fragment() {
             Log.d("firebase", "onCreateView: error on loading data",it)
         }
         //Pop all backstack once Home Fragment is reached..
-        fragmentManager?.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        activity?.supportFragmentManager?.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
         binding.dishesRecyclerview.adapter = TopDishAdapter(context)
         binding.dishesRecyclerview.layoutManager = StaggeredGridLayoutManager(2,RecyclerView.HORIZONTAL)
