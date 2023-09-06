@@ -53,6 +53,10 @@ class CartFragment : Fragment() {
         binding.cartItemsRecyclerview.setHasFixedSize(false)
         binding.cartItemsRecyclerview.isNestedScrollingEnabled = false
 
+
+        //unhide navigation
+        requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar).performShow()
+
         binding.goToMenu.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.fragmentContainerView, DiscoverFragment())?.addToBackStack(R.id.homeFragment.toString())
