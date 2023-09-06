@@ -18,6 +18,7 @@ import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RestaurantDetailsFragment : Fragment() {
@@ -58,6 +59,26 @@ class RestaurantDetailsFragment : Fragment() {
                 if (it != null) {
                     menu.add(it)
                     (binding.menuItemRecyclerview.adapter)?.notifyDataSetChanged()
+                }
+            }
+
+        }
+        val lis=firebaseDB.collection("Items").whereEqualTo("restaurantId",restaurants?.id).addSnapshotListener{
+            i,e->
+            for(j in i!!.documentChanges) {
+                when (j.type) {
+                    DocumentChange.Type.MODIFIED -> {
+                        val newItem=j.document.toObject(Item::class.java)
+                        for (it in menu) {
+                            if(it.id==newItem.id) {
+                                menu.remove(it)
+                            }
+                        }
+                        menu.add(newItem)
+                        binding.menuItemRecyclerview.adapter?.notifyDataSetChanged()
+                    }
+
+                    else -> {}
                 }
             }
         }
