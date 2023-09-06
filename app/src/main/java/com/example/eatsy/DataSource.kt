@@ -76,13 +76,17 @@ object DataSource {
         "1","2"
     )
 
-    var sampleRestaurantDataList :MutableList<Restaurants> = mutableListOf(
-        Restaurants("r3","https://b.zmtcdn.com/data/pictures/chains/7/37327/3d7a8a7b601bee632f81581dca960a0e.jpg?output-format=webp&fit=around|771.75:416.25&crop=771.75:416.25;*,*",
-            "KFC","fast food",4.6,true,true,items,menu, address),
-        Restaurants("r4","https://b.zmtcdn.com/data/pictures/chains/2/20842/ce89a2b9888ae02bc47cb3643bfd5738.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*",
-            "Barbeque Nation","fast food",4.2,true,true,items,menu, address),
-        Restaurants("r5","https://www.jubilantfoodworks.com/images/brand_pic3.jpg",
-            "Dominos","Pizza",4.5,true,true,items,menu, address)
+    var sampleRestaurantDataList :MutableList<Item> = mutableListOf(
+        Item("Pizza","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DgUlsgxzY9GU&psig=AOvVaw31fPOVe6NOew5kV1kP_TMM&ust=1694068680660000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPCimuWvlYEDFQAAAAAdAAAAABAW",
+            "3","r3","Pizza",109,true,"delicious pizza"),
+        Item("Vada Paw","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cookwithmanali.com%2Fvada-pav%2F&psig=AOvVaw1TUc6olfUarmLvOEXCthrt&ust=1694068741223000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLCng4GwlYEDFQAAAAAdAAAAABAE",
+            "4","r3","Paw",79,true,""),
+        Item("Corn Cheese Pizaa","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DgUlsgxzY9GU&psig=AOvVaw31fPOVe6NOew5kV1kP_TMM&ust=1694068680660000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPCimuWvlYEDFQAAAAAdAAAAABAW",
+            "5","r4","Pizza",109,true,"delicious pizza"),
+        Item("Sandwich","https://www.google.com/url?sa=i&url=https%3A%2F%2Frecipes.timesofindia.com%2Frecipes%2Fclub-sandwich%2Frs83740315.cms&psig=AOvVaw1ToSeMDSbZB9PyJvRA_jGJ&ust=1694068766370000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJC5qIuwlYEDFQAAAAAdAAAAABAJ",
+            "6","r5","Sandwich",89,true,"delicious pizza"),
+        Item("Choco Lava Cake","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pressurecookrecipes.com%2Finstant-pot-lava-cake%2F&psig=AOvVaw1GC-nGziX7Eau1fWZfFtSL&ust=1694068617475000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCNj0hcivlYEDFQAAAAAdAAAAABAJ",
+            "7","r5","Cake",109,true,"delicious Cake"),
     )
 
 

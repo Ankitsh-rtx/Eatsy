@@ -62,10 +62,10 @@ class RestaurantAdapter (private val context: Context? = null,
         };
         //  holder.restaurantImage.setImageResource(item.imageResourceId)
         //  Set the text for the current restaurant's name
-        holder.restaurantName.text = item.getRestaurantName()
+        holder.restaurantName.text = item.name
         //  Set the text for the current restaurant's type
-        holder.restaurantType.text = item.getRestaurantType()
-        holder.restaurantRating.text = item.getRestaurantRating().toString()
+        holder.restaurantType.text = item.type
+        holder.restaurantRating.text = item.rating.toString()
 
         holder.itemView.setOnClickListener {
 

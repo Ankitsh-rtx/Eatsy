@@ -50,9 +50,8 @@ class MainActivity : AppCompatActivity() {
 
 //        val firebaseDB = FirebaseFirestore.getInstance()
 //
-//        for (i in 0..2) {
-//            val res = DataSource.sampleRestaurantDataList.get(i)
-//            firebaseDB.collection("restaurants").document("res${i + 3}").set(res)
+//        for (i in DataSource.sampleRestaurantDataList) {
+//            firebaseDB.collection("Items").document("${i.id}").set(i)
 //        }
 
 

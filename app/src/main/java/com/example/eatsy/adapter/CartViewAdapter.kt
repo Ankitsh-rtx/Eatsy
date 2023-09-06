@@ -39,8 +39,8 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         val cartList:ArrayList<CartItem> = ArrayList(cartListHM.values)
         val item = cartList[position]
 
-        holder.binding.cartItemName.text = item.getItem().getItemName()?.toTitleCase() ?: item.getItem().getItemName()
-        holder.binding.cartItemPrice.text = "₹ " + (item.getItem().getItemPrice()
+        holder.binding.cartItemName.text = item.getItem().name?.toTitleCase() ?: item.getItem().name
+        holder.binding.cartItemPrice.text = "₹ " + (item.getItem().price
             ?.times(item.getItemQuantity())).toString()
         holder.binding.cartItemCount.text = item.getItemQuantity().toString()
 
@@ -48,7 +48,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
             item.setItemQuantity(item.getItemQuantity()+1)
             item.getItem().id?.let { it1 -> cartListHM.put(it1, CartItem(item.getItem(),item.getItemQuantity())) }
             holder.binding.cartItemCount.text = (item.getItemQuantity()).toString()
-            holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()* item.getItem().getItemPrice()!!).toString()
+            holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()* item.getItem().price!!).toString()
             setPrice(holder)
         }
         holder.binding.cartItemRemoveBtn.setOnClickListener {
@@ -60,7 +60,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
                 item.setItemQuantity(item.getItemQuantity()-1)
                 holder.binding.cartItemCount.text = (item.getItemQuantity()).toString()
                 item.getItem().id?.let { it1 -> cartListHM.put(it1, CartItem(item.getItem(),item.getItemQuantity()) ) }
-                holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()* item.getItem().getItemPrice()!!).toString()
+                holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()* item.getItem().price!!).toString()
             }
             setPrice(holder)
 
@@ -79,7 +79,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         var totalPrice:Long = 0
         var cartItemList:HashMap<String,CartItem>
         cartItemList= DataSource.orderList.second
-        cartItemList.forEach { (key, value) -> totalPrice+=(value.getItem().getItemPrice()
+        cartItemList.forEach { (key, value) -> totalPrice+=(value.getItem().price
             ?.times(value.getItemQuantity())!!)}
         return totalPrice
     }

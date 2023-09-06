@@ -117,8 +117,8 @@ class MenuListAdapter (
                 holder.binding.itemRemoveBtn.visibility = View.VISIBLE
             }
         }
-        holder.binding.itemName.text= items.getItemName()?.toTitleCase() ?: items.getItemName()
-        holder.binding.itemPrice.text= "₹ "+items.getItemPrice().toString()
+        holder.binding.itemName.text= items.name?.toTitleCase() ?: items.name
+        holder.binding.itemPrice.text= "₹ "+items.price.toString()
         Glide.with(context).load(items.image).into(holder.binding.itemImage);
         if(items.isVeg==false){
             context.let { ContextCompat.getColor(it,R.color.red_500) }
@@ -204,13 +204,14 @@ class MenuListAdapter (
             val price = dialog.findViewById<TextView>(R.id.itemPrice)
             price?.text = "₹ "+items.price.toString()
             val description = dialog.findViewById<TextView>(R.id.itemDescription)
-            description?.text = items.type?.toTitleCase()
+            description?.text = items.description?.toTitleCase()
             val vegIcon = dialog.findViewById<ImageView>(R.id.vegIcon)
             if(items.isVeg==true) {
                 vegIcon?.setColorFilter(ContextCompat.getColor(context, R.color.green_700), android.graphics.PorterDuff.Mode.SRC_IN)
             }else {
                 vegIcon?.setColorFilter(ContextCompat.getColor(context, R.color.red_500), android.graphics.PorterDuff.Mode.SRC_IN)
             }
+
 
             dialog.show()
         }
@@ -231,7 +232,7 @@ class MenuListAdapter (
     private fun totalPrice():Long{
         var totalPrice:Long = 0
         val cartItemList:HashMap<String,CartItem> = DataSource.orderList.second
-        cartItemList.forEach { (key, value) -> totalPrice+=(value.getItem().getItemPrice()
+        cartItemList.forEach { (key, value) -> totalPrice+=(value.getItem().price
             ?.times(value.getItemQuantity())!!)}
         return totalPrice
     }
