@@ -45,6 +45,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         holder.binding.cartItemCount.text = item.getItemQuantity().toString()
 
         holder.binding.cartItemAddBtn.setOnClickListener {
+            notifyDataSetChanged()
             item.setItemQuantity(item.getItemQuantity()+1)
             item.getItem().id?.let { it1 -> cartListHM.put(it1, CartItem(item.getItem(),item.getItemQuantity())) }
             holder.binding.cartItemCount.text = (item.getItemQuantity()).toString()
@@ -77,8 +78,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
     }
     private fun totalPrice():Long{
         var totalPrice:Long = 0
-        var cartItemList:HashMap<String,CartItem>
-        cartItemList= DataSource.orderList.second
+        var cartItemList:HashMap<String,CartItem> = DataSource.orderList.second
         cartItemList.forEach { (key, value) -> totalPrice+=(value.getItem().price
             ?.times(value.getItemQuantity())!!)}
         return totalPrice
@@ -93,4 +93,5 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         if (text.isLowerCase()) text.titlecase(Locale.getDefault())
         else text.toString()
     }
+
 }

@@ -47,6 +47,7 @@ class CartFragment : Fragment() {
         }
 
         binding.cartItemsRecyclerview.adapter = CartViewAdapter(context,cartItemList,binding)
+
         binding.cartItemsRecyclerview.layoutManager = LinearLayoutManager(context)
 
         // Specify fixed size to improve performance
@@ -73,6 +74,7 @@ class CartFragment : Fragment() {
 
     private fun totalPrice():Long{
         var totalPrice:Long = 0
+        binding.cartItemsRecyclerview.adapter?.notifyDataSetChanged()
         cartItemList.forEach { (key, value) -> totalPrice+= value.getItem().price
             ?.times(value.getItemQuantity()) ?: 0 }
         return totalPrice

@@ -63,19 +63,23 @@ class RestaurantDetailsFragment : Fragment() {
             }
 
         }
-        val lis=firebaseDB.collection("Items").whereEqualTo("restaurantId",restaurants?.id).addSnapshotListener{
-            i,e->
+        firebaseDB.collection("Items").whereEqualTo("restaurantId",restaurants?.id).addSnapshotListener{
+                i, _ ->
             for(j in i!!.documentChanges) {
                 when (j.type) {
                     DocumentChange.Type.MODIFIED -> {
-                        val newItem=j.document.toObject(Item::class.java)
-                        for (it in menu) {
-                            if(it.id==newItem.id) {
-                                menu.remove(it)
+                        try{
+                            val newItem=j.document.toObject(Item::class.java)
+                            for (it in menu) {
+                                if(it.id==newItem.id) {
+                                    menu.remove(it)
+                                }
                             }
+                            menu.add(newItem)
+                            binding.menuItemRecyclerview.adapter?.notifyDataSetChanged()
+                        } catch(e:Exception){
+                            Log.d("firebase ","error in loading Modified Doc $e")
                         }
-                        menu.add(newItem)
-                        binding.menuItemRecyclerview.adapter?.notifyDataSetChanged()
                     }
 
                     else -> {}
