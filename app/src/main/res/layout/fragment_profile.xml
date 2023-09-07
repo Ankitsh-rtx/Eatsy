@@ -3,24 +3,42 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".views.ProfileFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/ash_white"
+    tools:context=".views.ProfileFragment">
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:elevation="2dp"
         android:src="@drawable/icon_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
@@ -41,7 +59,8 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/metropolis_semibold"
             android:text="Help"
-            android:textSize="20sp"
+            android:textColor="@color/black_800"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,8 +68,9 @@
             android:id="@+id/links"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/metropolis_regular"
+            android:fontFamily="@font/metropolis_medium"
             android:text="FAQs &amp; Links"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/help"
             app:layout_constraintTop_toBottomOf="@+id/help" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -59,8 +79,12 @@
         android:id="@+id/constraintLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
@@ -81,7 +105,8 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/metropolis_semibold"
             android:text="Refunds &amp; Payment"
-            android:textSize="20sp"
+            android:textColor="@color/black_800"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,8 +114,9 @@
             android:id="@+id/refundHelperText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/metropolis_regular"
+            android:fontFamily="@font/metropolis_medium"
             android:text="Refund Stauts &amp; Payment Modes"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/refundPaymentStatus"
             app:layout_constraintTop_toBottomOf="@+id/refundPaymentStatus" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -99,20 +125,14 @@
         android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
-
-        <ImageView
-            android:id="@+id/imageForward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_arrow_down"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/icon_arrow_right" />
 
         <TextView
             android:id="@+id/address"
@@ -121,7 +141,8 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/metropolis_semibold"
             android:text="Address"
-            android:textSize="20sp"
+            android:textColor="@color/black_800"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -129,18 +150,32 @@
             android:id="@+id/addressInfoText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/metropolis_regular"
+            android:fontFamily="@font/metropolis_medium"
             android:text="Share, Edit &amp; Add New Address"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/address"
             app:layout_constraintTop_toBottomOf="@+id/address" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_arrow_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8">
@@ -153,6 +188,7 @@
             android:fontFamily="@font/metropolis_bold"
             android:text="Ankit Shaw"
             android:textAllCaps="true"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -163,17 +199,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/metropolis_medium"
             android:text="7044746509"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/username"
             app:layout_constraintTop_toBottomOf="@+id/username" />
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_arrow_down"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/userEmail"
@@ -182,8 +210,22 @@
             android:layout_marginStart="16dp"
             android:fontFamily="@font/metropolis_medium"
             android:text="ankitshaw1112@gmail.com"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/userPhone"
             app:layout_constraintTop_toBottomOf="@+id/username" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/metropolis_semibold"
+            android:text="EDIT"
+            android:textColor="@color/orange_500"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/username" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -191,8 +233,12 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
@@ -213,7 +259,8 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/metropolis_semibold"
             android:text="My Account"
-            android:textSize="20sp"
+            android:textColor="@color/black_800"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -221,10 +268,50 @@
             android:id="@+id/account_helper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/metropolis_regular"
+            android:fontFamily="@font/metropolis_medium"
             android:text="Favourites, Hidden restaurants &amp; Settings"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/account"
             app:layout_constraintTop_toBottomOf="@+id/account" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@color/white"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_arrow_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/metropolis_bold"
+            android:text="logout options"
+            android:textAllCaps="true"
+            android:textColor="@color/black_900"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView6"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
