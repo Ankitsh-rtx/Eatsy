@@ -71,11 +71,12 @@ class RestaurantDetailsFragment : Fragment() {
                         try{
                             val newItem=j.document.toObject(Item::class.java)
                             for (it in menu) {
-                                if(it.id==newItem.id) {
-                                    menu.remove(it)
+                                if (it.id == newItem.id) {
+                                    menu[menu.indexOf(it)]=newItem
+                                    if (cartItemList.contains(it.id)) cartItemList[it.id.toString()]=CartItem(newItem,cartItemList.getValue(it.id.toString()).getItemQuantity())
+                                    break;
                                 }
                             }
-                            menu.add(newItem)
                             binding.menuItemRecyclerview.adapter?.notifyDataSetChanged()
                         } catch(e:Exception){
                             Log.d("firebase ","error in loading Modified Doc $e")
@@ -126,6 +127,11 @@ class RestaurantDetailsFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
     }
 
 

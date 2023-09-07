@@ -1,5 +1,6 @@
 package com.example.eatsy.model
 
+import android.location.Address
 import java.util.SimpleTimeZone
 
 data class Order(
@@ -9,5 +10,6 @@ data class Order(
     val timeZone: SimpleTimeZone? = null,
     val totalPrice: Int?=null,
     val status:Int?=null,
-    val address: Address? = null
+    val address: Address? = null,
+    val paymentMode:Int?=0
 )
