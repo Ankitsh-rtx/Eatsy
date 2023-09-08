@@ -41,12 +41,14 @@ class CartFragment : Fragment() {
         cartItemList = if(cartListHM!=null){
             cartListHM as HashMap<String, CartItem>
 
+
         } else cartList
 
         if(cartItemList.size==0) {
             binding.emptyCart.visibility=View.VISIBLE
             binding.cartLayout.visibility=View.GONE
         }
+        else binding.restaurantId.text = DataSource.orderList.first?.name.toString()
 
         binding.cartItemsRecyclerview.adapter = CartViewAdapter(context,cartItemList,binding)
 
@@ -65,12 +67,16 @@ class CartFragment : Fragment() {
                 ?.replace(R.id.fragmentContainerView, DiscoverFragment())?.addToBackStack(R.id.homeFragment.toString())
                 ?.commit()
         }
+        binding.backStackBtn.setOnClickListener {
+            //need to press twice to get back to previous fragment due to null added to backstack
+            activity?.supportFragmentManager?.popBackStackImmediate()
+        }
 
         binding.selectAddressBtn.setOnClickListener {
             Log.d("CartFragment", "onSelectAddressClick:  ${requireContext()}")
             val dialog = BottomSheetDialog(requireContext())
             val bottomSheetDialog =
-                LayoutInflater.from(context).inflate(R.layout.bottom_detail_dialog, null)
+                LayoutInflater.from(context).inflate(R.layout.bottom_address_dialog, null)
 
             dialog.setContentView(bottomSheetDialog)
             dialog.show()
