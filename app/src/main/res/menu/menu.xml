@@ -16,7 +16,7 @@
         android:title="Cart" />
     <item
         android:id="@+id/trackOrderFragment"
-        android:icon="@drawable/icon_location"
+        android:icon="@drawable/location_arrow_24"
         android:title="Track Order" />
 
 </menu>

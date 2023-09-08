@@ -214,7 +214,7 @@
                             android:fontFamily="@font/metropolis_medium"
                             android:text="Up to 60% OFF"
                             android:textColor="@android:color/holo_blue_dark"
-                            android:textSize="12sp"
+                            android:textSize="11sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/offer"
