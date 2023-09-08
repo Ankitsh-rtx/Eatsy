@@ -62,6 +62,14 @@ class CartFragment : Fragment() {
         //unhide navigation
         requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar).performShow()
 
+        //payment fragment
+
+        binding.proceedToPayTV.setOnClickListener{
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainerView, PaymentFragment())?.addToBackStack(R.id.homeFragment.toString())
+                ?.commit()
+        }
+
         binding.goToMenu.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.fragmentContainerView, DiscoverFragment())?.addToBackStack(R.id.homeFragment.toString())
