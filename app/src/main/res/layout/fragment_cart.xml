@@ -51,25 +51,129 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cart_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/cart_layout">
+        android:background="@color/silver_white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/restaurantName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_white_box"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="24dp"
+                android:layout_height="22dp"
+                android:src="@drawable/icon_arrow_back"
+                app:tint="@color/black_200"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/metropolis_bold"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="Pizza Hut"
+                android:textColor="@color/black_900"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView9"
+                app:layout_constraintTop_toTopOf="@+id/imageView9" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/silver_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView6" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/select_address_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider">
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+
+                    android:src="@drawable/icon_home"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/orange_500" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/metropolis_semibold"
+                    android:text="61 min to Home"
+                    android:textColor="@color/black_800"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+                    app:layout_constraintStart_toEndOf="@+id/imageView11"
+                    app:layout_constraintTop_toTopOf="@+id/imageView11" />
+
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/icon_arrow_down"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/black_200" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
         <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/silver_white"
-            android:padding="15dp"
+
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@+id/payement"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/restaurantName"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="16dp">
 
                 <View
                     android:id="@+id/view5"
@@ -79,28 +183,27 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bill_details"
-                     />
+                    app:layout_constraintTop_toBottomOf="@id/bill_details" />
 
                 <TextView
                     android:id="@+id/cart_items_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#121212"
+                    android:fontFamily="@font/metropolis_semibold"
                     android:padding="10dp"
                     android:text="Cart items"
+                    android:textColor="#121212"
                     android:textSize="18sp"
-                    android:fontFamily="@font/metropolis_semibold"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/constraint" />
+                    app:layout_constraintStart_toStartOf="@+id/constraint"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cart_items"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    app:cardElevation="0dp"
                     app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="@id/constraint"
                     app:layout_constraintStart_toStartOf="@id/constraint"
                     app:layout_constraintTop_toBottomOf="@+id/cart_items_text">
@@ -110,9 +213,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        tools:listitem="@layout/cartview_item_layout"
-                         />
+                        android:paddingBottom="10dp" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -121,11 +222,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:textSize="18sp"
-                    android:padding="10dp"
-                    android:textColor="#121212"
-                    android:text="Bill Details"
                     android:fontFamily="@font/metropolis_semibold"
+                    android:padding="10dp"
+                    android:text="Bill Details"
+                    android:textColor="#121212"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@+id/constraint"
                     app:layout_constraintTop_toBottomOf="@id/cart_items" />
 
@@ -146,8 +247,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="15dp"
-                        >
+                        android:padding="15dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -166,8 +266,8 @@
                                 android:id="@+id/totalPrice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="₹ 0"
-                                android:fontFamily="@font/metropolis_semibold" />
+                                android:fontFamily="@font/metropolis_semibold"
+                                android:text="₹ 0" />
                         </LinearLayout>
 
                         <ImageView
@@ -193,9 +293,9 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/metropolis_semibold"
                                 android:text="- ₹ 70"
-                                android:textColor="@color/green_500"
-                                android:fontFamily="@font/metropolis_semibold" />
+                                android:textColor="@color/green_500" />
                         </LinearLayout>
 
                         <ImageView
@@ -221,8 +321,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="₹ 80"
-                                android:fontFamily="@font/metropolis_semibold" />
+                                android:fontFamily="@font/metropolis_semibold"
+                                android:text="₹ 80" />
                         </LinearLayout>
 
                         <ImageView
@@ -242,18 +342,18 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="@integer/material_motion_duration_short_1"
+                                android:fontFamily="@font/metropolis_semibold"
                                 android:text="To Pay"
-                                android:textColor="#121212"
 
-                                android:fontFamily="@font/metropolis_semibold"/>
+                                android:textColor="#121212" />
 
                             <TextView
                                 android:id="@+id/payableAmount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="#121212"
                                 android:fontFamily="@font/metropolis_semibold"
-                                android:text="₹ 0" />
+                                android:text="₹ 0"
+                                android:textColor="#121212" />
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -264,23 +364,24 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/payement"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="0dp"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="56dp"
+
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp">
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="56dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:elevation="4dp"
                 android:padding="16dp">
 
                 <LinearLayout
@@ -297,8 +398,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/metropolis_bold"
-                        android:textColor="#121212"
                         android:text="₹ 206"
+                        android:textColor="#121212"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -321,6 +422,7 @@
                     android:id="@+id/proceedToPayTV"
                     android:layout_width="0dp"
                     android:layout_height="56dp"
+                    android:layout_marginStart="40dp"
                     android:background="@drawable/background_button"
                     android:backgroundTint="@color/green_500"
                     android:fontFamily="@font/metropolis_semibold"
@@ -329,7 +431,6 @@
                     android:text="Proceed to Pay"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    android:layout_marginStart="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout2"

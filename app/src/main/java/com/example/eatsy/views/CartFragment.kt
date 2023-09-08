@@ -2,6 +2,7 @@ package com.example.eatsy.views
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.model.CartItem
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 
 class CartFragment : Fragment() {
@@ -29,7 +31,7 @@ class CartFragment : Fragment() {
         activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         activity?.window?.statusBarColor = ContextCompat.getColor(
             requireContext(),
-            R.color.off_white
+            R.color.white
         )
         requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar).visibility=View.VISIBLE
 
@@ -62,6 +64,16 @@ class CartFragment : Fragment() {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.fragmentContainerView, DiscoverFragment())?.addToBackStack(R.id.homeFragment.toString())
                 ?.commit()
+        }
+
+        binding.selectAddressBtn.setOnClickListener {
+            Log.d("CartFragment", "onSelectAddressClick:  ${requireContext()}")
+            val dialog = BottomSheetDialog(requireContext())
+            val bottomSheetDialog =
+                LayoutInflater.from(context).inflate(R.layout.bottom_detail_dialog, null)
+
+            dialog.setContentView(bottomSheetDialog)
+            dialog.show()
         }
 
         val total:Long=totalPrice()

@@ -138,7 +138,7 @@ class MenuListAdapter (
         }
 
         holder.binding.itemAddButton.setOnClickListener {
-            notifyDataSetChanged()
+//            notifyDataSetChanged()
             if( DataSource.orderList.first==null) {
                 cartItemList.clear()
                 DataSource.orderList= Pair(res,cartItemList)
@@ -157,7 +157,7 @@ class MenuListAdapter (
         }
 
         holder.binding.itemAddBtn.setOnClickListener {
-            notifyDataSetChanged()
+//            notifyDataSetChanged()
             cartItemList.put(items.id.toString(), CartItem(items,value+1))
             if(cartItemList.size!=0) {
                 v.goToCartDialog.visibility= View.VISIBLE
@@ -169,7 +169,7 @@ class MenuListAdapter (
         }
 
         holder.binding.itemRemoveBtn.setOnClickListener {
-            notifyDataSetChanged()
+//            notifyDataSetChanged()
             if (value <= 1) {
                 holder.binding.itemAddButton.text = "ADD"
                 holder.binding.itemAddBtn.visibility = View.INVISIBLE
@@ -246,7 +246,7 @@ class MenuListAdapter (
     }
 
     private fun addItem(holder :MenuViewHolder,items:Item ,value:Int){
-        notifyDataSetChanged()
+//        notifyDataSetChanged()
         if (holder.binding.itemAddBtn.visibility == View.INVISIBLE && holder.binding.itemRemoveBtn.visibility == View.INVISIBLE) {
             holder.binding.itemAddBtn.visibility = View.VISIBLE
             holder.binding.itemRemoveBtn.visibility = View.VISIBLE

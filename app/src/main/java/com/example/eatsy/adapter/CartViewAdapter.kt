@@ -45,7 +45,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         holder.binding.cartItemCount.text = item.getItemQuantity().toString()
 
         holder.binding.cartItemAddBtn.setOnClickListener {
-            notifyDataSetChanged()
+//            notifyDataSetChanged()
             item.setItemQuantity(item.getItemQuantity()+1)
             item.getItem().id?.let { it1 -> cartListHM.put(it1, CartItem(item.getItem(),item.getItemQuantity())) }
             holder.binding.cartItemCount.text = (item.getItemQuantity()).toString()
