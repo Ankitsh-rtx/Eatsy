@@ -1,5 +1,6 @@
 package com.example.eatsy.views
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -62,12 +63,18 @@ class CartFragment : Fragment() {
 
         //unhide navigation
         requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar).performShow()
+        val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
+        navBar.visibility = View.GONE
 
         //payment fragment
 
         binding.proceedToPayTV.setOnClickListener{
+            val bundle=Bundle()
+            bundle.putString("Final Amount",(totalPrice()-70+80).toString())
+            val paymentFragment=PaymentFragment()
+            paymentFragment.arguments=bundle
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragmentContainerView, PaymentFragment())?.addToBackStack(R.id.homeFragment.toString())
+                ?.replace(R.id.fragmentContainerView,paymentFragment)?.addToBackStack(R.id.homeFragment.toString())
                 ?.commit()
         }
 
@@ -100,12 +107,17 @@ class CartFragment : Fragment() {
         binding.payableAmount.text = "₹ "+ (total-70+80).toString()
         binding.finalAmount.text = "₹ "+ (total-70+80).toString()
 
+
+        Log.d("cart","closed")
+        val sharedPreferences=requireActivity().getSharedPreferences("CART", Context.MODE_PRIVATE).edit()
+        sharedPreferences.putString("CART",DataSource.orderList.toString())
+        sharedPreferences.commit()
+
         return binding.root
     }
 
     private fun totalPrice():Long{
         var totalPrice:Long = 0
-        binding.cartItemsRecyclerview.adapter?.notifyDataSetChanged()
         cartItemList.forEach { (key, value) -> totalPrice+= value.getItem().price
             ?.times(value.getItemQuantity()) ?: 0 }
         return totalPrice

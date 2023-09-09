@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 
-class CartItem(
+class CartItem (
     private var item: Item,
     private var quantity: Int,
 
