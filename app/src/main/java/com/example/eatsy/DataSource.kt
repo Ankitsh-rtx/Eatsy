@@ -67,14 +67,11 @@ object DataSource {
 //        Item(R.drawable.image_pizza_restaurant,"7","Sandwich","",399)
 
     )
-    private val address = Address("Kolkata","India",700039,"Bidhannagar")
 
     val restaurants: MutableList<Restaurants> = mutableListOf()
 
     var orderList : Pair<Restaurants?, HashMap<String,CartItem>> = Pair(null, HashMap())
-    val menu : ArrayList<String> = arrayListOf(
-        "1","2"
-    )
+    val orderAddress=Address("near Community hall","Asansol","India",713325,"Rambandh","West Bengal")
 
     var sampleRestaurantDataList :MutableList<Item> = mutableListOf(
         Item("Pizza","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DgUlsgxzY9GU&psig=AOvVaw31fPOVe6NOew5kV1kP_TMM&ust=1694068680660000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPCimuWvlYEDFQAAAAAdAAAAABAW",

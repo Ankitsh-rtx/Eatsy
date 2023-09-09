@@ -1,9 +1,12 @@
 package com.example.eatsy.views
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Bundle
 import android.provider.ContactsContract.Data
+import android.util.Log
+import android.view.ActionMode
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.eatsy.DataSource
@@ -47,6 +50,12 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        // shared preference
+        val sharedPreferences=getSharedPreferences("CART",Context.MODE_PRIVATE)
+        val cart=sharedPreferences.getString("CART",null)
+        Log.d("cart",cart.toString())
+
+
 
 //        val firebaseDB = FirebaseFirestore.getInstance()
 //
@@ -81,7 +90,8 @@ class MainActivity : AppCompatActivity() {
         super.attachBaseContext(newBase)
     }
 
-
-
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 
 }
