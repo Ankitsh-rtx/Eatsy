@@ -1,23 +1,18 @@
 package com.example.eatsy.model
 
-class Item (
+import java.lang.invoke.TypeDescriptor
+
+data class Item @JvmOverloads constructor(
+        val name: String?="",
         val image: String? = null,
         val id:String? = "",
         val restaurantId: String?="",
-        val name: String?="",
         val type: String?="",
         val price: Int?=0,
-        val isVeg: Boolean?=false
+        @field:JvmField
+        val isVeg: Boolean?=null,
+        val description:String?=""
         ): java.io.Serializable
 {
-        fun getItemName(): String? {
-                return name
-
-        }
-        fun getItemPrice(): Int? {
-                return price
-        }
-        fun getItemType(): String? {
-                return type
-        }
 }
+

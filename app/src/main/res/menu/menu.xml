@@ -4,22 +4,19 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/icon_home"
-        android:title="Home" />
+        android:icon="@drawable/icon_room"
+        android:title="Food" />
     <item
         android:id="@+id/discoverFragment"
-        android:icon="@drawable/icon_search"
+        android:icon="@drawable/icon_sf"
         android:title="Discover" />
     <item
         android:id="@+id/cartFragment"
-        android:icon="@drawable/icon_shopping_cart"
+        android:icon="@drawable/icon_cart"
         android:title="Cart" />
     <item
         android:id="@+id/trackOrderFragment"
-        android:icon="@drawable/icon_settings"
+        android:icon="@drawable/location_arrow_24"
         android:title="Track Order" />
-    <item
-        android:id="@+id/profileFragment"
-        android:icon="@drawable/icon_person"
-        android:title="About" />
+
 </menu>

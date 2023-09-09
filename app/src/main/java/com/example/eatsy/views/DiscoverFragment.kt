@@ -15,6 +15,7 @@ import com.example.eatsy.adapter.RestaurantAdapter
 import com.example.eatsy.databinding.FragmentDiscoverBinding
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -30,6 +31,10 @@ class DiscoverFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDiscoverBinding.inflate(layoutInflater)
 
+        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        if(navBar.visibility==View.GONE)
+            navBar.visibility = View.VISIBLE
+
         //instantiation of database
         firebaseDB  = FirebaseFirestore.getInstance()
         val restaurants: MutableList<Restaurants> = mutableListOf()
@@ -38,26 +43,32 @@ class DiscoverFragment : Fragment() {
             for (document in querySnapshot.documents){
                 val obj = document.toObject(Restaurants::class.java)
 
-                firebaseDB.collection("restaurants").document(document.id)
-                    .collection("items").get().addOnSuccessListener {
-                        for(item in it){
-                            val menuItem = item.toObject(Item::class.java)
-                            if (obj != null) {
-                                obj.menuItemList?.add(menuItem)
-                            }
-                        }
-                    }
+//                firebaseDB.collection("restaurants").document(document.id)
+//                    .collection("items").get().addOnSuccessListener {
+//                        for(item in it){
+//                            val menuItem = item.toObject(Item::class.java)
+//                            if (obj != null) {
+//                                obj.menuItemList?.add(menuItem)
+//                            }
+//                        }
+//                    }
                 restaurants.add(obj!!)
 //                Log.d("firebase","${document.id} => ${document.data}")
             }
-            binding.restaurantRecyclerview.adapter = RestaurantAdapter(context,restaurants)
-
+            val activity = activity
+            binding.restaurantRecyclerview.adapter =
+                activity?.let {
+                    RestaurantAdapter(context,restaurants,
+                        it
+                    )
+                }
+//
         }.addOnFailureListener {
             Log.d("firebase", "onCreateView: error on loading data",it)
         }
 
-//        binding.restaurantRecyclerview.adapter = RestaurantAdapter(context, DataSource.restaurants)
         binding.restaurantRecyclerview.layoutManager = LinearLayoutManager(context)
+
         // Specify fixed size to improve performance
         binding.restaurantRecyclerview.setHasFixedSize(true)
         binding.restaurantRecyclerview.isNestedScrollingEnabled = false

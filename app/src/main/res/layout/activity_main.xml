@@ -12,8 +12,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
@@ -35,6 +34,8 @@
                 android:layout_height="match_parent"
                 app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
                 android:layout_marginEnd="16dp"
+                app:itemIconSize="24dp"
+                app:itemRippleColor="@null"
                 app:labelVisibilityMode="labeled"
                 app:menu="@menu/menu" />
 

@@ -2,4 +2,5 @@
     <string name="app_name">Eatsy</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_cart_contains_dishes_from_other_restaurant_do_you_want_to_discard_the_selections_and_add_new_dishes">Your cart contains dishes from other restaurant. Do you want to discard the selections and add new dishes?</string>
 </resources>

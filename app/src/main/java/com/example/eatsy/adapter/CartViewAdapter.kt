@@ -9,14 +9,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
-import com.example.eatsy.databinding.CartviewItemLayoutBinding
+import com.example.eatsy.databinding.CardCartItemBinding
 import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.model.CartItem
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 import kotlin.math.log
 
 class CartViewAdapter(private val context: Context? = null, private val cartListHM: HashMap<String,CartItem>,private  val view :FragmentCartBinding ) : RecyclerView.Adapter<CartViewAdapter.CartViewHolder>() {
     private lateinit var cartFragmentBinding:FragmentCartBinding
-    class CartViewHolder (val binding: CartviewItemLayoutBinding):
+    class CartViewHolder (val binding: CardCartItemBinding):
         RecyclerView.ViewHolder(binding.root){
 
         }
@@ -26,26 +29,27 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         viewType: Int
     ): CartViewHolder {
         cartFragmentBinding=FragmentCartBinding.bind(view.root)
-        val binding = CartviewItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = CardCartItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CartViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
 
-        var cartItems=DataSource.orderList
+        var cartItems=DataSource.orderList.second
         val cartList:ArrayList<CartItem> = ArrayList(cartListHM.values)
         val item = cartList[position]
 
-        holder.binding.cartItemName.text = item.getItem().getItemName()
-        holder.binding.cartItemPrice.text = "₹ " + (item.getItem().getItemPrice()
+        holder.binding.cartItemName.text = item.getItem().name?.toTitleCase() ?: item.getItem().name
+        holder.binding.cartItemPrice.text = "₹ " + (item.getItem().price
             ?.times(item.getItemQuantity())).toString()
         holder.binding.cartItemCount.text = item.getItemQuantity().toString()
 
         holder.binding.cartItemAddBtn.setOnClickListener {
+//            notifyDataSetChanged()
             item.setItemQuantity(item.getItemQuantity()+1)
             item.getItem().id?.let { it1 -> cartListHM.put(it1, CartItem(item.getItem(),item.getItemQuantity())) }
             holder.binding.cartItemCount.text = (item.getItemQuantity()).toString()
-            holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()* item.getItem().getItemPrice()!!).toString()
+            holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()* item.getItem().price!!).toString()
             setPrice(holder)
         }
         holder.binding.cartItemRemoveBtn.setOnClickListener {
@@ -57,7 +61,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
                 item.setItemQuantity(item.getItemQuantity()-1)
                 holder.binding.cartItemCount.text = (item.getItemQuantity()).toString()
                 item.getItem().id?.let { it1 -> cartListHM.put(it1, CartItem(item.getItem(),item.getItemQuantity()) ) }
-                holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()* item.getItem().getItemPrice()!!).toString()
+                holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()* item.getItem().price!!).toString()
             }
             setPrice(holder)
 
@@ -74,9 +78,8 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
     }
     private fun totalPrice():Long{
         var totalPrice:Long = 0
-        var cartItemList:HashMap<String,CartItem>
-        cartItemList= DataSource.orderList
-        cartItemList.forEach { (key, value) -> totalPrice+=(value.getItem().getItemPrice()
+        var cartItemList:HashMap<String,CartItem> = DataSource.orderList.second
+        cartItemList.forEach { (key, value) -> totalPrice+=(value.getItem().price
             ?.times(value.getItemQuantity())!!)}
         return totalPrice
     }
@@ -86,4 +89,9 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         cartFragmentBinding.payableAmount.text = "₹ "+ (total-70+80).toString()
         cartFragmentBinding.finalAmount.text = "₹ "+ (total-70+80).toString()
     }
+    private fun String.toTitleCase() = replaceFirstChar { text ->
+        if (text.isLowerCase()) text.titlecase(Locale.getDefault())
+        else text.toString()
+    }
+
 }

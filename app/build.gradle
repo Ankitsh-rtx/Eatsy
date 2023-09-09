@@ -54,6 +54,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
 
+    //lottie animation
+
+    implementation "com.airbnb.android:lottie:6.1.0"
     //Navigation Component
     def nav_version = "2.7.1"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"

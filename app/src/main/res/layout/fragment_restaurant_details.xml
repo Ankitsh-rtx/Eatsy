@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.RestaurantDetail">
+    tools:context=".views.RestaurantDetailsFragment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -22,11 +22,11 @@
 
             <ImageView
                 android:id="@+id/back_btn"
-                android:layout_width="30dp"
-                android:layout_height="28dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:elevation="2dp"
                 app:tint="@color/gray_700"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginStart="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -258,14 +258,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/menu_textview"
-                tools:listitem="@layout/item_layout" />
+                tools:listitem="@layout/card_menu_item" />
 
             <View
                 android:id="@+id/view5"
                 android:layout_width="wrap_content"
                 android:layout_height="58dp"
                 android:layout_marginTop="5dp"
-                android:background="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -302,7 +301,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/metropolis_semibold"
-                android:text="1 Items"
+                android:text=""
                 android:textColor="@color/white"
                 android:layout_marginStart="8dp"
                 android:textSize="14sp"
@@ -324,7 +323,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/metropolis_semibold"
-                android:text="₹399"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"

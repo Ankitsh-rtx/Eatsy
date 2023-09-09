@@ -1,24 +1,32 @@
 package com.example.eatsy.adapter
 
 import android.content.Context
-import android.content.Intent
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.findFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eatsy.R
 import com.example.eatsy.model.Restaurants
-import com.example.eatsy.views.RestaurantDetail
+import com.example.eatsy.views.DiscoverFragment
+import com.example.eatsy.views.HomeFragment
+import com.example.eatsy.views.MainActivity
+import com.example.eatsy.views.RestaurantDetailsFragment
 
-class RestaurantAdapter (private val context: Context? = null, private val restaurants: MutableList<Restaurants>) :
+class RestaurantAdapter (private val context: Context? = null,
+                         private val restaurants: MutableList<Restaurants>,
+                         private val activity: FragmentActivity
+                         ) :
     RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
     // Initialize the data using the List found in data/DataSource
-//    private val restaurants:List<Restaurants> = DataSource.restaurants
-
     /**
      * Initialize view elements
      */
@@ -28,8 +36,6 @@ class RestaurantAdapter (private val context: Context? = null, private val resta
         val restaurantName: TextView = view!!.findViewById(R.id.restaurant_name)
         val restaurantType: TextView = view!!.findViewById(R.id.restaurant_type)
         val restaurantRating:TextView = view!!.findViewById(R.id.restaurant_rating_text)
-
-
 
     }
 
@@ -51,43 +57,29 @@ class RestaurantAdapter (private val context: Context? = null, private val resta
         // Get the data at the current position
         val item = restaurants[position]
         //  Set the image resource for the current restaurant
-        //  Set the text for the current restaurant's name
-        //  Set the text for the current restaurant's type
         if (context != null) {
             Glide.with(context).load(item.image).into(holder.restaurantImage)
         };
-
-//        holder.restaurantImage.setImageResource(item.imageResourceId)
-        holder.restaurantName.text = item.getRestaurantName()
-        holder.restaurantType.text = item.getRestaurantType()
-        holder.restaurantRating.text = item.getRestaurantRating().toString()
+        //  holder.restaurantImage.setImageResource(item.imageResourceId)
+        //  Set the text for the current restaurant's name
+        holder.restaurantName.text = item.name
+        //  Set the text for the current restaurant's type
+        holder.restaurantType.text = item.type
+        holder.restaurantRating.text = item.rating.toString()
 
         holder.itemView.setOnClickListener {
 
-//            val cartFragment = CartFragment()
-//            val args = Bundle()
-//            args.putString("restaurant_name",item.getRestaurantName())
-//            args.putString("restaurant_type",item.getRestaurantType())
-//            args.putString("restaurant_rating",item.getRestaurantRating().toString())
-//            args.putString("restaurant_address",item.getRestaurantAddress())
-//            args.putSerializable("restaurant_menu", item.getMenu())
-//            cartFragment.arguments = args
-//            val fragmentManager =
-//            cartFragment.fragmentManager?.beginTransaction()?.add(R.id.homeFragment, cartFragment)
-//                ?.commit()
+            val args = Bundle()
+            args.putSerializable("res",item)
+            val newFragment = RestaurantDetailsFragment()
+            newFragment.arguments = args
+            // Log.d("Restaurant Adapter", "onBindViewHolder: ${item.name}")
 
+            activity.supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerView, newFragment).addToBackStack(R.id.homeFragment.toString())
+                    .commit()
 
-            context?.startActivity(
-                Intent(context, RestaurantDetail::class.java)
-                .putExtra("restaurant_name",item.getRestaurantName())
-                .putExtra("restaurant_type",item.getRestaurantType())
-                .putExtra("restaurant_rating",item.getRestaurantRating().toString())
-                    .putExtra("restaurant_address",item.city)
-                    .putExtra("restaurant_menu", item.getMenu())
-
-            )
         }
-
     }
 }
 

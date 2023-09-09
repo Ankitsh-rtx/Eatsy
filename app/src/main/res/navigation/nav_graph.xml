@@ -11,11 +11,14 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_restaurantDetailFragment"
-            app:destination="@id/restaurantDetailFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_discoverFragment"
             app:destination="@id/discoverFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment2"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_restaurantDetailsFragment"
+            app:destination="@id/restaurantDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
@@ -28,6 +31,9 @@
         <action
             android:id="@+id/action_cartFragment_to_discoverFragment2"
             app:destination="@id/discoverFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_restaurantDetailsFragment"
+            app:destination="@id/restaurantDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/discoverFragment"
@@ -35,16 +41,27 @@
         android:label="fragment_discover"
         tools:layout="@layout/fragment_discover" >
         <action
-            android:id="@+id/action_discoverFragment_to_restaurantDetailFragment"
-            app:destination="@id/restaurantDetailFragment" />
+            android:id="@+id/action_discoverFragment_to_restaurantDetailsFragment"
+            app:destination="@id/restaurantDetailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/restaurantDetailFragment"
-        android:name="com.example.eatsy.views.RestaurantDetailFragment"
-        android:label="fragment_restaurant_detail"
-        tools:layout="@layout/fragment_restaurant_detail" >
+        android:id="@+id/profileFragment"
+        android:name="com.example.eatsy.views.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_restaurantDetailFragment_to_cartFragment"
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantDetailsFragment"
+        android:name="com.example.eatsy.views.RestaurantDetailsFragment"
+        android:label="RestaurantDetailsFragment" >
+        <action
+            android:id="@+id/action_restaurantDetailsFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_restaurantDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

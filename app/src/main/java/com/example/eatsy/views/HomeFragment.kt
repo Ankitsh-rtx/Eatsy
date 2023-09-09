@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -15,16 +17,15 @@ import com.example.eatsy.R
 import com.example.eatsy.adapter.RestaurantAdapter
 import com.example.eatsy.adapter.TopDishAdapter
 import com.example.eatsy.databinding.FragmentHomeBinding
-import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
-import com.google.firebase.firestore.DocumentReference
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var firebaseDB: FirebaseFirestore
+    private lateinit var restaurants: MutableList<Restaurants>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,37 +33,39 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        //instantiation of database
+        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        navBar.hideOnScroll=true
+        navBar.visibility=View.VISIBLE
+
+        // instantiation of database
         firebaseDB  = FirebaseFirestore.getInstance()
-        var restaurants: MutableList<Restaurants> = mutableListOf()
+        // instantiation of the restaurants list that stores the values received from firebase
+        restaurants = mutableListOf()
+
         firebaseDB.collection("restaurants").get().addOnSuccessListener { querySnapshot ->
             restaurants.clear()
-            for (document in querySnapshot.documents){
-                val obj = document.toObject(Restaurants::class.java)
-
-                firebaseDB.collection("restaurants").document(document.id)
-                    .collection("items").get().addOnSuccessListener {
-                    for(item in it){
-                        val menuItem = item.toObject(Item::class.java)
-                        if (obj != null) {
-                            obj.menuItemList?.add(menuItem)
-                        }
-                    }
-                }
-                restaurants.add(obj!!)
-//                Log.d("firebase","${document.id} => ${document.data}")
+            for (document in querySnapshot.documents) {
+                val res = document.toObject(Restaurants::class.java)
+                restaurants.add(res!!)
             }
-            binding.restaurantRecyclerview.adapter = RestaurantAdapter(context,restaurants)
+            val activity = activity
+            binding.restaurantRecyclerview.adapter =
+                activity?.let {
+                    RestaurantAdapter(context,restaurants,
+                        it
+                    )
+                }
 
         }.addOnFailureListener {
             Log.d("firebase", "onCreateView: error on loading data",it)
         }
+        //Pop all backstack once Home Fragment is reached..
+        activity?.supportFragmentManager?.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
         binding.dishesRecyclerview.adapter = TopDishAdapter(context)
         binding.dishesRecyclerview.layoutManager = StaggeredGridLayoutManager(2,RecyclerView.HORIZONTAL)
         // Specify fixed size to improve performance
         binding.dishesRecyclerview.setHasFixedSize(true)
-//        binding.restaurantRecyclerview.adapter = RestaurantAdapter(context)
         binding.restaurantRecyclerview.layoutManager = LinearLayoutManager(context)
         // Specify fixed size to improve performance
         binding.restaurantRecyclerview.setHasFixedSize(true)
@@ -72,8 +75,18 @@ class HomeFragment : Fragment() {
         activity?.window?.statusBarColor = ContextCompat.getColor(requireContext(), R.color.white)
 
 
+        binding.profileImage.setOnClickListener{
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainerView, ProfileFragment())?.addToBackStack(R.id.homeFragment.toString())
+                ?.commit()
+        }
 
         return binding.root
     }
+
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        super.onSaveInstanceState(outState)
+//        outState.putParcelableArrayList("homeFragmentSavedInstance",restaurants)
+//    }
 
 }
