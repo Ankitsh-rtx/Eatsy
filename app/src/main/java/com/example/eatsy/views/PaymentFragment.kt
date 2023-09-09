@@ -10,6 +10,7 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.databinding.FragmentPaymentBinding
 import com.example.eatsy.model.Order
+import com.example.eatsy.model.CartItem
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDateTime
@@ -47,8 +48,15 @@ class PaymentFragment : Fragment() {
                 null,this.arguments?.getString("Final Amount")?.toInt(),
             0,DataSource.orderAddress,0,"")
             Log.d("order",Order.toString())
-            firebaseDB.collection("orders").document().set(Order).addOnSuccessListener { document->
-                Log.d("orderid","done")
+            firebaseDB.collection("orders").add(Order).addOnSuccessListener { document->
+                val bundle=Bundle()
+                bundle.putString("ORDER_ID",document.id.toString())
+                val successFragment=SuccessFragment()
+                successFragment.arguments=bundle
+                DataSource.orderList= Pair(null,HashMap<String,CartItem>())
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.fragmentContainerView,successFragment)?.addToBackStack(null)
+                    ?.commit()
             }
         }
         return binding.root
