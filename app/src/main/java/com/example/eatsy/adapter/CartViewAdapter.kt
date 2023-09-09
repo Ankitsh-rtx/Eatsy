@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
-import com.example.eatsy.databinding.CartviewItemLayoutBinding
+import com.example.eatsy.databinding.CardCartItemBinding
 import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.model.CartItem
 import java.util.*
@@ -19,7 +19,7 @@ import kotlin.math.log
 
 class CartViewAdapter(private val context: Context? = null, private val cartListHM: HashMap<String,CartItem>,private  val view :FragmentCartBinding ) : RecyclerView.Adapter<CartViewAdapter.CartViewHolder>() {
     private lateinit var cartFragmentBinding:FragmentCartBinding
-    class CartViewHolder (val binding: CartviewItemLayoutBinding):
+    class CartViewHolder (val binding: CardCartItemBinding):
         RecyclerView.ViewHolder(binding.root){
 
         }
@@ -29,7 +29,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         viewType: Int
     ): CartViewHolder {
         cartFragmentBinding=FragmentCartBinding.bind(view.root)
-        val binding = CartviewItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = CardCartItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CartViewHolder(binding)
     }
 

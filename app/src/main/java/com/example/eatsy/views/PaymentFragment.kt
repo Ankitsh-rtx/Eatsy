@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.databinding.FragmentPaymentBinding
@@ -43,6 +44,7 @@ class PaymentFragment : Fragment() {
         binding.proceedToPayTV.setOnClickListener{
 
             binding.proceedToPayTV.isClickable=false
+            binding.progressBar.visibility = View.VISIBLE
             val firebaseDB  = FirebaseFirestore.getInstance()
             val Order=Order(
                 "12345",
@@ -62,9 +64,12 @@ class PaymentFragment : Fragment() {
                 successFragment.arguments=bundle
                 // order list cleared on order success
                 DataSource.orderList= Pair(null,HashMap<String,CartItem>())
+
                 activity?.supportFragmentManager?.beginTransaction()
                     ?.replace(R.id.fragmentContainerView,successFragment)?.addToBackStack(null)
                     ?.commit()
+
+                binding.progressBar.visibility = View.GONE
             }
         }
         return binding.root

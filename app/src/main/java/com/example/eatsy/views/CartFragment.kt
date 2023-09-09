@@ -1,10 +1,15 @@
 package com.example.eatsy.views
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.EditText
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -14,6 +19,8 @@ import com.example.eatsy.R
 import com.example.eatsy.adapter.CartViewAdapter
 import com.example.eatsy.databinding.ActivityMainBinding
 import com.example.eatsy.databinding.FragmentCartBinding
+import com.example.eatsy.databinding.FragmentPaymentBinding
+import com.example.eatsy.model.Address
 import com.example.eatsy.model.CartItem
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -90,15 +97,37 @@ class CartFragment : Fragment() {
 
         binding.selectAddressBtn.setOnClickListener {
             Log.d("CartFragment", "onSelectAddressClick:  ${requireContext()}")
-            val dialog = BottomSheetDialog(requireContext())
+            val dialogBottomSheetDialog = BottomSheetDialog(requireContext())
             val bottomSheetDialog =
                 LayoutInflater.from(context).inflate(R.layout.bottom_address_dialog, null)
-            dialog.setContentView(bottomSheetDialog)
-            dialog.show()
+            dialogBottomSheetDialog.setContentView(bottomSheetDialog)
+            dialogBottomSheetDialog.show()
 
-            val addAddress = activity?.findViewById<ConstraintLayout>(R.id.addAddress)
+
+
+            val addAddress = dialogBottomSheetDialog.findViewById<ConstraintLayout>(R.id.addAddress)
             addAddress?.setOnClickListener {
-                //TODO: open dialog
+                Log.d("Cart Fragment" , "address clicked")
+                //link it to display
+                val dialog = Dialog(requireContext())
+                dialog.setContentView(LayoutInflater.from(context).inflate(R.layout.dialog_add_new_address,null,false))
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.show()
+
+                dialog.findViewById<TextView>(R.id.add_new_address_btn).setOnClickListener {
+                    val country = dialog.findViewById<EditText>(R.id.country).text.toString()
+                    val state = dialog.findViewById<EditText>(R.id.state).text.toString()
+                    val city = dialog.findViewById<EditText>(R.id.city).text.toString()
+                    val street = dialog.findViewById<EditText>(R.id.street).text.toString()
+                    val pincode=  dialog.findViewById<EditText>(R.id.pincode).text.toString()
+                    val landmark = dialog.findViewById<EditText>(R.id.landmark).text.toString()
+
+                    val address = Address( landmark,city,country,Integer.parseInt(pincode),street,state)
+                    DataSource.address.add(address)
+                    Log.d("cart fragment","address: $address")
+                    dialog.hide()
+                }
+
             }
         }
 

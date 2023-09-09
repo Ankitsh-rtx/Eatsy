@@ -3,9 +3,7 @@ package com.example.eatsy.adapter
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,9 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
+import com.example.eatsy.databinding.CardMenuItemBinding
 import com.example.eatsy.databinding.FragmentRestaurantDetailsBinding
-import com.example.eatsy.databinding.ItemLayoutBinding
-
 import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
@@ -54,7 +51,7 @@ class MenuListAdapter (
 //        mListener = listener
 //    }
 
-    class MenuViewHolder (val binding: ItemLayoutBinding):
+    class MenuViewHolder (val binding: CardMenuItemBinding):
         RecyclerView.ViewHolder(binding.root){
 
 
@@ -78,7 +75,7 @@ class MenuListAdapter (
     ): MenuViewHolder {
         v= FragmentRestaurantDetailsBinding.bind(view.root)
 
-        val binding = ItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = CardMenuItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MenuViewHolder(binding)
     }
 
@@ -90,7 +87,7 @@ class MenuListAdapter (
 
         // Dialog Box Appears when we choose items from different restaurant
         val replaceDialog =Dialog(context)
-        replaceDialog.setContentView(LayoutInflater.from(context).inflate(R.layout.clear_dialog,null,false))
+        replaceDialog.setContentView(LayoutInflater.from(context).inflate(R.layout.dialog_replace_cart_item,null,false))
         replaceDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val replaceText = replaceDialog.findViewById<TextView>(R.id.dialog_text)
