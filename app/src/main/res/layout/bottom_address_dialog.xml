@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+
     android:padding="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -120,11 +121,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/metropolis_semibold"
+        android:fontFamily="@font/metropolis_medium"
         android:padding="8dp"
         android:text="Choose a delivery address"
-        android:textColor="@color/black"
+        android:textColor="@color/black_900"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
