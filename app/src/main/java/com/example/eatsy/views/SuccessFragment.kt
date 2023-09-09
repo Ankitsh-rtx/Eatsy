@@ -30,6 +30,8 @@ class SuccessFragment : Fragment() {
         binding = FragmentSuccessBinding.inflate(layoutInflater)
         val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
         navBar.visibility = View.GONE
+
+
         binding.orderId.text=this.arguments?.getString("ORDER_ID")
         binding.trackOrder.setOnClickListener{
             activity?.supportFragmentManager?.beginTransaction()

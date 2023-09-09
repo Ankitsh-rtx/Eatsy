@@ -44,15 +44,23 @@ class PaymentFragment : Fragment() {
 
             binding.proceedToPayTV.isClickable=false
             val firebaseDB  = FirebaseFirestore.getInstance()
-            val Order=Order("12345",DataSource.orderList.first?.id.toString(),DataSource.orderList.second.values.toList(),
-                null,this.arguments?.getString("Final Amount")?.toInt(),
-            0,DataSource.orderAddress,0,"")
+            val Order=Order(
+                "12345",
+                DataSource.orderList.first?.id.toString(),
+                DataSource.orderList.second.values.toList(),
+                null,
+                this.arguments?.getString("Final Amount")?.toInt(),
+                0,
+                DataSource.orderAddress,
+                0,
+                "")
             Log.d("order",Order.toString())
             firebaseDB.collection("orders").add(Order).addOnSuccessListener { document->
                 val bundle=Bundle()
-                bundle.putString("ORDER_ID",document.id.toString())
+                bundle.putString("ORDER_ID", document.id)
                 val successFragment=SuccessFragment()
                 successFragment.arguments=bundle
+                // order list cleared on order success
                 DataSource.orderList= Pair(null,HashMap<String,CartItem>())
                 activity?.supportFragmentManager?.beginTransaction()
                     ?.replace(R.id.fragmentContainerView,successFragment)?.addToBackStack(null)
