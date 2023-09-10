@@ -74,6 +74,9 @@ dependencies {
     //glide for loading image from url
     implementation 'com.github.bumptech.glide:glide:4.16.0'
 
+    // firebase authentication
+    implementation 'com.google.firebase:firebase-auth-ktx'
+
 
 
 

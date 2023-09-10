@@ -17,11 +17,11 @@ class AddressViewAdapter(private val context: Context? = null, private val addre
         parent: ViewGroup,
         viewType: Int
     ): AddressViewAdapter.AddressViewHolder {
-        val binding = AddressViewBinding.inflate(LayoutInflater.from(context), null,false)
-        return AddressViewAdapter.AddressViewHolder(binding)
+        val binding = AddressViewBinding.inflate(LayoutInflater.from(parent.context), null,false)
+        return AddressViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: AddressViewAdapter.AddressViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AddressViewHolder, position: Int) {
 
         val address = address[position]
         holder.binding.address.text=address.toString()

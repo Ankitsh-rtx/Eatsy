@@ -1,19 +1,18 @@
 package com.example.eatsy.views
 
-import android.icu.number.IntegerWidth
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.eatsy.R
 import com.example.eatsy.databinding.FragmentSignupBinding
-import java.util.function.LongPredicate
+import com.google.firebase.auth.FirebaseAuth
 
 
 class SignupFragment : Fragment() {
    private lateinit var binding : FragmentSignupBinding
+   private lateinit var firebaseAuth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,6 +20,9 @@ class SignupFragment : Fragment() {
 
 
         binding = FragmentSignupBinding.inflate(layoutInflater)
+        firebaseAuth = FirebaseAuth.getInstance()
+
+
         // Inflate the layout for this fragment
         binding.confirmBtn.setOnClickListener {
             val number = binding.numberEditText.text
@@ -30,6 +32,7 @@ class SignupFragment : Fragment() {
             }
             else {
                 binding.textInputLayout.error = null
+//                sendVerificationCode()
                 val bundle = Bundle()
                 bundle.putString("phone",number.toString())
                 val otpFragment = OtpFragment()
@@ -44,6 +47,10 @@ class SignupFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun sendVerificationCode() {
+        TODO("Not yet implemented")
     }
 
 
