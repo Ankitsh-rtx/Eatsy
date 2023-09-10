@@ -1,5 +1,4 @@
 package com.example.eatsy.views
-
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
@@ -131,9 +130,9 @@ class CartFragment : Fragment() {
 
                 dialog.findViewById<TextView>(R.id.add_new_address_btn)?.setOnClickListener {
 //                    val country = dialog.findViewById<EditText>(R.id.country)?.text.toString()
-                    val country=""
+                    val country=dialog.findViewById<Spinner>(R.id.country)?.selectedItem.toString()
 //                    val state = dialog.findViewById<EditText>(R.id.state)?.text.toString()
-                    val state=""
+                    val state=dialog.findViewById<Spinner>(R.id.state)?.selectedItem.toString()
                     val city = dialog.findViewById<EditText>(R.id.city)?.text.toString()
                     val street = dialog.findViewById<EditText>(R.id.street)?.text.toString()
                     val pincode=  dialog.findViewById<EditText>(R.id.pincode)?.text.toString()
