@@ -38,52 +38,82 @@
             android:id="@+id/inputOTP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/verifyNumTV">
 
             <EditText
-                android:layout_width="40dp"
+                android:id="@+id/ed1"
+                android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@drawable/background_button"
-                android:backgroundTint="@color/ash_white" />
+                android:backgroundTint="@color/ash_white"
+                android:gravity="center"
+                android:inputType="textFilter|number"
+                android:maxLength="1"
+                android:textColor="@color/orange_500" />
 
             <EditText
-                android:layout_width="40dp"
+                android:id="@+id/ed2"
+                android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/background_button"
-                android:backgroundTint="@color/ash_white" />
+                android:backgroundTint="@color/ash_white"
+                android:gravity="center"
+                android:inputType="textFilter|number"
+                android:maxLength="1"
+                android:textColor="@color/orange_500" />
 
             <EditText
-                android:layout_width="40dp"
+                android:id="@+id/ed3"
+                android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/background_button"
-                android:backgroundTint="@color/ash_white" />
+                android:backgroundTint="@color/ash_white"
+                android:gravity="center"
+                android:inputType="textFilter|number"
+                android:maxLength="1"
+                android:textColor="@color/orange_500" />
 
             <EditText
-                android:layout_width="40dp"
+                android:id="@+id/ed4"
+                android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/background_button"
-                android:backgroundTint="@color/ash_white" />
+                android:backgroundTint="@color/ash_white"
+                android:gravity="center"
+                android:inputType="textFilter|number"
+                android:maxLength="1"
+                android:textColor="@color/orange_500" />
 
             <EditText
-                android:layout_width="40dp"
+                android:id="@+id/ed5"
+                android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/background_button"
-                android:backgroundTint="@color/ash_white" />
+                android:backgroundTint="@color/ash_white"
+                android:gravity="center"
+                android:inputType="textFilter|number"
+                android:maxLength="1"
+                android:textColor="@color/orange_500" />
 
             <EditText
-                android:layout_width="40dp"
+                android:id="@+id/ed6"
+                android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/background_button"
-                android:backgroundTint="@color/ash_white" />
+                android:backgroundTint="@color/ash_white"
+                android:gravity="center"
+                android:inputType="textFilter|number"
+                android:maxLength="1"
+                android:textColor="@color/orange_500" />
 
         </LinearLayout>
 
