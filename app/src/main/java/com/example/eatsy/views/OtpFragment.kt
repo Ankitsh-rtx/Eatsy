@@ -2,28 +2,47 @@ package com.example.eatsy.views
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import com.example.eatsy.R
 import com.example.eatsy.databinding.FragmentOtpBinding
+import com.google.firebase.FirebaseException
+import com.google.firebase.FirebaseTooManyRequestsException
+import com.google.firebase.auth.*
+import com.google.firebase.database.annotations.NotNull
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+import java.util.concurrent.TimeUnit
 
 class OtpFragment : Fragment() {
     private lateinit var binding: FragmentOtpBinding
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var OTP: String
+    private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+    private lateinit var number: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentOtpBinding.inflate(layoutInflater)
+        firebaseAuth = FirebaseAuth.getInstance()
 
         val bundle = arguments
+        OTP = bundle?.getString("OTP").toString()
+        resendToken = bundle?.getParcelable("resendToken")!!
+        number = bundle.getString("phone").toString()
+
+
         val number = bundle?.getString("phone")
 
         binding.backBtnOtp.setOnClickListener {
@@ -51,19 +70,129 @@ class OtpFragment : Fragment() {
         binding.verifyNumTV.text = "Verify with OTP sent to $number"
 
         binding.confirmOtp.setOnClickListener {
-            val intent = Intent(requireContext(),MainActivity::class.java )
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK )
-            intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(intent)
-            activity?.finish()
+            val typedOTP =
+                (binding.ed1.text.toString() + binding.ed2.text.toString() + binding.ed3.text.toString()
+                        + binding.ed4.text.toString() + binding.ed5.text.toString() + binding.ed6.text.toString())
+
+            binding.resendOtpBtn.visibility = View.VISIBLE
+            if (typedOTP.isNotEmpty()) {
+                binding.otpProgressBar.visibility = View.VISIBLE
+                if (typedOTP.length == 6) {
+                    val credential: PhoneAuthCredential = PhoneAuthProvider.getCredential(
+                        OTP, typedOTP
+                    )
+                    signInWithPhoneAuthCredential(credential)
+
+                } else {
+                    Toast.makeText(context, "Please Enter Correct OTP", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(context, "Please Enter OTP", Toast.LENGTH_SHORT).show()
+            }
         }
+
+        binding.resendOtpBtn.setOnClickListener {
+            resendVerificationCode()
+            binding.ed1.text.clear()
+            binding.ed2.text.clear()
+            binding.ed3.text.clear()
+            binding.ed4.text.clear()
+            binding.ed5.text.clear()
+            binding.ed6.text.clear()
+            it.visibility = View.GONE
+            it.isEnabled = false
+
+            Handler(Looper.myLooper()!!).postDelayed(Runnable {
+                it.visibility = View.VISIBLE
+                it.isEnabled = true
+            }, 60000)
+        }
+
         return binding.root
+    }
+
+    private val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        override fun onVerificationCompleted(@NotNull credential: PhoneAuthCredential) {
+            // This callback will be invoked in two situations:
+            // 1 - Instant verification. In some cases the phone number can be instantly
+            //     verified without needing to send or enter a verification code.
+            // 2 - Auto-retrieval. On some devices Google Play services can automatically
+            //     detect the incoming verification SMS and perform verification without
+            //     user action.
+            Log.d("Login Activity", "onVerificationCompleted:$credential")
+            val code = credential.smsCode
+            if (code != null) {
+
+            }
+        }
+
+        override fun onVerificationFailed(@NotNull e: FirebaseException) {
+            // This callback is invoked in an invalid request for verification is made,
+            // for instance if the the phone number format is not valid.
+            Log.w("Login Activity", "onVerificationFailed", e)
+
+            if (e is FirebaseAuthInvalidCredentialsException) {
+                // Invalid request
+            } else if (e is FirebaseTooManyRequestsException) {
+                // The SMS quota for the project has been exceeded
+            } else if (e is FirebaseAuthMissingActivityForRecaptchaException) {
+                // reCAPTCHA verification attempted with null Activity
+            }
+
+            // Show a message and update the UI
+        }
+        override fun onCodeSent(
+            verificationId: String,
+            token: PhoneAuthProvider.ForceResendingToken,
+        ) {
+            // The SMS verification code has been sent to the provided phone number, we
+            // now need to ask the user to enter the code and then construct a credential
+            // by combining the code with a verification ID.
+            Log.d("Login Activity", "onCodeSent:$verificationId")
+
+            // Save verification ID and resending token so we can use them later
+            OTP = verificationId
+            resendToken = token
+        }
+    }
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener(requireActivity()) { task ->
+                binding.otpProgressBar.visibility = View.GONE
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    val user = task.result?.user
+                    // intent to main activity
+                    val intent = Intent(requireContext(),MainActivity::class.java )
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK )
+                    intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    activity?.finish()
+                } else {
+                    // Sign in failed, display a message and update the UI
+                    Log.w("Login Activity", "signInWithCredential:failure", task.exception)
+                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        // The verification code entered was invalid
+                    }
+                    // Update UI
+                }
+            }
+    }
+    private fun resendVerificationCode() {
+        val options = PhoneAuthOptions.newBuilder(firebaseAuth)
+            .setPhoneNumber(number)       // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(requireActivity())                 // Activity (for callback binding)
+            .setCallbacks(callbacks)
+            .setForceResendingToken(resendToken)// OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
     }
 
 }
 
-class GenericTextWatcher internal constructor(private val currentView: View, private val nextView: View?) :
-    TextWatcher {
+class GenericTextWatcher internal constructor(private val currentView: View, private val nextView: View?) : TextWatcher {
     override fun afterTextChanged(editable: Editable) { // TODO Auto-generated method stub
         val text = editable.toString()
         when (currentView.id) {
