@@ -85,8 +85,9 @@ object DataSource {
         Item("Choco Lava Cake","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pressurecookrecipes.com%2Finstant-pot-lava-cake%2F&psig=AOvVaw1GC-nGziX7Eau1fWZfFtSL&ust=1694068617475000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCNj0hcivlYEDFQAAAAAdAAAAABAJ",
             "7","r5","Cake",109,true,"delicious Cake"),
     )
-    val address : MutableList<Address> = mutableListOf()
-
-
+    val address : MutableList<Address> = mutableListOf(
+        Address("near Community hall","Asansol","India",713325,"Rambandh","West Bengal"),
+        Address("near Community hall","Asansol","India",713325,"Rambandh","West Bengal")
+    )
 
 }

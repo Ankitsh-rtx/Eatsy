@@ -6,19 +6,24 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.ArrayMap
 import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.arch.core.executor.DefaultTaskExecutor
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
+import com.example.eatsy.adapter.AddressViewAdapter
 import com.example.eatsy.adapter.CartViewAdapter
+import com.example.eatsy.adapter.MenuListAdapter
 import com.example.eatsy.databinding.ActivityMainBinding
 import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.databinding.FragmentPaymentBinding
@@ -104,6 +109,9 @@ class CartFragment : Fragment() {
             val dialogBottomSheetDialog = BottomSheetDialog(requireContext())
             val bottomSheetDialog =
                 LayoutInflater.from(context).inflate(R.layout.bottom_address_dialog, null)
+            val adapter = context?.let {AddressViewAdapter(it,DataSource.address) }!!
+            dialogBottomSheetDialog.findViewById<RecyclerView>(R.id.recycler_view)?.layoutManager=LinearLayoutManager(context)
+            dialogBottomSheetDialog.findViewById<RecyclerView>(R.id.recycler_view)?.adapter=adapter
             dialogBottomSheetDialog.setContentView(bottomSheetDialog)
             dialogBottomSheetDialog.show()
 
@@ -126,6 +134,7 @@ class CartFragment : Fragment() {
                 listAdapterSattes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 val StateSpinner:Spinner?=dialog.findViewById<Spinner>(R.id.state)
                 StateSpinner?.adapter=listAdapterSattes
+
                 dialog.show()
 
                 dialog.findViewById<TextView>(R.id.add_new_address_btn)?.setOnClickListener {
@@ -166,5 +175,4 @@ class CartFragment : Fragment() {
             ?.times(value.getItemQuantity()) ?: 0 }
         return totalPrice
     }
-
 }
