@@ -109,19 +109,18 @@ class CartFragment : Fragment() {
             addAddress?.setOnClickListener {
                 Log.d("Cart Fragment" , "address clicked")
                 //link it to display
-                val dialog = Dialog(requireContext())
-                dialog.setContentView(LayoutInflater.from(context).inflate(R.layout.dialog_add_new_address,null,false))
+                val dialog = BottomSheetDialog(requireContext())
+                dialog.setContentView(LayoutInflater.from(context).inflate(R.layout.new_address_dialog,null))
                 dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dialog.show()
 
-                dialog.findViewById<TextView>(R.id.add_new_address_btn).setOnClickListener {
-                    val country = dialog.findViewById<EditText>(R.id.country).text.toString()
-                    val state = dialog.findViewById<EditText>(R.id.state).text.toString()
-                    val city = dialog.findViewById<EditText>(R.id.city).text.toString()
-                    val street = dialog.findViewById<EditText>(R.id.street).text.toString()
-                    val pincode=  dialog.findViewById<EditText>(R.id.pincode).text.toString()
-                    val landmark = dialog.findViewById<EditText>(R.id.landmark).text.toString()
-
+                dialog.findViewById<TextView>(R.id.add_new_address_btn)?.setOnClickListener {
+                    val country = dialog.findViewById<EditText>(R.id.country)?.text.toString()
+                    val state = dialog.findViewById<EditText>(R.id.state)?.text.toString()
+                    val city = dialog.findViewById<EditText>(R.id.city)?.text.toString()
+                    val street = dialog.findViewById<EditText>(R.id.street)?.text.toString()
+                    val pincode=  dialog.findViewById<EditText>(R.id.pincode)?.text.toString()
+                    val landmark = dialog.findViewById<EditText>(R.id.landmark)?.text.toString()
                     val address = Address( landmark,city,country,Integer.parseInt(pincode),street,state)
                     DataSource.address.add(address)
                     Log.d("cart fragment","address: $address")
