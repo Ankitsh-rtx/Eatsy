@@ -1,5 +1,6 @@
 package com.example.eatsy.views
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -8,7 +9,9 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.ArrayAdapter
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -25,11 +28,13 @@ import com.example.eatsy.model.CartItem
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.lang.reflect.Array
 
 
 class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
     private lateinit var cartItemList:HashMap<String,CartItem>
+    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -112,11 +117,23 @@ class CartFragment : Fragment() {
                 val dialog = BottomSheetDialog(requireContext())
                 dialog.setContentView(LayoutInflater.from(context).inflate(R.layout.new_address_dialog,null))
                 dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                val listAdapter:ArrayAdapter<CharSequence> =
+                    ArrayAdapter.createFromResource(requireContext(),R.array.country_arrays,android.R.layout.simple_spinner_dropdown_item)
+                listAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                val CountrySpinner:Spinner?=dialog.findViewById<Spinner>(R.id.country)
+                CountrySpinner?.adapter=listAdapter
+                val listAdapterSattes:ArrayAdapter<CharSequence> =
+                    ArrayAdapter.createFromResource(requireContext(),R.array.states_array,android.R.layout.simple_spinner_dropdown_item)
+                listAdapterSattes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                val StateSpinner:Spinner?=dialog.findViewById<Spinner>(R.id.state)
+                StateSpinner?.adapter=listAdapterSattes
                 dialog.show()
 
                 dialog.findViewById<TextView>(R.id.add_new_address_btn)?.setOnClickListener {
-                    val country = dialog.findViewById<EditText>(R.id.country)?.text.toString()
-                    val state = dialog.findViewById<EditText>(R.id.state)?.text.toString()
+//                    val country = dialog.findViewById<EditText>(R.id.country)?.text.toString()
+                    val country=""
+//                    val state = dialog.findViewById<EditText>(R.id.state)?.text.toString()
+                    val state=""
                     val city = dialog.findViewById<EditText>(R.id.city)?.text.toString()
                     val street = dialog.findViewById<EditText>(R.id.street)?.text.toString()
                     val pincode=  dialog.findViewById<EditText>(R.id.pincode)?.text.toString()
