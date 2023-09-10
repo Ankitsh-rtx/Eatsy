@@ -109,10 +109,10 @@ class CartFragment : Fragment() {
             val dialogBottomSheetDialog = BottomSheetDialog(requireContext())
             val bottomSheetDialog =
                 LayoutInflater.from(context).inflate(R.layout.bottom_address_dialog, null)
-            val adapter = context?.let {AddressViewAdapter(it,DataSource.address) }!!
+            dialogBottomSheetDialog.setContentView(bottomSheetDialog)
+            val adapter = context?.let {AddressViewAdapter(it) }!!
             dialogBottomSheetDialog.findViewById<RecyclerView>(R.id.recycler_view)?.layoutManager=LinearLayoutManager(context)
             dialogBottomSheetDialog.findViewById<RecyclerView>(R.id.recycler_view)?.adapter=adapter
-            dialogBottomSheetDialog.setContentView(bottomSheetDialog)
             dialogBottomSheetDialog.show()
 
 
@@ -149,6 +149,7 @@ class CartFragment : Fragment() {
                     val address = Address( landmark,city,country,Integer.parseInt(pincode),street,state)
                     DataSource.address.add(address)
                     Log.d("cart fragment","address: $address")
+                    dialogBottomSheetDialog.findViewById<RecyclerView>(R.id.recycler_view)?.adapter?.notifyDataSetChanged()
                     dialog.hide()
                 }
 

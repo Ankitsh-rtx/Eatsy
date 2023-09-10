@@ -9,7 +9,8 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.model.Address
 import com.example.eatsy.databinding.AddressViewBinding
 
-class AddressViewAdapter(private val context: Context? = null, private val address: MutableList<Address>)  : RecyclerView.Adapter<AddressViewAdapter.AddressViewHolder>()  {
+class AddressViewAdapter(private val context: Context? = null)  : RecyclerView.Adapter<AddressViewAdapter.AddressViewHolder>()  {
+    private val address=DataSource.address
     class AddressViewHolder (val binding: AddressViewBinding):
         RecyclerView.ViewHolder(binding.root){
     }
@@ -17,7 +18,7 @@ class AddressViewAdapter(private val context: Context? = null, private val addre
         parent: ViewGroup,
         viewType: Int
     ): AddressViewAdapter.AddressViewHolder {
-        val binding = AddressViewBinding.inflate(LayoutInflater.from(context), null,false)
+        val binding = AddressViewBinding.inflate(LayoutInflater.from(context),null,false)
         return AddressViewAdapter.AddressViewHolder(binding)
     }
 
