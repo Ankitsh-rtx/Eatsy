@@ -1,5 +1,8 @@
 package com.example.eatsy.views
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -8,20 +11,21 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
 import com.example.eatsy.R
 import com.example.eatsy.databinding.FragmentOtpBinding
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.database.annotations.NotNull
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import java.util.concurrent.TimeUnit
+
 
 class OtpFragment : Fragment() {
     private lateinit var binding: FragmentOtpBinding
@@ -189,11 +193,32 @@ class OtpFragment : Fragment() {
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
     }
+    private fun pasteText() {
+        val clipboardManager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
+        if (clipboardManager.hasPrimaryClip()) {
+            val item = clipboardManager.primaryClip?.getItemAt(0)
+
+            val ptext = item?.text
+            ptext?.let {
+                for (i in it.indices) {
+                    // Handle 6 cases and paste to 6 edittexts
+                    if(i==0) binding.ed1.setText( "${it[i]}")
+                    else if(i==1) binding.ed2.setText( "${it[i]}")
+                    else if(i==2) binding.ed3.setText( "${it[i]}")
+                    else if(i==3) binding.ed4.setText( "${it[i]}")
+                    else if(i==4) binding.ed5.setText( "${it[i]}")
+                    else  binding.ed6.setText( "${it[i]}")
+                }
+            }
+        }
+    }
+
 
 }
 
 class GenericTextWatcher internal constructor(private val currentView: View, private val nextView: View?) : TextWatcher {
-    override fun afterTextChanged(editable: Editable) { // TODO Auto-generated method stub
+    override fun afterTextChanged(editable: Editable) {
         val text = editable.toString()
         when (currentView.id) {
             R.id.ed1 -> if (text.length == 1) nextView!!.requestFocus()
@@ -202,8 +227,6 @@ class GenericTextWatcher internal constructor(private val currentView: View, pri
             R.id.ed4 -> if (text.length == 1) nextView!!.requestFocus()
             R.id.ed5 -> if (text.length == 1) nextView!!.requestFocus()
 
-
-            //You can use EditText4 same as above to hide the keyboard
         }
     }
 
@@ -212,15 +235,17 @@ class GenericTextWatcher internal constructor(private val currentView: View, pri
         arg1: Int,
         arg2: Int,
         arg3: Int
-    ) { // TODO Auto-generated method stub
+    ) {
     }
 
     override fun onTextChanged(
         arg0: CharSequence,
         arg1: Int,
         arg2: Int,
-        arg3: Int
-    ) { // TODO Auto-generated method stub
+        arg3: Int,
+
+    ) {
+
     }
 
 }
@@ -235,6 +260,7 @@ class GenericKeyEvent internal constructor(private val currentView: EditText, pr
         }
         return false
     }
+
 
 
 }

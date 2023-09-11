@@ -51,8 +51,9 @@
                 android:background="@drawable/background_button"
                 android:gravity="center"
                 android:inputType="textFilter|number"
-                android:maxLength="1"
-                android:textColor="@color/orange_500" />
+                android:textColor="@color/orange_500"
+                android:textCursorDrawable="@drawable/cursor_drawable"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/ed2"
@@ -62,8 +63,9 @@
                 android:background="@drawable/background_button"
                 android:gravity="center"
                 android:inputType="textFilter|number"
-                android:maxLength="1"
-                android:textColor="@color/orange_500" />
+                android:textColor="@color/orange_500"
+                android:textCursorDrawable="@drawable/cursor_drawable"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/ed3"
@@ -73,8 +75,9 @@
                 android:background="@drawable/background_button"
                 android:gravity="center"
                 android:inputType="textFilter|number"
-                android:maxLength="1"
-                android:textColor="@color/orange_500" />
+                android:textColor="@color/orange_500"
+                android:textCursorDrawable="@drawable/cursor_drawable"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/ed4"
@@ -84,8 +87,9 @@
                 android:background="@drawable/background_button"
                 android:gravity="center"
                 android:inputType="textFilter|number"
-                android:maxLength="1"
-                android:textColor="@color/orange_500" />
+                android:textColor="@color/orange_500"
+                android:textCursorDrawable="@drawable/cursor_drawable"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/ed5"
@@ -95,8 +99,9 @@
                 android:background="@drawable/background_button"
                 android:gravity="center"
                 android:inputType="textFilter|number"
-                android:maxLength="1"
-                android:textColor="@color/orange_500" />
+                android:textColor="@color/orange_500"
+                android:textCursorDrawable="@drawable/cursor_drawable"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/ed6"
@@ -106,8 +111,9 @@
                 android:background="@drawable/background_button"
                 android:gravity="center"
                 android:inputType="textFilter|number"
-                android:maxLength="1"
-                android:textColor="@color/orange_500" />
+                android:textColor="@color/orange_500"
+                android:textCursorDrawable="@drawable/cursor_drawable"
+                android:textSize="20sp" />
 
         </LinearLayout>
 

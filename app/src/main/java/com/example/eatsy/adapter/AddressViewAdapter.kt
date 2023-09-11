@@ -17,9 +17,9 @@ class AddressViewAdapter(private val context: Context? = null)  : RecyclerView.A
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): AddressViewAdapter.AddressViewHolder {
-        val binding = AddressViewBinding.inflate(LayoutInflater.from(context),null,false)
-        return AddressViewAdapter.AddressViewHolder(binding)
+    ): AddressViewHolder {
+        val binding = AddressViewBinding.inflate(LayoutInflater.from(context),parent,false)
+        return AddressViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: AddressViewAdapter.AddressViewHolder, position: Int) {

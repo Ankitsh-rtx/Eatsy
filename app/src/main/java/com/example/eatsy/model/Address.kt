@@ -10,6 +10,9 @@ data class Address @JvmOverloads constructor(
     val street:String?="",
     val state:String?=""
 ):Serializable {
+    override fun toString(): String {
+        return "$street, $city, $state, $country, $pincode"
+    }
 
 
 }
