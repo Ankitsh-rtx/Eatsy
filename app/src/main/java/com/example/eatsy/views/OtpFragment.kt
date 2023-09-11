@@ -167,12 +167,14 @@ class OtpFragment : Fragment() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     val user = task.result?.user
+
                     // intent to main activity
                     val intent = Intent(requireContext(),MainActivity::class.java )
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK )
                     intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     startActivity(intent)
                     activity?.finish()
+
                 } else {
                     // Sign in failed, display a message and update the UI
                     Log.w("Login Activity", "signInWithCredential:failure", task.exception)

@@ -20,6 +20,7 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         if (firebaseAuth.currentUser != null){
             startActivity(Intent(this , MainActivity::class.java))
+            finish()
         }
     }
 }
