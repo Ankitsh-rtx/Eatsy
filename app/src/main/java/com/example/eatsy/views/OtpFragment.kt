@@ -130,6 +130,7 @@ class OtpFragment : Fragment() {
             Log.d("Login Activity", "onVerificationCompleted:$credential")
             val code = credential.smsCode
             if (code != null) {
+                signInWithPhoneAuthCredential(credential)
 
             }
         }
@@ -199,8 +200,9 @@ class OtpFragment : Fragment() {
             }
     }
     private fun resendVerificationCode() {
+        val code = "+91"
         val options = PhoneAuthOptions.newBuilder(firebaseAuth)
-            .setPhoneNumber(number)       // Phone number to verify
+            .setPhoneNumber(code+number)       // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(requireActivity())                 // Activity (for callback binding)
             .setCallbacks(callbacks)
