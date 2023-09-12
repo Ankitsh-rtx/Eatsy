@@ -24,12 +24,14 @@ import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.database.annotations.NotNull
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.concurrent.TimeUnit
 
 
 class OtpFragment : Fragment() {
     private lateinit var binding: FragmentOtpBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var OTP: String
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     private lateinit var number: String
@@ -40,6 +42,7 @@ class OtpFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentOtpBinding.inflate(layoutInflater)
         firebaseAuth = FirebaseAuth.getInstance()
+        firebaseFirestore = FirebaseFirestore.getInstance()
 
         val bundle = arguments
         OTP = bundle?.getString("OTP").toString()
@@ -125,10 +128,8 @@ class OtpFragment : Fragment() {
             //     detect the incoming verification SMS and perform verification without
             //     user action.
             Log.d("Login Activity", "onVerificationCompleted:$credential")
-            val code = credential.smsCode
-            if (code != null) {
 
-            }
+            signInWithPhoneAuthCredential(credential)
         }
 
         override fun onVerificationFailed(@NotNull e: FirebaseException) {
@@ -166,12 +167,20 @@ class OtpFragment : Fragment() {
                 binding.otpProgressBar.visibility = View.GONE
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    val user = task.result?.user
 
-                    // intent to main activity
                     val intent = Intent(requireContext(),MainActivity::class.java )
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK )
                     intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
+                    val user = task.result?.user
+                    if (user != null) {
+                        firebaseFirestore.collection("users").document(user.uid).get().addOnSuccessListener {
+                            intent.putExtra("userId",it.id)
+                        }
+
+                    }
+                    // intent to main activity
+
                     startActivity(intent)
                     activity?.finish()
 
@@ -186,6 +195,7 @@ class OtpFragment : Fragment() {
             }
     }
     private fun resendVerificationCode() {
+        Log.d("OtpFragment","$number")
         val options = PhoneAuthOptions.newBuilder(firebaseAuth)
             .setPhoneNumber(number)       // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit

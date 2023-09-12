@@ -13,8 +13,10 @@
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,13 +26,13 @@
                 android:id="@+id/back_btn"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:elevation="2dp"
-                app:tint="@color/gray_700"
-                android:layout_marginTop="6dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:elevation="2dp"
+                android:src="@drawable/icon_arrow_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/icon_arrow_back"/>
+                app:tint="@color/gray_700" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/upperCard"
@@ -215,40 +217,39 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
+                android:id="@+id/view6"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginEnd="16dp"
                 android:background="#80CCCCCC"
-                app:layout_constraintBottom_toBottomOf="@id/menu_textview"
-                app:layout_constraintEnd_toStartOf="@id/menu_textview"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7"
+                app:layout_constraintEnd_toStartOf="@+id/textView7"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/menu_textview" />
+                app:layout_constraintTop_toTopOf="@+id/textView7" />
 
             <TextView
-                android:id="@+id/menu_textview"
+                android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/metropolis_semibold"
-                android:gravity="center"
-                android:padding="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:text="MENU"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/upperCard" />
+                app:layout_constraintTop_toBottomOf="@+id/upperCard" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginEnd="32dp"
                 android:background="#80CCCCCC"
-                app:layout_constraintBottom_toBottomOf="@id/menu_textview"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/menu_textview"
-                app:layout_constraintTop_toTopOf="@id/menu_textview" />
+                app:layout_constraintStart_toEndOf="@+id/textView7"
+                app:layout_constraintTop_toTopOf="@+id/textView7" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/menu_item_recyclerview"
@@ -257,7 +258,7 @@
                 android:overScrollMode="never"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/menu_textview"
+                app:layout_constraintTop_toBottomOf="@+id/view7"
                 tools:listitem="@layout/card_menu_item" />
 
             <View
@@ -270,11 +271,47 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/menu_item_recyclerview" />
 
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:checked="false"
+                android:text="Veg"
+                android:thumbTint="@color/green_700"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7"
+                app:useMaterialThemeColors="true" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Non Veg"
+                android:thumbTint="@color/red_500"
+                android:trackTint="@color/black_200"
+                app:layout_constraintStart_toEndOf="@+id/switch1"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="#80CCCCCC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/switch2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.core.widget.NestedScrollView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/go_to_cart_dialog"
         android:layout_width="match_parent"
