@@ -89,5 +89,6 @@ object DataSource {
         Address("near Community hall","Asansol","India",713325,"Rambandh","West Bengal"),
         Address("near Community hall","Asansol","India",713325,"Rambandh","West Bengal")
     )
+    var user:User?=null
 
 }

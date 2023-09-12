@@ -18,12 +18,15 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.databinding.FragmentOtpBinding
+import com.example.eatsy.model.User
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
 import com.google.firebase.database.annotations.NotNull
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.concurrent.TimeUnit
 
 
@@ -166,15 +169,25 @@ class OtpFragment : Fragment() {
                 binding.otpProgressBar.visibility = View.GONE
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    val user = task.result?.user
-
-                    // intent to main activity
-                    val intent = Intent(requireContext(),MainActivity::class.java )
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK )
-                    intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(intent)
-                    activity?.finish()
-
+                    val user = firebaseAuth.currentUser?.uid
+                    Log.d("user", user.toString())
+                    var firebaseDB  = FirebaseFirestore.getInstance()
+                    firebaseDB.collection("users").document(user.toString()).get().addOnSuccessListener { data ->
+                        val UserProfile = data.toObject(User::class.java)
+                        DataSource.user = UserProfile
+                        // intent to main activity
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        startActivity(intent)
+                        activity?.finish()
+                    }.addOnFailureListener{
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        startActivity(intent)
+                        activity?.finish()
+                    }
                 } else {
                     // Sign in failed, display a message and update the UI
                     Log.w("Login Activity", "signInWithCredential:failure", task.exception)

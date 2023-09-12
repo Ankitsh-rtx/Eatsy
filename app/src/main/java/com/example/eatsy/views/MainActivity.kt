@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.bottomNavigationView.background = null
 
+        Log.d("user", DataSource.user.toString())
+
 
 
         binding.bottomNavigationView.setOnItemSelectedListener { it ->
