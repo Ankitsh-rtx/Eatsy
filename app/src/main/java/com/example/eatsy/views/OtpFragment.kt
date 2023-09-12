@@ -18,8 +18,10 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.databinding.FragmentOtpBinding
+import com.example.eatsy.model.User
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
@@ -31,7 +33,6 @@ import java.util.concurrent.TimeUnit
 class OtpFragment : Fragment() {
     private lateinit var binding: FragmentOtpBinding
     private lateinit var firebaseAuth: FirebaseAuth
-    private lateinit var firebaseFirestore: FirebaseFirestore
     private lateinit var OTP: String
     private lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
     private lateinit var number: String
@@ -42,7 +43,6 @@ class OtpFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentOtpBinding.inflate(layoutInflater)
         firebaseAuth = FirebaseAuth.getInstance()
-        firebaseFirestore = FirebaseFirestore.getInstance()
 
         val bundle = arguments
         OTP = bundle?.getString("OTP").toString()
@@ -128,8 +128,10 @@ class OtpFragment : Fragment() {
             //     detect the incoming verification SMS and perform verification without
             //     user action.
             Log.d("Login Activity", "onVerificationCompleted:$credential")
+            val code = credential.smsCode
+            if (code != null) {
 
-            signInWithPhoneAuthCredential(credential)
+            }
         }
 
         override fun onVerificationFailed(@NotNull e: FirebaseException) {
@@ -167,23 +169,25 @@ class OtpFragment : Fragment() {
                 binding.otpProgressBar.visibility = View.GONE
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-
-                    val intent = Intent(requireContext(),MainActivity::class.java )
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK )
-                    intent.setFlags( Intent.FLAG_ACTIVITY_CLEAR_TASK)
-
-                    val user = task.result?.user
-                    if (user != null) {
-                        firebaseFirestore.collection("users").document(user.uid).get().addOnSuccessListener {
-                            intent.putExtra("userId",it.id)
-                        }
-
+                    val user = firebaseAuth.currentUser?.uid
+                    Log.d("user", user.toString())
+                    var firebaseDB  = FirebaseFirestore.getInstance()
+                    firebaseDB.collection("users").document(user.toString()).get().addOnSuccessListener { data ->
+                        val UserProfile = data.toObject(User::class.java)
+                        DataSource.user = UserProfile
+                        // intent to main activity
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        startActivity(intent)
+                        activity?.finish()
+                    }.addOnFailureListener{
+                        val intent = Intent(requireContext(), MainActivity::class.java)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        startActivity(intent)
+                        activity?.finish()
                     }
-                    // intent to main activity
-
-                    startActivity(intent)
-                    activity?.finish()
-
                 } else {
                     // Sign in failed, display a message and update the UI
                     Log.w("Login Activity", "signInWithCredential:failure", task.exception)
@@ -195,7 +199,6 @@ class OtpFragment : Fragment() {
             }
     }
     private fun resendVerificationCode() {
-        Log.d("OtpFragment","$number")
         val options = PhoneAuthOptions.newBuilder(firebaseAuth)
             .setPhoneNumber(number)       // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
