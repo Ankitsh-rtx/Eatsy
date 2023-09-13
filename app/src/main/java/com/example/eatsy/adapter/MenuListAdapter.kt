@@ -262,5 +262,4 @@ class MenuListAdapter (
         return "Your cart contains dishes from ${res?.name}." +
                 " Do you want to discard the selections and add new dishes from ${replace_res?.name}?"
     }
-
 }

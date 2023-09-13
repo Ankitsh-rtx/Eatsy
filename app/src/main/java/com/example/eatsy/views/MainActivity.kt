@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.databinding.ActivityMainBinding
+import com.example.eatsy.model.Restaurants
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
         // shared preference
         val sharedPreferences=getSharedPreferences("CART",Context.MODE_PRIVATE)
-        val cart=sharedPreferences.getString("CART",null)
+        var cart=sharedPreferences.getString("CART",null)
         Log.d("cart",cart.toString())
 
 
