@@ -86,6 +86,17 @@ class CartFragment : Fragment() {
         //payment fragment
 
         binding.proceedToPayTV.setOnClickListener{
+
+            if(DataSource.user?.name==null) {
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.fragmentContainerView,Add_basic_detail_fragment())?.addToBackStack(R.id.homeFragment.toString())
+                    ?.commit()
+                return@setOnClickListener
+            }
+            if(DataSource.user?.address==null) {
+                binding.selectAddressBtn.performClick()
+                return@setOnClickListener
+            }
             val bundle=Bundle()
             bundle.putString("Final Amount",(totalPrice()-70+80).toString())
             val paymentFragment=PaymentFragment()
@@ -135,7 +146,6 @@ class CartFragment : Fragment() {
                 listAdapterSattes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 val StateSpinner:Spinner?=dialog.findViewById<Spinner>(R.id.state)
                 StateSpinner?.adapter=listAdapterSattes
-
                 dialog.show()
 
                 dialog.findViewById<TextView>(R.id.add_new_address_btn)?.setOnClickListener {
@@ -148,7 +158,7 @@ class CartFragment : Fragment() {
                     val pincode=  dialog.findViewById<EditText>(R.id.pincode)?.text.toString()
                     val landmark = dialog.findViewById<EditText>(R.id.landmark)?.text.toString()
                     val address = Address( landmark,city,country,Integer.parseInt(pincode),street,state)
-                    DataSource.address.add(address)
+                    DataSource.address?.add(address)
                     Log.d("cart fragment","address: $address")
                     dialogBottomSheetDialog.findViewById<RecyclerView>(R.id.recycler_view)?.adapter?.notifyDataSetChanged()
                     dialog.hide()

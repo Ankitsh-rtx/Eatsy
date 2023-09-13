@@ -6,10 +6,10 @@ import android.provider.ContactsContract.CommonDataKinds.Phone
 
 data class User(
     val id: String?="",
-    val name:String?="",
-    val age:Int?=null,
+    var name:String?="",
+    var age:String?=null,
     val phone: Phone?=null,
-    val email: Email?=null,
+    var email: String?=null,
     val address: Address?=null,
     val orderId: ArrayList<String>? = null,
     val activeOrder:String?=null
