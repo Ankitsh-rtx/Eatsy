@@ -8,7 +8,7 @@ data class User(
     val id: String?="",
     var name:String?="",
     var age:String?=null,
-    val phone: Phone?=null,
+    var phone: Phone?=null,
     var email: String?=null,
     val address: Address?=null,
     val orderId: ArrayList<String>? = null,

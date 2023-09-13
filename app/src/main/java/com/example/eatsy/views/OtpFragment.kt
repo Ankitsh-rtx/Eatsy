@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.ContactsContract.CommonDataKinds.Phone
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -183,11 +184,18 @@ class OtpFragment : Fragment() {
                         startActivity(intent)
                         activity?.finish()
                     }.addOnFailureListener{
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        startActivity(intent)
-                        activity?.finish()
+                        var userData = User();
+                        userData.phone = number as Phone
+                        firebaseDB.collection("users").document(user.toString()).set(userData).addOnSuccessListener {
+                            val intent = Intent(requireContext(), MainActivity::class.java)
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            startActivity(intent)
+                            activity?.finish()
+                        }.addOnFailureListener {
+                            Toast.makeText(context, "Retry",Toast.LENGTH_SHORT)
+                        }
+
                     }
                 } else {
                     // Sign in failed, display a message and update the UI
