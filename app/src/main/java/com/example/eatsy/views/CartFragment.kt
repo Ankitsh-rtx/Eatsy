@@ -87,7 +87,7 @@ class CartFragment : Fragment() {
 
         binding.proceedToPayTV.setOnClickListener{
 
-            if(DataSource.user?.name==null) {
+            if(DataSource.user?.name=="") {
                 activity?.supportFragmentManager?.beginTransaction()
                     ?.replace(R.id.fragmentContainerView,Add_basic_detail_fragment())?.addToBackStack(R.id.homeFragment.toString())
                     ?.commit()

@@ -175,21 +175,39 @@ class OtpFragment : Fragment() {
                     Log.d("user", user.toString())
                     var firebaseDB  = FirebaseFirestore.getInstance()
                     firebaseDB.collection("users").document(user.toString()).get().addOnSuccessListener { data ->
-                        val UserProfile = data.toObject(User::class.java)
-                        DataSource.user = UserProfile
+                        Log.d("users" ,data.data.toString())
+                        if(data.data!==null) {
+                            val UserProfile = data.toObject(User::class.java)
+                            DataSource.user = UserProfile
+                            val intent = Intent(requireContext(), MainActivity::class.java)
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            startActivity(intent)
+                            activity?.finish()
+                        }else {
+                            var userData = User();
+                            userData.phone = number.toString()
+                            firebaseDB.collection("users").document(user.toString()).set(userData).addOnSuccessListener {
+                                val intent = Intent(requireContext(), MainActivity::class.java)
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                DataSource.user=userData
+                                startActivity(intent)
+                                activity?.finish()
+                            }.addOnFailureListener {
+                                Toast.makeText(context, "Retry",Toast.LENGTH_SHORT)
+                            }
+                        }
                         // intent to main activity
-                        val intent = Intent(requireContext(), MainActivity::class.java)
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        startActivity(intent)
-                        activity?.finish()
+
                     }.addOnFailureListener{
                         var userData = User();
-                        userData.phone = number as Phone
+                        userData.phone = number.toString()
                         firebaseDB.collection("users").document(user.toString()).set(userData).addOnSuccessListener {
                             val intent = Intent(requireContext(), MainActivity::class.java)
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            DataSource.user=userData
                             startActivity(intent)
                             activity?.finish()
                         }.addOnFailureListener {

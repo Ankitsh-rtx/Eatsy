@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +44,9 @@ class Add_basic_detail_fragment : Fragment() {
             DataSource.user?.age=binding.dateOfBirth.text.toString()
             DataSource.user?.email=binding.email.text.toString()
             firebaseAuth = FirebaseAuth.getInstance()
+            Log.d("users",DataSource.user.toString())
             DataSource.user?.let { it1 ->
+                Log.d("users", it1.toString())
                 firebaseDB.collection("users").document(firebaseAuth.currentUser!!.uid.toString()).set(
                     it1
                 ).addOnSuccessListener {
@@ -52,8 +55,7 @@ class Add_basic_detail_fragment : Fragment() {
                         ?.commit()
                 }
             }
-
-        }
+            }
         return binding.root
     }
     fun EditText.transformIntoDatePicker(context: Context, format: String, maxDate: Date? = null) {
