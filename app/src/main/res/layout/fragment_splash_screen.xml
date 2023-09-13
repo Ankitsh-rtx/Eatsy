@@ -7,8 +7,31 @@
     tools:context=".views.SplashScreenFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loadingSplashScreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            app:lottie_rawRes="@raw/animation_loading"
+            app:layout_constraintVertical_bias=".30"
+            app:layout_constraintHorizontal_bias=".45"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_speed="2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loginSplashScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/textView11"
@@ -55,6 +78,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

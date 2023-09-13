@@ -35,6 +35,10 @@ class Add_basic_detail_fragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAddBasicDetailFragmentBinding.inflate(layoutInflater)
 
+        binding.backStackBtn.setOnClickListener {
+            activity?.supportFragmentManager?.popBackStackImmediate()
+        }
+
 
         val birthdate=binding.dateOfBirth.transformIntoDatePicker(requireContext(),"dd/MM/YYYY")
 
@@ -50,9 +54,7 @@ class Add_basic_detail_fragment : Fragment() {
                 firebaseDB.collection("users").document(firebaseAuth.currentUser!!.uid.toString()).set(
                     it1
                 ).addOnSuccessListener {
-                    activity?.supportFragmentManager?.beginTransaction()
-                        ?.replace(R.id.fragmentContainerView,CartFragment())?.addToBackStack(R.id.homeFragment.toString())
-                        ?.commit()
+                    activity?.supportFragmentManager?.popBackStackImmediate()
                 }
             }
             }

@@ -176,7 +176,7 @@ class OtpFragment : Fragment() {
                     var firebaseDB  = FirebaseFirestore.getInstance()
                     firebaseDB.collection("users").document(user.toString()).get().addOnSuccessListener { data ->
                         Log.d("users" ,data.data.toString())
-                        if(data.data!==null) {
+                        if(data.data!=null) {
                             val UserProfile = data.toObject(User::class.java)
                             DataSource.user = UserProfile
                             val intent = Intent(requireContext(), MainActivity::class.java)
@@ -186,7 +186,8 @@ class OtpFragment : Fragment() {
                             activity?.finish()
                         }else {
                             var userData = User();
-                            userData.phone = number.toString()
+                            userData.phone = number
+                            userData.id = user
                             firebaseDB.collection("users").document(user.toString()).set(userData).addOnSuccessListener {
                                 val intent = Intent(requireContext(), MainActivity::class.java)
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

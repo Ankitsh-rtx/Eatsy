@@ -5,7 +5,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email
 import android.provider.ContactsContract.CommonDataKinds.Phone
 
 data class User(
-    val id: String?="",
+    var id: String?="",
     var name:String?="",
     var age:String?=null,
     var phone: String?=null,

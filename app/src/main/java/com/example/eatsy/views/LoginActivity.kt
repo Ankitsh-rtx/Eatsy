@@ -22,14 +22,15 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if (firebaseAuth.currentUser != null){
-            var firebaseDB  = FirebaseFirestore.getInstance()
+            val firebaseDB  = FirebaseFirestore.getInstance()
             firebaseDB.collection("users").document(firebaseAuth.currentUser!!.uid.toString()).get().addOnSuccessListener { data ->
-                val UserProfile = data.toObject(User::class.java)
-                DataSource.user = UserProfile
+                val userProfile = data.toObject(User::class.java)
+                DataSource.user = userProfile
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
         }
+
 
 
     }
