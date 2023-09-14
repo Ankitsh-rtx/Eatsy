@@ -187,7 +187,6 @@ class OtpFragment : Fragment() {
                         }else {
                             var userData = User();
                             userData.phone = number
-                            userData.id=firebaseAuth.currentUser?.uid.toString()
                             userData.id = user
                             firebaseDB.collection("users").document(user.toString()).set(userData).addOnSuccessListener {
                                 val intent = Intent(requireContext(), MainActivity::class.java)
