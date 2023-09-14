@@ -20,36 +20,18 @@
         app:tint="@color/black_200" />
 
     <TextView
-        android:id="@+id/restaurant_id"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="32dp"
-        android:fontFamily="@font/metropolis_semibold"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="Complete Profile"
-        android:textColor="@color/black_900"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/backStackBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/backStackBtn"
-        app:layout_constraintTop_toTopOf="@+id/backStackBtn" />
-
-    <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/metropolis_semibold"
-        android:text="Add Details"
-        android:textColor="@color/black_900"
-        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/metropolis_bold"
+        android:text="Edit Profile"
+        android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_id" />
+        app:layout_constraintTop_toBottomOf="@+id/backStackBtn" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/first_name_layout"
@@ -148,7 +130,7 @@
         android:padding="16dp"
         android:text="ADD"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/email_layout"
         app:layout_constraintStart_toStartOf="@+id/email_layout"
         app:layout_constraintTop_toBottomOf="@+id/email_layout" />

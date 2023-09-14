@@ -63,6 +63,41 @@ class RestaurantDetailsFragment : Fragment() {
             }
 
         }
+
+        val veg = mutableListOf<Item>()
+        val nonveg = mutableListOf<Item>()
+
+        binding.switchVeg.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                binding.switchNonveg.isChecked = false
+                veg.clear()
+                for(item in menu){
+                    if(item.isVeg==true) veg.add(item)
+                }
+                adapter = context?.let{MenuListAdapter(it,veg,binding,restaurants)}!!
+                binding.menuItemRecyclerview.adapter = adapter
+            }
+            else {
+                adapter = context?.let{MenuListAdapter(it,menu,binding,restaurants)}!!
+                binding.menuItemRecyclerview.adapter = adapter
+            }
+        }
+        binding.switchNonveg.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                binding.switchVeg.isChecked = false
+                nonveg.clear()
+                for(item in menu){
+                    if(item.isVeg==false) nonveg.add(item)
+                }
+                adapter = context?.let{MenuListAdapter(it,nonveg,binding,restaurants)}!!
+                binding.menuItemRecyclerview.adapter = adapter
+            }
+            else {
+                adapter = context?.let{MenuListAdapter(it,menu,binding,restaurants)}!!
+                binding.menuItemRecyclerview.adapter = adapter
+            }
+        }
+
         firebaseDB.collection("Items").whereEqualTo("restaurantId",restaurants?.id).addSnapshotListener{
                 i, _ ->
             for(j in i!!.documentChanges) {
@@ -87,6 +122,8 @@ class RestaurantDetailsFragment : Fragment() {
                 }
             }
         }
+
+
 
         activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         activity?.window?.statusBarColor = context?.let { ContextCompat.getColor(it, R.color.ash_white) }!!

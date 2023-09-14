@@ -53,7 +53,7 @@
             android:fontFamily="@font/metropolis_semibold"
             android:text="Help"
             android:textColor="@color/black_800"
-            android:textSize="17sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -109,7 +109,7 @@
             android:fontFamily="@font/metropolis_semibold"
             android:text="Refunds &amp; Payment"
             android:textColor="@color/black_800"
-            android:textSize="17sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -146,7 +146,7 @@
             android:fontFamily="@font/metropolis_semibold"
             android:text="Address"
             android:textColor="@color/black_800"
-            android:textSize="17sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -175,7 +175,7 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:background="@color/white"
         android:paddingStart="8dp"
         android:paddingTop="20dp"
@@ -227,7 +227,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:fontFamily="@font/metropolis_bold"
-            android:padding="4dp"
+            android:padding="8dp"
             android:text="EDIT"
             android:textColor="@color/orange_500"
             android:textSize="14sp"
@@ -268,7 +268,7 @@
             android:fontFamily="@font/metropolis_semibold"
             android:text="My Account"
             android:textColor="@color/black_800"
-            android:textSize="17sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
