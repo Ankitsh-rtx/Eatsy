@@ -9,9 +9,10 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.model.Address
 import com.example.eatsy.databinding.AddressViewBinding
 
-class AddressViewAdapter(private val context: Context? = null)  : RecyclerView.Adapter<AddressViewAdapter.AddressViewHolder>()  {
-    private val address=DataSource.address
-    class AddressViewHolder (val binding: AddressViewBinding):
+class AddressViewAdapter(private val context: Context? = null , private val address: MutableList<Address>?= mutableListOf() )  : RecyclerView.Adapter<AddressViewAdapter.AddressViewHolder>()  {
+     private lateinit var onItemClickListener :OnItemClickListener
+    class AddressViewHolder (val binding: AddressViewBinding,
+    ):
         RecyclerView.ViewHolder(binding.root){
     }
     override fun onCreateViewHolder(
@@ -24,11 +25,22 @@ class AddressViewAdapter(private val context: Context? = null)  : RecyclerView.A
 
     override fun onBindViewHolder(holder: AddressViewAdapter.AddressViewHolder, position: Int) {
 
-        val address = address[position]
+        val address = address!!.get(position)
         holder.binding.address.text=address.toString()
+        holder.itemView.setOnClickListener{
+            if(onItemClickListener!=null) {
+                onItemClickListener!!.onClick(position,address)
+            }
+        }
     }
 
+    fun  setOnClickListener(onItemClickListener: OnItemClickListener){
+        this.onItemClickListener=onItemClickListener
+    }
     override fun getItemCount(): Int {
-        return address.size
+        return address?.size ?: 0
+    }
+    interface OnItemClickListener{
+        fun onClick(position: Int,address:Address)
     }
 }

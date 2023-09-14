@@ -13,6 +13,7 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.databinding.ActivityMainBinding
 import com.example.eatsy.model.Restaurants
+import com.example.eatsy.model.Address
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -26,8 +27,10 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.background = null
 
         Log.d("user", DataSource.user.toString())
-
-
+        DataSource.address= DataSource.user?.address
+        if(DataSource.address!=null && DataSource.address?.size!=0) {
+            DataSource.orderAddress=DataSource.address!!.get(0);
+        }
 
         binding.bottomNavigationView.setOnItemSelectedListener { it ->
             var fragment: Fragment? = null

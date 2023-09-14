@@ -93,7 +93,7 @@ class CartFragment : Fragment() {
                     ?.commit()
                 return@setOnClickListener
             }
-            if(DataSource.user?.address==null) {
+            if(DataSource?.address==null) {
                 binding.selectAddressBtn.performClick()
                 return@setOnClickListener
             }
@@ -122,7 +122,13 @@ class CartFragment : Fragment() {
             val bottomSheetDialog =
                 LayoutInflater.from(context).inflate(R.layout.bottom_address_dialog, null)
             dialogBottomSheetDialog.setContentView(bottomSheetDialog)
-            val adapter = context?.let {AddressViewAdapter(it) }!!
+            val adapter = context?.let {AddressViewAdapter(it,DataSource.address) }!!
+            adapter.setOnClickListener(object:AddressViewAdapter.OnItemClickListener{
+                override fun onClick(position: Int, address: Address) {
+                    DataSource.orderAddress=address
+                    dialogBottomSheetDialog.hide()
+                }
+            })
             dialogBottomSheetDialog.findViewById<RecyclerView>(R.id.recycler_view)?.layoutManager=LinearLayoutManager(context)
             dialogBottomSheetDialog.findViewById<RecyclerView>(R.id.recycler_view)?.adapter=adapter
             dialogBottomSheetDialog.show()
@@ -158,8 +164,11 @@ class CartFragment : Fragment() {
                     val pincode=  dialog.findViewById<EditText>(R.id.pincode)?.text.toString()
                     val landmark = dialog.findViewById<EditText>(R.id.landmark)?.text.toString()
                     val address = Address( landmark,city,country,Integer.parseInt(pincode),street,state)
-                    DataSource.address?.add(address)
-                    Log.d("cart fragment","address: $address")
+                    if(DataSource.address==null) DataSource.address= mutableListOf(address)
+                    else DataSource.address?.add(address)
+                    DataSource.orderAddress=address
+                    dialogBottomSheetDialog.hide()
+                    Log.d("cart fragment",DataSource?.address.toString())
                     dialogBottomSheetDialog.findViewById<RecyclerView>(R.id.recycler_view)?.adapter?.notifyDataSetChanged()
                     dialog.hide()
                 }
