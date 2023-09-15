@@ -38,7 +38,7 @@ class SuccessFragment : Fragment() {
         val service= Intent(requireContext(), OrderService::class.java)
         service.putExtra("ORDER_ID",this.arguments?.getString("ORDER_ID"))
         requireActivity().startService(service)
-
+//        requireActivity().supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         binding.trackOrder.setOnClickListener{
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.fragmentContainerView,TrackOrderFragment())?.addToBackStack(R.id.homeFragment.toString())

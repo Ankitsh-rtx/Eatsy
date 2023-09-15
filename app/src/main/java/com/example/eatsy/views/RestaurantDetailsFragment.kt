@@ -137,7 +137,7 @@ class RestaurantDetailsFragment : Fragment() {
 //            }
 
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragmentContainerView,CartFragment())?.addToBackStack(R.id.restaurantDetailsFragment.toString())
+                ?.replace(R.id.fragmentContainerView,CartFragment())?.addToBackStack(null)
                 ?.commit()
             navView.selectedItemId = R.id.cartFragment
 

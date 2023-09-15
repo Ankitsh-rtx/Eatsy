@@ -32,7 +32,7 @@ import com.example.eatsy.model.CartItem
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.gson.Gson
+
 import java.lang.reflect.Array
 
 
@@ -89,7 +89,7 @@ class CartFragment : Fragment() {
 
             if(DataSource.user?.name=="") {
                 activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(R.id.fragmentContainerView,Add_basic_detail_fragment())?.addToBackStack(R.id.homeFragment.toString())
+                    ?.replace(R.id.fragmentContainerView,Add_basic_detail_fragment())?.addToBackStack(null)
                     ?.commit()
                 return@setOnClickListener
             }
@@ -102,13 +102,13 @@ class CartFragment : Fragment() {
             val paymentFragment=PaymentFragment()
             paymentFragment.arguments=bundle
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragmentContainerView,paymentFragment)?.addToBackStack(R.id.homeFragment.toString())
+                ?.replace(R.id.fragmentContainerView,paymentFragment)?.addToBackStack(null)
                 ?.commit()
         }
 
         binding.goToMenu.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragmentContainerView, DiscoverFragment())?.addToBackStack(R.id.homeFragment.toString())
+                ?.replace(R.id.fragmentContainerView, DiscoverFragment())?.addToBackStack(null)
                 ?.commit()
         }
         binding.backStackBtn.setOnClickListener {
@@ -186,11 +186,11 @@ class CartFragment : Fragment() {
         val sharedPreferences=requireActivity().getSharedPreferences("CART", Context.MODE_PRIVATE).edit()
         sharedPreferences.putString("CART",DataSource.orderList.toString())
         sharedPreferences.commit()
-        val j=Gson().toJson(cartList);
-        val d=Gson().fromJson<Any>(j,Any::class.java)
-        Log.d("cart",j.toString())
-        Log.d("cart",DataSource.orderList.toString())
-        Log.d("cart",d.toString())
+//        val j=Gson().toJson(cartList);
+//        val d=Gson().fromJson<Any>(j,Any::class.java)
+//        Log.d("cart",j.toString())
+//        Log.d("cart",DataSource.orderList.toString())
+//        Log.d("cart",d.toString())
         return binding.root
     }
 

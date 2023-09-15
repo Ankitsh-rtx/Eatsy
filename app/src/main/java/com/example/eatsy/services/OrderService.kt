@@ -39,7 +39,7 @@ class OrderService: Service() {
         firebaseDB.collection("orders").document(orderid.toString()).addSnapshotListener{
             item,error->
                 if(error!=null) return@addSnapshotListener
-            var status =item?.get("status",Int::class.java)
+            val status =item?.get("status",Int::class.java)
             if(status==0) createNotification("Order Placed")
             else if(status==1) createNotification("Out for Delivery")
             else if(status==2) {

@@ -71,9 +71,11 @@ class PaymentFragment : Fragment() {
                 // order list cleared on order success
                 DataSource.orderList= Pair(null,HashMap<String,CartItem>())
 
+
                 activity?.supportFragmentManager?.beginTransaction()
                     ?.replace(R.id.fragmentContainerView,successFragment)?.addToBackStack(null)
                     ?.commit()
+
 
                 binding.progressBar.visibility = View.GONE
             }
