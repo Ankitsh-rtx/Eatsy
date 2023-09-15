@@ -11,13 +11,16 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import android.content.Context
 import android.util.Log
+import com.google.firebase.firestore.FirebaseFirestore
 
 class OrderService: Service() {
     val CHANNEL_ID="233"
     private  lateinit var notificationManager:NotificationManager
+    private lateinit var firebaseDB:FirebaseFirestore
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
         super.onCreate()
+        firebaseDB  = FirebaseFirestore.getInstance()
         notificationManager=getSystemService(NOTIFICATION_SERVICE)  as NotificationManager
 
     }
@@ -30,15 +33,32 @@ class OrderService: Service() {
 
         val channel =NotificationChannel(CHANNEL_ID,"order",NotificationManager.IMPORTANCE_DEFAULT)
         notificationManager.createNotificationChannel(channel)
-        createNotification()
-        stopSelf()
+        val orderid= intent?.getStringExtra("ORDER_ID")
+        Log.d("noti",orderid.toString())
+
+        firebaseDB.collection("orders").document(orderid.toString()).addSnapshotListener{
+            item,error->
+                if(error!=null) return@addSnapshotListener
+            var status =item?.get("status",Int::class.java)
+            if(status==0) createNotification("Order Placed")
+            else if(status==1) createNotification("Out for Delivery")
+            else if(status==2) {
+                createNotification("Deliverd")
+                stopSelf()
+                return@addSnapshotListener
+            }
+        }
         return START_NOT_STICKY
     }
 
-    fun createNotification(){
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
+    fun createNotification(notificationText:String){
 
         val notification:Notification =NotificationCompat.Builder(this,CHANNEL_ID).setContentTitle("Order")
-            .setContentText("done Placed").setPriority(NotificationCompat.PRIORITY_HIGH).setSmallIcon(R.drawable.icon_arrow_down).setDefaults(Notification.DEFAULT_ALL).build()
+            .setContentText(notificationText).setPriority(NotificationCompat.PRIORITY_HIGH).setSmallIcon(R.drawable.icon_arrow_down).setDefaults(Notification.DEFAULT_ALL).build()
         Log.d("noti", notification.toString())
         notificationManager.notify(0,notification)
     }

@@ -36,6 +36,7 @@ class SuccessFragment : Fragment() {
 
         binding.orderId.text=this.arguments?.getString("ORDER_ID")
         val service= Intent(requireContext(), OrderService::class.java)
+        service.putExtra("ORDER_ID",this.arguments?.getString("ORDER_ID"))
         requireActivity().startService(service)
 
         binding.trackOrder.setOnClickListener{
