@@ -1,5 +1,6 @@
 package com.example.eatsy.views
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.eatsy.R
 import com.example.eatsy.databinding.FragmentPaymentBinding
 import com.example.eatsy.databinding.FragmentSuccessBinding
+import com.example.eatsy.services.OrderService
 import com.google.android.material.bottomappbar.BottomAppBar
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,8 +34,10 @@ class SuccessFragment : Fragment() {
         val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
         navBar.visibility = View.GONE
 
-
         binding.orderId.text=this.arguments?.getString("ORDER_ID")
+        val service= Intent(requireContext(), OrderService::class.java)
+        requireActivity().startService(service)
+
         binding.trackOrder.setOnClickListener{
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.fragmentContainerView,TrackOrderFragment())?.addToBackStack(R.id.homeFragment.toString())

@@ -1,12 +1,15 @@
 package com.example.eatsy.views
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract.Data
 import android.util.Log
 import android.view.ActionMode
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.eatsy.DataSource
@@ -14,12 +17,14 @@ import com.example.eatsy.R
 import com.example.eatsy.databinding.ActivityMainBinding
 import com.example.eatsy.model.Restaurants
 import com.example.eatsy.model.Address
+import com.example.eatsy.services.OrderService
 import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MainActivity : AppCompatActivity() {
     private val TAG: String = "Main Activity"
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -31,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         if(DataSource.address!=null && DataSource.address?.size!=0) {
             DataSource.orderAddress=DataSource.address!!.get(0);
         }
+
 
         binding.bottomNavigationView.setOnItemSelectedListener { it ->
             var fragment: Fragment? = null
@@ -60,7 +66,6 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences=getSharedPreferences("CART",Context.MODE_PRIVATE)
         var cart=sharedPreferences.getString("CART",null)
         Log.d("cart",cart.toString())
-
 
 
 //        val firebaseDB = FirebaseFirestore.getInstance()
