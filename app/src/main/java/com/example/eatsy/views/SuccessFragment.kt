@@ -57,6 +57,5 @@ class SuccessFragment : Fragment() {
             val editor = sharedPreferences?.edit()
             editor?.clear()
             editor?.apply()
-
     }
 }

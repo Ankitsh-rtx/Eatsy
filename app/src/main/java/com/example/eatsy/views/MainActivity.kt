@@ -94,16 +94,28 @@ class MainActivity : AppCompatActivity() {
     private fun readData() {
         val sharedPreferences = baseContext.getSharedPreferences("cart", Context.MODE_PRIVATE)
         val gson = Gson()
-        val jsonRes = sharedPreferences.getString("res",Restaurants().toString())
-        val jsonItem = sharedPreferences.getString("cartList", HashMap<String, CartItem>().toString())
-        val typeRes = object : TypeToken<Restaurants?>(){}.type
-        val typeList = object : TypeToken<HashMap<String, CartItem>>(){}.type
-        val res:Restaurants = gson.fromJson(jsonRes,typeRes)
-        val cartItemList:HashMap<String, CartItem> = gson.fromJson(jsonItem,typeList)
-        DataSource.orderList = Pair(res,cartItemList)
+        try {
+            val jsonRes = sharedPreferences.getString("res", null)
+            val jsonItem = sharedPreferences.getString("cartList", null)
 
-        Log.d("CartFragment","res = $res")
-        Log.d("CartFragment","cartlist = $cartItemList")
+            if (jsonRes != null && jsonItem != null) {
+                val typeRes = object : TypeToken<Restaurants?>() {}.type
+                val typeList = object : TypeToken<HashMap<String, CartItem>>() {}.type
+
+                val cartItemList: HashMap<String, CartItem> = gson.fromJson(jsonItem, typeList)
+                val res: Restaurants = gson.fromJson(jsonRes, typeRes)
+                DataSource.orderList = Pair(res, cartItemList)
+
+                Log.d("CartFragment", "res = $res")
+                Log.d("CartFragment", "cartlist = $cartItemList")
+            } else {
+                // Handle the case where data in shared preferences is null or empty.
+                DataSource.orderList = Pair(null,HashMap())
+            }
+        } catch (e: Exception) {
+            // Handle any exceptions that occur during JSON parsing.
+            e.printStackTrace()
+        }
 
     }
 
@@ -116,9 +128,8 @@ class MainActivity : AppCompatActivity() {
 
         super.attachBaseContext(newBase)
     }
+    
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
+
 
 }
