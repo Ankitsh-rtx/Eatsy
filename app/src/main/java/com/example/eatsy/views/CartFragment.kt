@@ -32,6 +32,8 @@ import com.example.eatsy.model.CartItem
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 import java.lang.reflect.Array
 
@@ -166,11 +168,18 @@ class CartFragment : Fragment() {
                     val address = Address( landmark,city,country,Integer.parseInt(pincode),street,state)
                     if(DataSource.address==null) DataSource.address= mutableListOf(address)
                     else DataSource.address?.add(address)
+                    val firebassedb=FirebaseFirestore.getInstance()
+                    firebassedb.collection("users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).update("address",DataSource.address).addOnSuccessListener {
+
+                    }.addOnFailureListener{
+
+                    }
                     DataSource.orderAddress=address
                     dialogBottomSheetDialog.hide()
                     Log.d("cart fragment",DataSource?.address.toString())
                     dialogBottomSheetDialog.findViewById<RecyclerView>(R.id.recycler_view)?.adapter?.notifyDataSetChanged()
                     dialog.hide()
+
                 }
 
             }
