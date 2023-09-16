@@ -6,6 +6,8 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.provider.ContactsContract.Data
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +25,7 @@ import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
 import com.example.eatsy.views.CartFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
 import java.util.*
 
 
@@ -131,11 +134,10 @@ class MenuListAdapter (
             v.price.text = "₹"+totalPrice().toString()
         }
         else {
-            DataSource.orderList= Pair(null,cartItemList)
+            DataSource.orderList = Pair(null,cartItemList)
         }
 
         holder.binding.itemAddButton.setOnClickListener {
-//            notifyDataSetChanged()
             if( DataSource.orderList.first==null) {
                 cartItemList.clear()
                 DataSource.orderList= Pair(res,cartItemList)
@@ -150,11 +152,11 @@ class MenuListAdapter (
             else {
                 addItem(holder,items,value)
             }
+            storeData()
 
         }
 
         holder.binding.itemAddBtn.setOnClickListener {
-//            notifyDataSetChanged()
             cartItemList.put(items.id.toString(), CartItem(items,value+1))
             if(cartItemList.size!=0) {
                 v.goToCartDialog.visibility= View.VISIBLE
@@ -162,11 +164,12 @@ class MenuListAdapter (
             }
             else v.goToCartDialog.visibility= View.GONE
             holder.binding.itemAddButton.text = (++value).toString()
+            storeData()
 
         }
 
         holder.binding.itemRemoveBtn.setOnClickListener {
-//            notifyDataSetChanged()
+
             if (value <= 1) {
                 holder.binding.itemAddButton.text = "ADD"
                 holder.binding.itemAddBtn.visibility = View.INVISIBLE
@@ -185,6 +188,7 @@ class MenuListAdapter (
 
             }
             else v.goToCartDialog.visibility= View.GONE
+            storeData()
 
         }
         // get item details page
@@ -221,7 +225,18 @@ class MenuListAdapter (
         val cartFragment = CartFragment()
         cartFragment.arguments = bundle
 
+    }
+    private fun storeData(){
+        val sharedPreferences = context.getSharedPreferences("cart", Context.MODE_PRIVATE)
+        val editor = sharedPreferences?.edit()
+        val gson = Gson()
+        Log.d("Menu Adapter", "cartList = ${cartItemList.size}")
+        val jsonList = gson.toJson(cartItemList)
+        val jsonRes = gson.toJson(res)
 
+        editor?.putString("res",jsonRes)
+        editor?.putString("cartList",jsonList)
+        editor?.apply()
     }
 
     override fun getItemCount(): Int {
@@ -256,6 +271,7 @@ class MenuListAdapter (
         }
         else v.goToCartDialog.visibility= View.GONE
         holder.binding.itemAddButton.text = (value).toString()
+
     }
 
     private fun replaceItemString(res: Restaurants?, replace_res: Restaurants?): String {

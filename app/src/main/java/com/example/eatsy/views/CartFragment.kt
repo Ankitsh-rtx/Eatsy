@@ -29,11 +29,12 @@ import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.databinding.FragmentPaymentBinding
 import com.example.eatsy.model.Address
 import com.example.eatsy.model.CartItem
+import com.example.eatsy.model.Restaurants
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 import java.lang.reflect.Array
 
@@ -41,6 +42,7 @@ import java.lang.reflect.Array
 class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
     private lateinit var cartItemList:HashMap<String,CartItem>
+    private lateinit var res: Restaurants
     @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,22 +56,29 @@ class CartFragment : Fragment() {
             requireContext(),
             R.color.white
         )
-        requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar).visibility=View.VISIBLE
 
         val cartList = DataSource.orderList.second
-        var cartListHM = this.arguments?.getSerializable("cartItems")
+        Log.d("cart fragment","cartList = ${cartList.size}")
+        val cartListHM = this.arguments?.getSerializable("cartItems")
+        var v : HashMap<String,CartItem> = HashMap()
+        if(cartListHM!=null) {
+            v = cartListHM as HashMap<String, CartItem>
+        }
+            Log.d("cart fragment","cartListHm = ${(v).size}")
 
         cartItemList = if(cartListHM!=null){
             cartListHM as HashMap<String, CartItem>
 
-
         } else cartList
+
+//        readData()
 
         if(cartItemList.size==0) {
             binding.emptyCart.visibility=View.VISIBLE
             binding.cartLayout.visibility=View.GONE
         }
-        else binding.restaurantId.text = DataSource.orderList.first?.name.toString()
+        //-- updated code --
+        else binding.restaurantId.text = DataSource.orderList.first?.name
 
         binding.cartItemsRecyclerview.adapter = CartViewAdapter(context,cartItemList,binding)
 
@@ -83,19 +92,19 @@ class CartFragment : Fragment() {
         //unhide navigation
         requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar).performShow()
         val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
-        navBar.visibility = View.GONE
+        navBar.visibility = View.INVISIBLE
 
         //payment fragment
-
         binding.proceedToPayTV.setOnClickListener{
 
-            if(DataSource.user?.name=="") {
+            // update code ---
+            if(DataSource.orderList.first?.name == "") {
                 activity?.supportFragmentManager?.beginTransaction()
                     ?.replace(R.id.fragmentContainerView,Add_basic_detail_fragment())?.addToBackStack(null)
                     ?.commit()
                 return@setOnClickListener
             }
-            if(DataSource?.address==null) {
+            if(DataSource.address ==null) {
                 binding.selectAddressBtn.performClick()
                 return@setOnClickListener
             }
@@ -168,18 +177,11 @@ class CartFragment : Fragment() {
                     val address = Address( landmark,city,country,Integer.parseInt(pincode),street,state)
                     if(DataSource.address==null) DataSource.address= mutableListOf(address)
                     else DataSource.address?.add(address)
-                    val firebassedb=FirebaseFirestore.getInstance()
-                    firebassedb.collection("users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).update("address",DataSource.address).addOnSuccessListener {
-
-                    }.addOnFailureListener{
-
-                    }
                     DataSource.orderAddress=address
                     dialogBottomSheetDialog.hide()
                     Log.d("cart fragment",DataSource?.address.toString())
                     dialogBottomSheetDialog.findViewById<RecyclerView>(R.id.recycler_view)?.adapter?.notifyDataSetChanged()
                     dialog.hide()
-
                 }
 
             }
@@ -191,15 +193,16 @@ class CartFragment : Fragment() {
         binding.finalAmount.text = "₹ "+ (total-70+80).toString()
 
 
-        Log.d("cart","closed")
-        val sharedPreferences=requireActivity().getSharedPreferences("CART", Context.MODE_PRIVATE).edit()
-        sharedPreferences.putString("CART",DataSource.orderList.toString())
-        sharedPreferences.commit()
-//        val j=Gson().toJson(cartList);
-//        val d=Gson().fromJson<Any>(j,Any::class.java)
+//        Log.d("cart","closed")
+//        val sharedPreferences=requireActivity().getSharedPreferences("CART", Context.MODE_PRIVATE).edit()
+//        sharedPreferences.putString("CART",DataSource.orderList.toString())
+//        sharedPreferences.apply()
+//        val j = Gson().toJson(cartList)
+//        val d = Gson().fromJson<Any>(j,Any::class.java)
 //        Log.d("cart",j.toString())
 //        Log.d("cart",DataSource.orderList.toString())
 //        Log.d("cart",d.toString())
+
         return binding.root
     }
 
@@ -209,4 +212,26 @@ class CartFragment : Fragment() {
             ?.times(value.getItemQuantity()) ?: 0 }
         return totalPrice
     }
+//    private fun storeData(){
+//        val sharedPreferences = requireContext().getSharedPreferences("cartList", Context.MODE_PRIVATE)
+//        val editor = sharedPreferences.edit()
+//        val gson = Gson()
+//        val json = gson.toJson(cartItemList)
+//        editor.putString("cartList",json)
+//        editor.apply()
+//    }
+//    private fun readData() {
+//        val sharedPreferences = requireContext().getSharedPreferences("cart", Context.MODE_PRIVATE)
+//        val gson = Gson()
+//        val jsonRes = sharedPreferences.getString("res",Restaurants().toString())
+//        val jsonItem = sharedPreferences.getString("cartList", HashMap<String,CartItem>().toString())
+//        val typeRes = object :TypeToken<Restaurants?>(){}.type
+//        val typeList = object : TypeToken<HashMap<String,CartItem>>(){}.type
+//        res = gson.fromJson(jsonRes,typeRes)
+//        cartItemList = gson.fromJson(jsonItem,typeList)
+//
+//        Log.d("CartFragment","res = $res")
+//        Log.d("CartFragment","cartlist = $cartItemList")
+//
+//    }
 }

@@ -136,10 +136,9 @@ class RestaurantDetailsFragment : Fragment() {
 //                navBar.visibility = View.VISIBLE
 //            }
 
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragmentContainerView,CartFragment())?.addToBackStack(null)
-                ?.commit()
-            navView.selectedItemId = R.id.cartFragment
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView,CartFragment()).addToBackStack(null)
+                .commit()
 
 
         }
@@ -166,10 +165,10 @@ class RestaurantDetailsFragment : Fragment() {
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-    }
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//
+//    }
 
 
 }

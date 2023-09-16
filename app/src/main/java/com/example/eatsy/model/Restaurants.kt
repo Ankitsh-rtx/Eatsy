@@ -16,4 +16,8 @@ data class Restaurants@JvmOverloads constructor(
     var menus: ArrayList<String>? = ArrayList(),
     var address: Address?=null,
     ): Serializable {
+        companion object{
+
+        }
+
 }

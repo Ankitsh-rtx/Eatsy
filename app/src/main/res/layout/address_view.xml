@@ -47,7 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="2dp"
+
             android:fontFamily="@font/metropolis_regular"
             android:text="20, Park Avenue, Kolkata, West Bengal, India"
             android:textColor="@color/black_200"
