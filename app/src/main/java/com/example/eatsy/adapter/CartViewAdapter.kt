@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.databinding.CardCartItemBinding
 import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.model.CartItem
+import com.google.gson.Gson
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -20,9 +22,7 @@ import kotlin.math.log
 class CartViewAdapter(private val context: Context? = null, private val cartListHM: HashMap<String,CartItem>,private  val view :FragmentCartBinding ) : RecyclerView.Adapter<CartViewAdapter.CartViewHolder>() {
     private lateinit var cartFragmentBinding:FragmentCartBinding
     class CartViewHolder (val binding: CardCartItemBinding):
-        RecyclerView.ViewHolder(binding.root){
-
-        }
+        RecyclerView.ViewHolder(binding.root){}
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -45,12 +45,12 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         holder.binding.cartItemCount.text = item.getItemQuantity().toString()
 
         holder.binding.cartItemAddBtn.setOnClickListener {
-//            notifyDataSetChanged()
             item.setItemQuantity(item.getItemQuantity()+1)
             item.getItem().id?.let { it1 -> cartListHM.put(it1, CartItem(item.getItem(),item.getItemQuantity())) }
             holder.binding.cartItemCount.text = (item.getItemQuantity()).toString()
             holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()* item.getItem().price!!).toString()
             setPrice(holder)
+            storeData()
         }
         holder.binding.cartItemRemoveBtn.setOnClickListener {
             if (item.getItemQuantity() - 1 == 0) {
@@ -64,6 +64,7 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
                 holder.binding.cartItemPrice.text = "₹ "+(item.getItemQuantity()* item.getItem().price!!).toString()
             }
             setPrice(holder)
+            storeData()
 
             if(cartListHM.size==0){
                 cartFragmentBinding.emptyCart.visibility= View.VISIBLE;
@@ -88,6 +89,15 @@ class CartViewAdapter(private val context: Context? = null, private val cartList
         cartFragmentBinding.totalPrice.text="₹ "+total.toString()
         cartFragmentBinding.payableAmount.text = "₹ "+ (total-70+80).toString()
         cartFragmentBinding.finalAmount.text = "₹ "+ (total-70+80).toString()
+    }
+    fun storeData(){
+        val sharedPreferences = context?.getSharedPreferences("cart", Context.MODE_PRIVATE)
+        val editor = sharedPreferences?.edit()
+        val gson = Gson()
+        Log.d("Menu Adapter", "cartList = ${cartListHM.size}")
+        val jsonList = gson.toJson(cartListHM)
+        editor?.putString("cartList",jsonList)
+        editor?.apply()
     }
     private fun String.toTitleCase() = replaceFirstChar { text ->
         if (text.isLowerCase()) text.titlecase(Locale.getDefault())
