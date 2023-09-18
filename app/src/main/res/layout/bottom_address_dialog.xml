@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/metropolis_bold"
+        android:fontFamily="@font/metropolis_medium"
         android:padding="8dp"
         android:text="Choose a delivery address"
         android:textSize="22sp"

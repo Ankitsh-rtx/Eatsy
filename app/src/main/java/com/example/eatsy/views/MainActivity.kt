@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.background = null
 
         Log.d("user", DataSource.user.toString())
-        DataSource.address= DataSource.user?.address
+        DataSource.address = DataSource.user?.address
         if(DataSource.address!=null && DataSource.address?.size!=0) {
             DataSource.orderAddress=DataSource.address!!.get(0);
         }
@@ -71,12 +71,9 @@ class MainActivity : AppCompatActivity() {
 
 
 //        val firebaseDB = FirebaseFirestore.getInstance()
-//
 //        for (i in DataSource.sampleRestaurantDataList) {
 //            firebaseDB.collection("Items").document("${i.id}").set(i)
 //        }
-
-
 //        supportFragmentManager.addOnBackStackChangedListener(FragmentManager.OnBackStackChangedListener {
 //            // If the stack decreases it means I clicked the back button
 //            if (fragmentManager.backStackEntryCount) {
@@ -128,7 +125,7 @@ class MainActivity : AppCompatActivity() {
 
         super.attachBaseContext(newBase)
     }
-    
+
 
 
 

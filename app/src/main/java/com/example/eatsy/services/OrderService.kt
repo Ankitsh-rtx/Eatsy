@@ -65,7 +65,7 @@ class OrderService: Service() {
     fun createNotification(notificationText:String){
 
         val notification:Notification =NotificationCompat.Builder(this,CHANNEL_ID).setContentTitle("Order")
-            .setContentText(notificationText).setPriority(NotificationCompat.PRIORITY_HIGH).setSmallIcon(R.drawable.icon_arrow_down).setDefaults(Notification.DEFAULT_ALL).build()
+            .setContentText(notificationText).setPriority(NotificationCompat.PRIORITY_HIGH).setSmallIcon(R.drawable.ic_notification).setDefaults(Notification.DEFAULT_ALL).build()
         Log.d("noti", notification.toString())
         notificationManager.notify(0,notification)
     }
