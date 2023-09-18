@@ -36,10 +36,11 @@ class OrderService: Service() {
         val orderid= intent?.getStringExtra("ORDER_ID")
         Log.d("noti",orderid.toString())
 
-        firebaseDB.collection("orders").document(orderid.toString()).addSnapshotListener{
-            item,error->
-                if(error!=null) return@addSnapshotListener
-            val status =item?.get("status",Int::class.java)
+        firebaseDB.collection("orders").document(orderid.toString()).addSnapshotListener { item, error ->
+            if (error != null) return@addSnapshotListener
+            val status = item?.get("status", Int::class.java)
+
+
             if(status==0) createNotification("Order Placed")
             else if(status==1) createNotification("Out for Delivery")
             else if(status==2) {
