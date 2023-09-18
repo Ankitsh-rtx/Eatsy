@@ -33,6 +33,8 @@ import com.example.eatsy.model.Restaurants
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -177,6 +179,8 @@ class CartFragment : Fragment() {
                     val address = Address( landmark,city,country,Integer.parseInt(pincode),street,state)
                     if(DataSource.address==null) DataSource.address= mutableListOf(address)
                     else DataSource.address?.add(address)
+                    val firebasedb= FirebaseFirestore.getInstance()
+                    firebasedb.collection("users").document(FirebaseAuth.getInstance().currentUser?.uid.toString()).update("address",DataSource.address).addOnSuccessListener {  }
                     DataSource.orderAddress=address
                     dialogBottomSheetDialog.hide()
                     Log.d("cart fragment",DataSource?.address.toString())

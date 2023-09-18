@@ -1,13 +1,16 @@
 package com.example.eatsy.views
 
+import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentManager
 import com.example.eatsy.R
 import com.example.eatsy.databinding.FragmentPaymentBinding
@@ -28,6 +31,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class SuccessFragment : Fragment() {
     private lateinit var binding: FragmentSuccessBinding
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,6 +48,7 @@ class SuccessFragment : Fragment() {
         val service= Intent(requireContext(), OrderService::class.java)
         service.putExtra("ORDER_ID",this.arguments?.getString("ORDER_ID"))
         requireActivity().startService(service)
+
 //        requireActivity().supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         binding.trackOrder.setOnClickListener{
             activity?.supportFragmentManager?.beginTransaction()
