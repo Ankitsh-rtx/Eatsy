@@ -121,10 +121,12 @@ class MenuListAdapter (
         holder.binding.itemPrice.text= "₹ "+items.price.toString()
         Glide.with(context).load(items.image).into(holder.binding.itemImage);
         if(items.isVeg==false){
+            holder.binding.itemVeg.setImageResource(R.drawable.ic_non_veg)
             context.let { ContextCompat.getColor(it,R.color.red_500) }
                 .let { holder.binding.itemVeg.drawable.setTint(it) }
         }
         else if(items.isVeg==true) {
+            holder.binding.itemVeg.setImageResource(R.drawable.ic_veg)
             context.let { ContextCompat.getColor(it,R.color.green_700) }
                 .let { holder.binding.itemVeg.drawable.setTint(it) }
         }
@@ -211,8 +213,10 @@ class MenuListAdapter (
             description?.text = items.description?.toTitleCase()
             val vegIcon = dialog.findViewById<ImageView>(R.id.vegIcon)
             if(items.isVeg==true) {
+                vegIcon?.setImageResource(R.drawable.ic_veg)
                 vegIcon?.setColorFilter(ContextCompat.getColor(context, R.color.green_700), android.graphics.PorterDuff.Mode.SRC_IN)
             }else {
+                vegIcon?.setImageResource(R.drawable.ic_non_veg)
                 vegIcon?.setColorFilter(ContextCompat.getColor(context, R.color.red_500), android.graphics.PorterDuff.Mode.SRC_IN)
             }
 

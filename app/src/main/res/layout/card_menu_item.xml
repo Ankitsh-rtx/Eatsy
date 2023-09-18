@@ -26,7 +26,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginStart="2dp"
-                android:src="@drawable/icon_veg"
+                android:src="@drawable/ic_veg"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/green_700" />

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- First Drawable (with padding) -->
+    <item android:drawable="@drawable/icon_square" />
+
+    <!-- Second Drawable (with padding) -->
+    <item android:drawable="@drawable/ic_triangle"
+        android:start="40dp"
+        android:end="40dp"
+        android:top="40dp"
+        android:bottom="40dp"/>
+
+</layer-list>
