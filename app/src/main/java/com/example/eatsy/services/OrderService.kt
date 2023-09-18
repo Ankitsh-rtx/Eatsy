@@ -12,11 +12,14 @@ import androidx.core.app.NotificationCompat
 import android.content.Context
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.SnapshotMetadata
 
 class OrderService: Service() {
     val CHANNEL_ID="233"
     private  lateinit var notificationManager:NotificationManager
     private lateinit var firebaseDB:FirebaseFirestore
+    private  lateinit var listener : ListenerRegistration
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
         super.onCreate()
@@ -36,25 +39,28 @@ class OrderService: Service() {
         val orderid= intent?.getStringExtra("ORDER_ID")
         Log.d("noti",orderid.toString())
 
-        firebaseDB.collection("orders").document(orderid.toString()).addSnapshotListener { item, error ->
-            if (error != null) return@addSnapshotListener
-            val status = item?.get("status", Int::class.java)
-
-
+        listener=firebaseDB.collection("orders").document(orderid.toString()).addSnapshotListener{
+            item,error->
+                if(error!=null) return@addSnapshotListener
+            val status =item?.get("status",Int::class.java)
             if(status==0) createNotification("Order Placed")
             else if(status==1) createNotification("Out for Delivery")
             else if(status==2) {
                 createNotification("Deliverd")
                 stopSelf()
-                return@addSnapshotListener
             }
         }
         return START_NOT_STICKY
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun stopService(name: Intent?): Boolean {
+        return super.stopService(name)
+        listener.remove()
+    }
 
+    override fun onDestroy() {
+        listener.remove()
+        super.onDestroy()
     }
     fun createNotification(notificationText:String){
 
