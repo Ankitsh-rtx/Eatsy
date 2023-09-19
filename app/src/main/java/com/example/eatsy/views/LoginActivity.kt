@@ -3,6 +3,8 @@ package com.example.eatsy.views
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.model.User
@@ -30,8 +32,6 @@ class LoginActivity : AppCompatActivity() {
                 finish()
             }
         }
-
-
 
     }
 }

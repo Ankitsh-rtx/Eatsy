@@ -139,6 +139,7 @@ class CartFragment : Fragment() {
             adapter.setOnClickListener(object:AddressViewAdapter.OnItemClickListener{
                 override fun onClick(position: Int, address: Address) {
                     DataSource.orderAddress=address
+
                     dialogBottomSheetDialog.hide()
                 }
             })
@@ -197,16 +198,6 @@ class CartFragment : Fragment() {
         binding.finalAmount.text = "₹ "+ (total-70+80).toString()
 
 
-//        Log.d("cart","closed")
-//        val sharedPreferences=requireActivity().getSharedPreferences("CART", Context.MODE_PRIVATE).edit()
-//        sharedPreferences.putString("CART",DataSource.orderList.toString())
-//        sharedPreferences.apply()
-//        val j = Gson().toJson(cartList)
-//        val d = Gson().fromJson<Any>(j,Any::class.java)
-//        Log.d("cart",j.toString())
-//        Log.d("cart",DataSource.orderList.toString())
-//        Log.d("cart",d.toString())
-
         return binding.root
     }
 
@@ -216,26 +207,5 @@ class CartFragment : Fragment() {
             ?.times(value.getItemQuantity()) ?: 0 }
         return totalPrice
     }
-//    private fun storeData(){
-//        val sharedPreferences = requireContext().getSharedPreferences("cartList", Context.MODE_PRIVATE)
-//        val editor = sharedPreferences.edit()
-//        val gson = Gson()
-//        val json = gson.toJson(cartItemList)
-//        editor.putString("cartList",json)
-//        editor.apply()
-//    }
-//    private fun readData() {
-//        val sharedPreferences = requireContext().getSharedPreferences("cart", Context.MODE_PRIVATE)
-//        val gson = Gson()
-//        val jsonRes = sharedPreferences.getString("res",Restaurants().toString())
-//        val jsonItem = sharedPreferences.getString("cartList", HashMap<String,CartItem>().toString())
-//        val typeRes = object :TypeToken<Restaurants?>(){}.type
-//        val typeList = object : TypeToken<HashMap<String,CartItem>>(){}.type
-//        res = gson.fromJson(jsonRes,typeRes)
-//        cartItemList = gson.fromJson(jsonItem,typeList)
-//
-//        Log.d("CartFragment","res = $res")
-//        Log.d("CartFragment","cartlist = $cartItemList")
-//
-//    }
+
 }

@@ -8,14 +8,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:paddingTop="15dp">
+        android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
             app:layout_constraintBottom_toBottomOf="@+id/cardView3"
             app:layout_constraintEnd_toStartOf="@+id/cardView3"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,45 +56,47 @@
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/item_name"
                 app:layout_constraintTop_toBottomOf="@+id/item_name" />
+
             <LinearLayout
                 android:id="@+id/item_details_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/divider"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_price">
+
                 <TextView
                     android:id="@+id/item_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/metropolis_regular"
-                    android:text="More details"
-                    android:paddingStart="4dp"
                     android:layout_gravity="center"
+                    android:fontFamily="@font/metropolis_regular"
+                    android:paddingStart="4dp"
+                    android:text="More details"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/item_price"
                     app:layout_constraintTop_toBottomOf="@+id/item_price" />
+
                 <ImageView
                     android:id="@+id/dropdown_icon"
                     android:layout_width="18dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/icon_arrow_right"
-                    />
+                    android:src="@drawable/icon_arrow_right" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
             android:layout_width="150dp"
             android:layout_height="120dp"
-            app:layout_constraintDimensionRatio="1:1"
-            app:cardElevation="0dp"
+            android:layout_marginTop="15dp"
             app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -113,15 +113,15 @@
             android:id="@+id/item_add_button"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:elevation="2dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:fontFamily="@font/metropolis_bold"
             android:background="@drawable/background_button"
+            android:elevation="2dp"
+            android:fontFamily="@font/metropolis_bold"
+            android:gravity="center"
             android:text="ADD"
             android:textColor="@color/green_500"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/cardView3"
             app:layout_constraintEnd_toEndOf="@+id/cardView3"
             app:layout_constraintStart_toStartOf="@+id/cardView3"

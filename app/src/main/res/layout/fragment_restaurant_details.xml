@@ -22,6 +22,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <LinearLayout
+                android:id="@+id/sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/background_switch"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView7">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_filter"
+                     />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/metropolis_regular"
+                    android:text="Sort"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_gravity="center"
+                    android:tint="@color/gray_700"
+                    android:src="@drawable/icon_arrow_down"/>
+
+            </LinearLayout>
+
             <ImageView
                 android:id="@+id/back_btn"
                 android:layout_width="32dp"
@@ -291,11 +328,12 @@
                 android:id="@+id/menu_item_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:overScrollMode="never"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view7"
-                tools:listitem="@layout/card_menu_item" />
+                app:layout_constraintTop_toBottomOf="@+id/view7" />
 
             <View
                 android:id="@+id/view5"
@@ -306,32 +344,34 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/menu_item_recyclerview" />
-
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switch_veg"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/background_switch"
-                android:checked="false"
-                android:text="veg"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/switch_nonveg"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/veg"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-
+                android:orientation="horizontal"
                 android:background="@drawable/background_switch"
-                android:checked="false"
-                android:text="nonveg"
-                app:layout_constraintStart_toEndOf="@+id/switch_veg"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                app:layout_constraintStart_toEndOf="@id/sort"
+                app:layout_constraintTop_toBottomOf="@id/textView7">
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:tint="@color/green_700"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_veg"/>
+                <TextView
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/metropolis_regular"
+                    android:text="Veg"/>
 
+            </LinearLayout>
 
             <View
                 android:id="@+id/view7"
@@ -343,7 +383,38 @@
                 android:background="#80CCCCCC"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switch_nonveg" />
+                app:layout_constraintTop_toBottomOf="@+id/veg" />
+
+            <LinearLayout
+                android:id="@+id/nonVeg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/background_switch"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@id/veg"
+                app:layout_constraintTop_toBottomOf="@id/textView7">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_non_veg"
+                    app:tint="@color/red_500" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/metropolis_regular"
+                    android:text="Non-veg"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -13,25 +13,32 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center">
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/image_boiling"/>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/anim_cart_empty" />
         <TextView
-            android:layout_marginTop="12dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:fontFamily="@font/metropolis_bold"
-            android:textColor="@color/black"
+            android:textColor="@color/black_900"
             android:text="Good Food is Always Cooking"
-            android:textSize="24sp"
+            android:textSize="20sp"
             />
         <TextView
             android:layout_marginTop="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:fontFamily="@font/metropolis_medium"
             android:text="Your cart is empty. Add something from the menu"
             android:textSize="16sp" />

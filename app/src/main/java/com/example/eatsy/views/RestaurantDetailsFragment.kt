@@ -22,7 +22,7 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RestaurantDetailsFragment : Fragment() {
-    private lateinit var binding:FragmentRestaurantDetailsBinding
+    private lateinit var binding: FragmentRestaurantDetailsBinding
     private lateinit var cartItemList:HashMap<String, CartItem>
     private lateinit var adapter: MenuListAdapter
     private lateinit var firebaseDB: FirebaseFirestore
@@ -34,7 +34,7 @@ class RestaurantDetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentRestaurantDetailsBinding.inflate(layoutInflater)
 
-        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
         navBar.visibility = View.GONE
 
         val bundle = arguments
@@ -66,25 +66,34 @@ class RestaurantDetailsFragment : Fragment() {
 
         val veg = mutableListOf<Item>()
         val nonveg = mutableListOf<Item>()
+        var veg_toggle = true
+        var nonVeg_toggle = true;
 
-        binding.switchVeg.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked){
-                binding.switchNonveg.isChecked = false
+        binding.veg.setOnClickListener{
+            if(veg_toggle) {
+                it.setBackgroundResource(R.drawable.background_button_onclick)
+                binding.nonVeg.setBackgroundResource(R.drawable.background_switch)
+                nonVeg_toggle = true
+                veg_toggle = false
                 veg.clear()
-                for(item in menu){
-                    if(item.isVeg==true) veg.add(item)
+                for (item in menu) {
+                    if (item.isVeg == true) veg.add(item)
                 }
-                adapter = context?.let{MenuListAdapter(it,veg,binding,restaurants)}!!
+                adapter = context?.let { MenuListAdapter(it, veg, binding, restaurants) }!!
                 binding.menuItemRecyclerview.adapter = adapter
-            }
-            else {
+            }else{
+                it.setBackgroundResource(R.drawable.background_switch)
+                veg_toggle = true
                 adapter = context?.let{MenuListAdapter(it,menu,binding,restaurants)}!!
                 binding.menuItemRecyclerview.adapter = adapter
             }
         }
-        binding.switchNonveg.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked){
-                binding.switchVeg.isChecked = false
+        binding.nonVeg.setOnClickListener{
+            if(nonVeg_toggle){
+                it.setBackgroundResource(R.drawable.background_button_onclick)
+                binding.veg.setBackgroundResource(R.drawable.background_switch)
+                veg_toggle= true
+                nonVeg_toggle = false
                 nonveg.clear()
                 for(item in menu){
                     if(item.isVeg==false) nonveg.add(item)
@@ -93,6 +102,8 @@ class RestaurantDetailsFragment : Fragment() {
                 binding.menuItemRecyclerview.adapter = adapter
             }
             else {
+                it.setBackgroundResource(R.drawable.background_switch)
+                nonVeg_toggle = true
                 adapter = context?.let{MenuListAdapter(it,menu,binding,restaurants)}!!
                 binding.menuItemRecyclerview.adapter = adapter
             }
@@ -128,7 +139,7 @@ class RestaurantDetailsFragment : Fragment() {
         activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         activity?.window?.statusBarColor = context?.let { ContextCompat.getColor(it, R.color.ash_white) }!!
 
-        val navView = activity!!.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        val navView = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
         binding.goToCartDialog.setOnClickListener {
 //            if(navBar.isScrolledUp || navBar.visibility!=View.VISIBLE){
