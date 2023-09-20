@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +20,7 @@ import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -63,7 +66,25 @@ class RestaurantDetailsFragment : Fragment() {
             }
 
         }
-
+        val sortDialog=BottomSheetDialog(requireContext())
+        sortDialog.setContentView(layoutInflater.inflate(R.layout.filter_dialog,null,false))
+        val choice = sortDialog.findViewById<RadioGroup>(R.id.radioGroup)
+        choice?.setOnCheckedChangeListener{
+            group,checkId->
+            val selectedOption=sortDialog.findViewById<RadioButton>(checkId)
+            Log.d("id",selectedOption?.id.toString() )
+            if (selectedOption?.id.toString()==sortDialog.findViewById<RadioButton>(R.id.accending)?.id.toString()) {
+                menu.sortBy { item -> item.price }
+            }
+            else if(selectedOption?.id.toString()==sortDialog.findViewById<RadioButton>(R.id.decending)?.id.toString()) {
+                menu.sortByDescending { item -> item.price }
+            }
+            (binding.menuItemRecyclerview.adapter)?.notifyDataSetChanged()
+            sortDialog.hide()
+        }
+        binding.sort.setOnClickListener{
+            sortDialog.show()
+        }
         val veg = mutableListOf<Item>()
         val nonveg = mutableListOf<Item>()
         var veg_toggle = true
