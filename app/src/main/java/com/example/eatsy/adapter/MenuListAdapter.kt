@@ -87,6 +87,7 @@ class MenuListAdapter (
         // arraylist that is passed through restaurant detail activity is used here
         val items:Item = item[position]
         var value=1
+        Log.d("check", "onBindViewHolder: called")
 
         // Dialog Box Appears when we choose items from different restaurant
         val replaceDialog =Dialog(context)
@@ -111,10 +112,16 @@ class MenuListAdapter (
 
         if(DataSource.orderList.first==res) {
             if (cartItemList.containsKey(items.id)) {
+                Log.d("help", "onBindViewHolder: value ")
                 value = cartItemList.getValue(items.id.toString()).getItemQuantity()
                 holder.binding.itemAddButton.text = (value).toString()
                 holder.binding.itemAddBtn.visibility = View.VISIBLE
                 holder.binding.itemRemoveBtn.visibility = View.VISIBLE
+            }
+            else {
+                holder.binding.itemAddButton.text = "ADD"
+                holder.binding.itemAddBtn.visibility = View.INVISIBLE
+                holder.binding.itemRemoveBtn.visibility = View.INVISIBLE
             }
         }
         holder.binding.itemName.text= items.name?.toTitleCase() ?: items.name
