@@ -76,8 +76,8 @@
             app:layout_constraintStart_toStartOf="@+id/location"
             app:layout_constraintTop_toBottomOf="@+id/location" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/search_edittext"
@@ -88,23 +88,36 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/background_search"
-        android:drawableEnd="@drawable/icon_search"
-        android:drawablePadding="16dp"
-        android:backgroundTint="@color/silver_white"
-        android:drawableTint="#FF1744"
+        android:drawableEnd="@drawable/icon_verticle"
+        android:drawableTint="#80121212"
+        android:elevation="2dp"
+        android:focusable="false"
         android:fontFamily="@font/metropolis_regular"
         android:hint="Dishes, restaurants, groceries - Find it all here"
-        android:textColorHint="#80121212"
         android:inputType="text"
         android:maxLines="1"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:paddingEnd="28dp"
+        android:textColorHint="#80121212"
         android:textCursorDrawable="@drawable/cursor_drawable"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/constraintLayout" />
+
+    <ImageView
+        android:id="@+id/search_ed_btn"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        app:tint="@color/red_700"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/search_edittext"
+        app:layout_constraintEnd_toEndOf="@+id/search_edittext"
+        app:layout_constraintTop_toTopOf="@+id/search_edittext"
+        app:srcCompat="@drawable/icon_search" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"

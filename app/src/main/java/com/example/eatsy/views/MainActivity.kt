@@ -9,10 +9,12 @@ import android.os.Bundle
 import android.provider.ContactsContract.Data
 import android.util.Log
 import android.view.ActionMode
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.databinding.ActivityMainBinding
@@ -34,6 +36,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.bottomNavigationView.background = null
+
+        //Navigation Components
+//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView)
+//        val navController = navHostFragment!!.findNavController()
+//        binding.bottomAppBar.setupWithNavController(navController)
 
         Log.d("user", DataSource.user.toString())
         DataSource.address = DataSource.user?.address
@@ -86,6 +93,15 @@ class MainActivity : AppCompatActivity() {
 //        restaurantViewModel.getCart().observe(this, Observer<List<CartItem>>(){
 //            Log.d(TAG,"onChanged: "+ it.size)
 //        })
+
+    }
+    private fun showBottomNav() {
+        binding.bottomAppBar.visibility = View.VISIBLE
+
+    }
+
+    private fun hideBottomNav() {
+        binding.bottomAppBar.visibility = View.GONE
 
     }
     private fun readData() {

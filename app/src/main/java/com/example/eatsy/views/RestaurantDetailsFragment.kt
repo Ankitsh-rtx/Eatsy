@@ -73,10 +73,10 @@ class RestaurantDetailsFragment : Fragment() {
             group,checkId->
             val selectedOption=sortDialog.findViewById<RadioButton>(checkId)
             Log.d("id",selectedOption?.id.toString() )
-            if (selectedOption?.id.toString()==sortDialog.findViewById<RadioButton>(R.id.accending)?.id.toString()) {
+            if (selectedOption?.id.toString()==sortDialog.findViewById<RadioButton>(R.id.ascending)?.id.toString()) {
                 menu.sortBy { item -> item.price }
             }
-            else if(selectedOption?.id.toString()==sortDialog.findViewById<RadioButton>(R.id.decending)?.id.toString()) {
+            else if(selectedOption?.id.toString()==sortDialog.findViewById<RadioButton>(R.id.descending)?.id.toString()) {
                 menu.sortByDescending { item -> item.price }
             }
             (binding.menuItemRecyclerview.adapter)?.notifyDataSetChanged()

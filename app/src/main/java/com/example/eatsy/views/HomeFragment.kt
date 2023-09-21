@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
         navBar.hideOnScroll=true
         navBar.visibility=View.VISIBLE
 
@@ -81,12 +81,16 @@ class HomeFragment : Fragment() {
                 ?.commit()
         }
 
+        binding.searchEdittext.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView,SearchFragment())
+                .addToBackStack(null)
+                .commit()
+            navBar.visibility = View.GONE
+        }
+
         return binding.root
     }
 
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        outState.putParcelableArrayList("homeFragmentSavedInstance",restaurants)
-//    }
 
 }
