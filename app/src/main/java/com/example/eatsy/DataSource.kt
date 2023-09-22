@@ -88,4 +88,6 @@ object DataSource {
     var address : MutableList<Address>? = mutableListOf()
     var user:User?=null
 
+    var itemSearchList: HashMap<Restaurants,MutableList<Item>> = HashMap()
+
 }
