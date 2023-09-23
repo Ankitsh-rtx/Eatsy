@@ -8,11 +8,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
+import com.example.eatsy.adapter.SearchAdapter
+import com.example.eatsy.adapter.SearchAdapterChildItems
 import com.example.eatsy.databinding.FragmentSearchBinding
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.LocalCacheSettings
 import java.util.Locale
@@ -27,15 +33,22 @@ class SearchFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSearchBinding.inflate(layoutInflater)
         db = FirebaseFirestore.getInstance()
+        val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
+
+        navBar.visibility=View.GONE
 
         binding.backSearchBtn.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStackImmediate()
         }
 
+        binding.searchResultRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+
         binding.searchEdBtn.setOnClickListener {
             Log.d("SearchFragment", "clicked")
+            DataSource.itemSearchList.clear()
             val queryString = binding.searchEdittext.text?.trim().toString()
-            var items:MutableList<Item> = mutableListOf()
+            binding.searchResultTv.text = "Showing results for '$queryString'"
+            val items:MutableList<Item> = mutableListOf()
             db.collection("Items").whereLessThanOrEqualTo("name",queryString).get()
                 .addOnSuccessListener {
                 for(doc in it.documents){
@@ -60,16 +73,16 @@ class SearchFragment : Fragment() {
                             )
                         }
                     }
-                    for (pair in DataSource.itemSearchList) {
-                            Log.d("SearchFragment:", "${pair.key}: ${pair.value}")
-                    }
+                    binding.resultLayout.visibility = View.VISIBLE
+                    binding.recentSearchLayout.visibility = View.INVISIBLE
+                    val adapter = SearchAdapter(requireContext(),DataSource.itemSearchList)
+                    binding.searchResultRecyclerview.adapter = adapter
 
             }.addOnFailureListener {
                 Log.d("SearchFragment","failed due to $it")
             }
 
         }
-
 
         return binding.root
     }

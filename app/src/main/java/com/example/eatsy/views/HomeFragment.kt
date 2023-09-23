@@ -87,7 +87,6 @@ class HomeFragment : Fragment() {
                 .replace(R.id.fragmentContainerView,SearchFragment())
                 .addToBackStack(null)
                 .commit()
-            navBar.visibility = View.GONE
         }
 
         return binding.root

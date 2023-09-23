@@ -9,7 +9,8 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.model.Address
 import com.example.eatsy.databinding.AddressViewBinding
 
-class AddressViewAdapter(private val context: Context? = null , private val address: MutableList<Address>?= mutableListOf() )  : RecyclerView.Adapter<AddressViewAdapter.AddressViewHolder>()  {
+class AddressViewAdapter(private val context: Context? = null , private val address: MutableList<Address>?= mutableListOf() )
+    : RecyclerView.Adapter<AddressViewAdapter.AddressViewHolder>()  {
      private lateinit var onItemClickListener :OnItemClickListener
     class AddressViewHolder (val binding: AddressViewBinding,
     ):
