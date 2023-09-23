@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.adapter.RestaurantAdapter
 import com.example.eatsy.adapter.TopDishAdapter
@@ -33,25 +34,25 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
         navBar.hideOnScroll=true
         navBar.visibility=View.VISIBLE
 
         // instantiation of database
         firebaseDB  = FirebaseFirestore.getInstance()
         // instantiation of the restaurants list that stores the values received from firebase
-        restaurants = mutableListOf()
+
 
         firebaseDB.collection("restaurants").get().addOnSuccessListener { querySnapshot ->
-            restaurants.clear()
+            DataSource.restaurants.clear()
             for (document in querySnapshot.documents) {
                 val res = document.toObject(Restaurants::class.java)
-                restaurants.add(res!!)
+                DataSource.restaurants.add(res!!)
             }
             val activity = activity
             binding.restaurantRecyclerview.adapter =
                 activity?.let {
-                    RestaurantAdapter(context,restaurants,
+                    RestaurantAdapter(context,DataSource.restaurants,
                         it
                     )
                 }
@@ -81,12 +82,15 @@ class HomeFragment : Fragment() {
                 ?.commit()
         }
 
+        binding.searchEdittext.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView,SearchFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
         return binding.root
     }
 
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        outState.putParcelableArrayList("homeFragmentSavedInstance",restaurants)
-//    }
 
 }

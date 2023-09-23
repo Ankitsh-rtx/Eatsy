@@ -6,6 +6,8 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.provider.ContactsContract.Data
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +25,7 @@ import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
 import com.example.eatsy.views.CartFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
 import java.util.*
 
 
@@ -84,6 +87,7 @@ class MenuListAdapter (
         // arraylist that is passed through restaurant detail activity is used here
         val items:Item = item[position]
         var value=1
+        Log.d("check", "onBindViewHolder: called")
 
         // Dialog Box Appears when we choose items from different restaurant
         val replaceDialog =Dialog(context)
@@ -108,20 +112,28 @@ class MenuListAdapter (
 
         if(DataSource.orderList.first==res) {
             if (cartItemList.containsKey(items.id)) {
+                Log.d("help", "onBindViewHolder: value ")
                 value = cartItemList.getValue(items.id.toString()).getItemQuantity()
                 holder.binding.itemAddButton.text = (value).toString()
                 holder.binding.itemAddBtn.visibility = View.VISIBLE
                 holder.binding.itemRemoveBtn.visibility = View.VISIBLE
+            }
+            else {
+                holder.binding.itemAddButton.text = "ADD"
+                holder.binding.itemAddBtn.visibility = View.INVISIBLE
+                holder.binding.itemRemoveBtn.visibility = View.INVISIBLE
             }
         }
         holder.binding.itemName.text= items.name?.toTitleCase() ?: items.name
         holder.binding.itemPrice.text= "₹ "+items.price.toString()
         Glide.with(context).load(items.image).into(holder.binding.itemImage);
         if(items.isVeg==false){
+            holder.binding.itemVeg.setImageResource(R.drawable.ic_non_veg)
             context.let { ContextCompat.getColor(it,R.color.red_500) }
                 .let { holder.binding.itemVeg.drawable.setTint(it) }
         }
         else if(items.isVeg==true) {
+            holder.binding.itemVeg.setImageResource(R.drawable.ic_veg)
             context.let { ContextCompat.getColor(it,R.color.green_700) }
                 .let { holder.binding.itemVeg.drawable.setTint(it) }
         }
@@ -131,11 +143,10 @@ class MenuListAdapter (
             v.price.text = "₹"+totalPrice().toString()
         }
         else {
-            DataSource.orderList= Pair(null,cartItemList)
+            DataSource.orderList = Pair(null,cartItemList)
         }
 
         holder.binding.itemAddButton.setOnClickListener {
-//            notifyDataSetChanged()
             if( DataSource.orderList.first==null) {
                 cartItemList.clear()
                 DataSource.orderList= Pair(res,cartItemList)
@@ -150,11 +161,11 @@ class MenuListAdapter (
             else {
                 addItem(holder,items,value)
             }
+            storeData()
 
         }
 
         holder.binding.itemAddBtn.setOnClickListener {
-//            notifyDataSetChanged()
             cartItemList.put(items.id.toString(), CartItem(items,value+1))
             if(cartItemList.size!=0) {
                 v.goToCartDialog.visibility= View.VISIBLE
@@ -162,11 +173,12 @@ class MenuListAdapter (
             }
             else v.goToCartDialog.visibility= View.GONE
             holder.binding.itemAddButton.text = (++value).toString()
+            storeData()
 
         }
 
         holder.binding.itemRemoveBtn.setOnClickListener {
-//            notifyDataSetChanged()
+
             if (value <= 1) {
                 holder.binding.itemAddButton.text = "ADD"
                 holder.binding.itemAddBtn.visibility = View.INVISIBLE
@@ -185,6 +197,7 @@ class MenuListAdapter (
 
             }
             else v.goToCartDialog.visibility= View.GONE
+            storeData()
 
         }
         // get item details page
@@ -207,8 +220,10 @@ class MenuListAdapter (
             description?.text = items.description?.toTitleCase()
             val vegIcon = dialog.findViewById<ImageView>(R.id.vegIcon)
             if(items.isVeg==true) {
+                vegIcon?.setImageResource(R.drawable.ic_veg)
                 vegIcon?.setColorFilter(ContextCompat.getColor(context, R.color.green_700), android.graphics.PorterDuff.Mode.SRC_IN)
             }else {
+                vegIcon?.setImageResource(R.drawable.ic_non_veg)
                 vegIcon?.setColorFilter(ContextCompat.getColor(context, R.color.red_500), android.graphics.PorterDuff.Mode.SRC_IN)
             }
 
@@ -221,7 +236,18 @@ class MenuListAdapter (
         val cartFragment = CartFragment()
         cartFragment.arguments = bundle
 
+    }
+    private fun storeData(){
+        val sharedPreferences = context.getSharedPreferences("cart", Context.MODE_PRIVATE)
+        val editor = sharedPreferences?.edit()
+        val gson = Gson()
+        Log.d("Menu Adapter", "cartList = ${cartItemList.size}")
+        val jsonList = gson.toJson(cartItemList)
+        val jsonRes = gson.toJson(res)
 
+        editor?.putString("res",jsonRes)
+        editor?.putString("cartList",jsonList)
+        editor?.apply()
     }
 
     override fun getItemCount(): Int {
@@ -256,11 +282,11 @@ class MenuListAdapter (
         }
         else v.goToCartDialog.visibility= View.GONE
         holder.binding.itemAddButton.text = (value).toString()
+
     }
 
     private fun replaceItemString(res: Restaurants?, replace_res: Restaurants?): String {
         return "Your cart contains dishes from ${res?.name}." +
                 " Do you want to discard the selections and add new dishes from ${replace_res?.name}?"
     }
-
 }

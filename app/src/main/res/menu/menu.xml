@@ -12,7 +12,7 @@
         android:title="Discover" />
     <item
         android:id="@+id/cartFragment"
-        android:icon="@drawable/icon_cart"
+        android:icon="@drawable/shopping_cart"
         android:title="Cart" />
     <item
         android:id="@+id/trackOrderFragment"

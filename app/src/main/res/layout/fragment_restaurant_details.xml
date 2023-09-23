@@ -13,24 +13,67 @@
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <LinearLayout
+                android:id="@+id/sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/background_switch"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView7">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/icon_filter"
+                     />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/metropolis_regular"
+                    android:text="Sort"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_gravity="center"
+                    app:tint="@color/gray_700"
+                    android:src="@drawable/icon_arrow_down"/>
+
+            </LinearLayout>
+
             <ImageView
                 android:id="@+id/back_btn"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:elevation="2dp"
-                app:tint="@color/gray_700"
-                android:layout_marginTop="6dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="4dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:elevation="2dp"
+                android:src="@drawable/icon_arrow_back"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="@drawable/ripple_effect"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/icon_arrow_back"/>
+                app:tint="@color/gray_700" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/upperCard"
@@ -41,7 +84,7 @@
                 android:padding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
 
@@ -87,12 +130,20 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="15dp"
+                                android:padding="4dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="@drawable/ripple_effect"
                                 android:src="@drawable/icon_share" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="15dp"
+                                android:padding="4dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="@drawable/ripple_effect"
                                 android:src="@drawable/icon_heart_black" />
                         </LinearLayout>
 
@@ -173,7 +224,7 @@
                             android:id="@+id/imageView2"
                             android:layout_width="36dp"
                             android:layout_height="36dp"
-                            android:layout_marginTop="14dp"
+                            android:layout_marginTop="16dp"
                             android:layout_marginBottom="16dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/icon_delivery"
@@ -183,26 +234,38 @@
                             app:tint="@color/gray" />
 
                         <TextView
-                            android:id="@+id/restaurant_location"
+                            android:id="@+id/textView13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="14dp"
                             android:fontFamily="@font/metropolis_semibold"
-                            android:text="Location"
-                            android:textColor="@color/material_dynamic_neutral20"
+                            android:text="Outlet"
+                            android:textColor="#2E3133"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toEndOf="@+id/imageView2"
                             app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
                         <TextView
-                            android:id="@+id/delivery_time"
+                            android:id="@+id/restaurant_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/metropolis_medium"
+                            android:text="Location"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView13"
+                            app:layout_constraintStart_toEndOf="@+id/textView13"
+                            app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+                        <TextView
+                            android:id="@+id/delivery_time_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="14dp"
                             android:fontFamily="@font/metropolis_semibold"
-                            android:text="Delivery in 20 min"
-                            android:textColor="@color/material_dynamic_neutral20"
+                            android:text="Delivery"
+                            android:textColor="#2E3133"
                             android:textSize="13sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -210,55 +273,67 @@
 
                             />
 
+                        <TextView
+                            android:id="@+id/delivery_time_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/metropolis_medium"
+                            android:text="20min"
+                            android:textSize="12sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/delivery_time_title"
+                            app:layout_constraintStart_toEndOf="@+id/delivery_time_title"
+                            app:layout_constraintTop_toTopOf="@+id/delivery_time_title" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
+                android:id="@+id/view6"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="24dp"
                 android:background="#80CCCCCC"
-                app:layout_constraintBottom_toBottomOf="@id/menu_textview"
-                app:layout_constraintEnd_toStartOf="@id/menu_textview"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7"
+                app:layout_constraintEnd_toStartOf="@+id/textView7"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/menu_textview" />
+                app:layout_constraintTop_toTopOf="@+id/textView7" />
 
             <TextView
-                android:id="@+id/menu_textview"
+                android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/metropolis_semibold"
-                android:gravity="center"
-                android:padding="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:text="MENU"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/upperCard" />
+                app:layout_constraintTop_toBottomOf="@+id/upperCard" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="24dp"
                 android:background="#80CCCCCC"
-                app:layout_constraintBottom_toBottomOf="@id/menu_textview"
+                app:layout_constraintBottom_toBottomOf="@+id/textView7"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/menu_textview"
-                app:layout_constraintTop_toTopOf="@id/menu_textview" />
+                app:layout_constraintStart_toEndOf="@+id/textView7"
+                app:layout_constraintTop_toTopOf="@+id/textView7" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/menu_item_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:overScrollMode="never"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/menu_textview"
-                tools:listitem="@layout/card_menu_item" />
+                app:layout_constraintTop_toBottomOf="@+id/view7" />
 
             <View
                 android:id="@+id/view5"
@@ -269,12 +344,83 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/menu_item_recyclerview" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/veg"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:background="@drawable/background_switch"
+                app:layout_constraintStart_toEndOf="@id/sort"
+                app:layout_constraintTop_toBottomOf="@id/textView7">
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:tint="@color/green_700"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_veg"/>
+                <TextView
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/metropolis_regular"
+                    android:text="Veg"/>
 
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view7"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:background="#80CCCCCC"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/veg" />
+
+            <LinearLayout
+                android:id="@+id/nonVeg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/background_switch"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toEndOf="@id/veg"
+                app:layout_constraintTop_toBottomOf="@id/textView7">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_non_veg"
+                    app:tint="@color/red_500" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/metropolis_regular"
+                    android:text="Non-veg"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.core.widget.NestedScrollView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/go_to_cart_dialog"
         android:layout_width="match_parent"
@@ -286,6 +432,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:elevation="2dp"
         android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="12dp">

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/ash_white"
+    android:background="@color/silver_white"
     tools:context=".views.ProfileFragment">
 
     <TextView
@@ -26,10 +26,13 @@
         android:layout_marginTop="8dp"
         android:elevation="2dp"
         android:padding="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="@drawable/ripple_effect"
         android:src="@drawable/icon_arrow_back"
-        android:tint="@color/black_200"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/black_200" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout6"
@@ -41,6 +44,9 @@
         android:paddingTop="20dp"
         android:paddingEnd="8dp"
         android:paddingBottom="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
@@ -62,9 +68,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/metropolis_medium"
+            android:fontFamily="@font/metropolis_regular"
             android:text="FAQs &amp; Links"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/help"
             app:layout_constraintTop_toBottomOf="@+id/help" />
 
@@ -87,6 +93,9 @@
         android:paddingStart="8dp"
         android:paddingTop="20dp"
         android:paddingEnd="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:paddingBottom="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,9 +127,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/metropolis_medium"
+            android:fontFamily="@font/metropolis_regular"
             android:text="Refund Stauts &amp; Payment Modes"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/refundPaymentStatus"
             app:layout_constraintTop_toBottomOf="@+id/refundPaymentStatus" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -131,6 +140,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:paddingStart="8dp"
         android:paddingTop="20dp"
         android:paddingEnd="8dp"
@@ -155,9 +167,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/metropolis_medium"
+            android:fontFamily="@font/metropolis_regular"
             android:text="Share, Edit &amp; Add New Address"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/address"
             app:layout_constraintTop_toBottomOf="@+id/address" />
 
@@ -175,7 +187,7 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:background="@color/white"
         android:paddingStart="8dp"
         android:paddingTop="20dp"
@@ -191,7 +203,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/metropolis_bold"
-            android:text="Ankit Shaw"
+            android:text="userX81249"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -204,8 +216,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/metropolis_medium"
-            android:text="7044746509"
-            android:textSize="12sp"
+            android:text="7044XXXXXX"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/username"
             app:layout_constraintTop_toBottomOf="@+id/username" />
 
@@ -216,8 +228,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/metropolis_medium"
-            android:text="ankitshaw1112@gmail.com"
-            android:textSize="12sp"
+            android:text="email@hmail.com"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/userPhone"
             app:layout_constraintTop_toBottomOf="@+id/username" />
 
@@ -226,10 +238,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            android:fontFamily="@font/metropolis_semibold"
+            android:fontFamily="@font/metropolis_bold"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
             android:text="EDIT"
             android:textColor="@color/orange_500"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/username" />
@@ -246,6 +262,9 @@
         android:paddingTop="20dp"
         android:paddingEnd="8dp"
         android:paddingBottom="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
@@ -276,22 +295,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:fontFamily="@font/metropolis_medium"
+            android:fontFamily="@font/metropolis_regular"
             android:text="Favourites, Hidden restaurants &amp; Settings"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/account"
             app:layout_constraintTop_toBottomOf="@+id/account" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="48dp"
         android:background="@color/white"
         android:paddingStart="8dp"
-        android:paddingTop="20dp"
+        android:paddingTop="24dp"
         android:paddingEnd="8dp"
-        android:paddingBottom="20dp"
+        android:paddingBottom="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
@@ -310,7 +333,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:fontFamily="@font/metropolis_bold"
+            android:fontFamily="@font/metropolis_semibold"
             android:text="logout options"
             android:textAllCaps="true"
             android:textColor="@color/black_900"

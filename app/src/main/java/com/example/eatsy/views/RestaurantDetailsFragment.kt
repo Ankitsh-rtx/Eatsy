@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,11 +20,12 @@ import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RestaurantDetailsFragment : Fragment() {
-    private lateinit var binding:FragmentRestaurantDetailsBinding
+    private lateinit var binding: FragmentRestaurantDetailsBinding
     private lateinit var cartItemList:HashMap<String, CartItem>
     private lateinit var adapter: MenuListAdapter
     private lateinit var firebaseDB: FirebaseFirestore
@@ -34,7 +37,7 @@ class RestaurantDetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentRestaurantDetailsBinding.inflate(layoutInflater)
 
-        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
         navBar.visibility = View.GONE
 
         val bundle = arguments
@@ -63,6 +66,70 @@ class RestaurantDetailsFragment : Fragment() {
             }
 
         }
+        val sortDialog=BottomSheetDialog(requireContext())
+        sortDialog.setContentView(layoutInflater.inflate(R.layout.filter_dialog,null,false))
+        val choice = sortDialog.findViewById<RadioGroup>(R.id.radioGroup)
+        choice?.setOnCheckedChangeListener{
+            group,checkId->
+            val selectedOption=sortDialog.findViewById<RadioButton>(checkId)
+            Log.d("id",selectedOption?.id.toString() )
+            if (selectedOption?.id.toString()==sortDialog.findViewById<RadioButton>(R.id.ascending)?.id.toString()) {
+                menu.sortBy { item -> item.price }
+            }
+            else if(selectedOption?.id.toString()==sortDialog.findViewById<RadioButton>(R.id.descending)?.id.toString()) {
+                menu.sortByDescending { item -> item.price }
+            }
+            (binding.menuItemRecyclerview.adapter)?.notifyDataSetChanged()
+            sortDialog.hide()
+        }
+        binding.sort.setOnClickListener{
+            sortDialog.show()
+        }
+        val veg = mutableListOf<Item>()
+        val nonveg = mutableListOf<Item>()
+        var veg_toggle = true
+        var nonVeg_toggle = true;
+
+        binding.veg.setOnClickListener{
+            if(veg_toggle) {
+                it.setBackgroundResource(R.drawable.background_button_onclick)
+                binding.nonVeg.setBackgroundResource(R.drawable.background_switch)
+                nonVeg_toggle = true
+                veg_toggle = false
+                veg.clear()
+                for (item in menu) {
+                    if (item.isVeg == true) veg.add(item)
+                }
+                adapter = context?.let { MenuListAdapter(it, veg, binding, restaurants) }!!
+                binding.menuItemRecyclerview.adapter = adapter
+            }else{
+                it.setBackgroundResource(R.drawable.background_switch)
+                veg_toggle = true
+                adapter = context?.let{MenuListAdapter(it,menu,binding,restaurants)}!!
+                binding.menuItemRecyclerview.adapter = adapter
+            }
+        }
+        binding.nonVeg.setOnClickListener{
+            if(nonVeg_toggle){
+                it.setBackgroundResource(R.drawable.background_button_onclick)
+                binding.veg.setBackgroundResource(R.drawable.background_switch)
+                veg_toggle= true
+                nonVeg_toggle = false
+                nonveg.clear()
+                for(item in menu){
+                    if(item.isVeg==false) nonveg.add(item)
+                }
+                adapter = context?.let{MenuListAdapter(it,nonveg,binding,restaurants)}!!
+                binding.menuItemRecyclerview.adapter = adapter
+            }
+            else {
+                it.setBackgroundResource(R.drawable.background_switch)
+                nonVeg_toggle = true
+                adapter = context?.let{MenuListAdapter(it,menu,binding,restaurants)}!!
+                binding.menuItemRecyclerview.adapter = adapter
+            }
+        }
+
         firebaseDB.collection("Items").whereEqualTo("restaurantId",restaurants?.id).addSnapshotListener{
                 i, _ ->
             for(j in i!!.documentChanges) {
@@ -88,10 +155,12 @@ class RestaurantDetailsFragment : Fragment() {
             }
         }
 
+
+
         activity?.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         activity?.window?.statusBarColor = context?.let { ContextCompat.getColor(it, R.color.ash_white) }!!
 
-        val navView = activity!!.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        val navView = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
         binding.goToCartDialog.setOnClickListener {
 //            if(navBar.isScrolledUp || navBar.visibility!=View.VISIBLE){
@@ -99,10 +168,9 @@ class RestaurantDetailsFragment : Fragment() {
 //                navBar.visibility = View.VISIBLE
 //            }
 
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragmentContainerView,CartFragment())?.addToBackStack(R.id.restaurantDetailsFragment.toString())
-                ?.commit()
-            navView.selectedItemId = R.id.cartFragment
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView,CartFragment()).addToBackStack(null)
+                .commit()
 
 
         }
@@ -129,10 +197,10 @@ class RestaurantDetailsFragment : Fragment() {
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-    }
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//
+//    }
 
 
 }

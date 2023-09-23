@@ -5,10 +5,18 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="roundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">14dp</item>
+        <item name="cornerSizeTopRight">14dp</item>
+        <item name="cornerSizeBottomLeft">14dp</item>
+        <item name="cornerSizeBottomRight">14dp</item>
+    </style>
+
     <style name="roundedBottomSheetImage" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopLeft">32dp</item>
-        <item name="cornerSizeTopRight">32dp</item>
+        <item name="cornerSizeTopLeft">28dp</item>
+        <item name="cornerSizeTopRight">28dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
     </style>
@@ -19,6 +27,9 @@
 
     <style name="AppBottomSheetDialogTheme" parent="Theme.MaterialComponents.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModelStyle</item>
+        <item name="android:windowIsFloating">false</item>
     </style>
+
+
 
 </resources>

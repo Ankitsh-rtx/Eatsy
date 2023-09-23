@@ -1,13 +1,10 @@
 package com.example.eatsy.model
-
 import android.os.Parcel
 import android.os.Parcelable
-
 
 class CartItem (
     private var item: Item,
     private var quantity: Int,
-
     ): java.io.Serializable,Parcelable {
 
 
