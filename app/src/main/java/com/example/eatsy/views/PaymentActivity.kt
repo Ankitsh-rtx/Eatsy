@@ -2,14 +2,22 @@ package com.example.eatsy.views
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.eatsy.DataSource
 import com.example.eatsy.R
+import com.example.eatsy.model.Order
+import com.example.eatsy.model.CartItem
+import com.google.firebase.firestore.FirebaseFirestore
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import org.json.JSONObject
+import java.sql.Timestamp
+import java.util.Date
 
 class PaymentActivity : AppCompatActivity(), PaymentResultListener {
+    private lateinit var finalAmout: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
@@ -18,6 +26,7 @@ class PaymentActivity : AppCompatActivity(), PaymentResultListener {
             val email = extras.getString("email")
             val phone = extras.getString("phone")
             val amount = extras.getString("amount")
+            finalAmout=amount.toString()
             makePayment(email,phone,amount+"00")
         }
 
@@ -57,8 +66,25 @@ class PaymentActivity : AppCompatActivity(), PaymentResultListener {
     override fun onPaymentSuccess(p0: String?) {
         val intent = Intent(this,MainActivity::class.java)
         intent.putExtra("paymentSuccess",p0)
-        startActivity(intent)
-        finish()
+        val firebaseDB  = FirebaseFirestore.getInstance()
+        val Order= Order(
+            DataSource!!.user!!.id.toString(),
+            DataSource.orderList.first?.id.toString(),
+            DataSource.orderList.second.values.toList(),
+            Timestamp( Date().time),
+            finalAmout.toInt(),
+            0,
+            DataSource.orderAddress,
+            0,
+            p0)
+        Log.d("order",Order.toString())
+        firebaseDB.collection("orders").add(Order).addOnSuccessListener { document ->
+            intent.putExtra("ORDER_ID", document.id)
+            // order list cleared on order success
+            DataSource.orderList = Pair(null, HashMap<String, CartItem>())
+            startActivity(intent)
+            finish()
+        }
 //        Toast.makeText(this,"Payment Successfully Done: $p0",Toast.LENGTH_SHORT).show()
     }
 

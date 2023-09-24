@@ -77,7 +77,11 @@ class MainActivity : AppCompatActivity() {
         val paymentSuccess = extra?.getString("paymentSuccess")
         val paymentFailed = extra?.getString("paymentFailed")
         if(paymentSuccess!=null){
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,SuccessFragment())
+            val bundle=Bundle()
+            bundle.putString("ORDER_ID", extra?.getString("ORDER_ID"))
+            val successFragment=SuccessFragment()
+            successFragment.arguments=bundle
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,successFragment)
                 .commit()
         }
         else if(paymentFailed!=null){
