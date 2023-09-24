@@ -74,16 +74,16 @@ object DataSource {
     var orderAddress:Address?=null
 
     var sampleRestaurantDataList :MutableList<Item> = mutableListOf(
-        Item("Pizza","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DgUlsgxzY9GU&psig=AOvVaw31fPOVe6NOew5kV1kP_TMM&ust=1694068680660000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPCimuWvlYEDFQAAAAAdAAAAABAW",
-            "3","r3","Pizza",109,true,"delicious pizza"),
-        Item("Vada Paw","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cookwithmanali.com%2Fvada-pav%2F&psig=AOvVaw1TUc6olfUarmLvOEXCthrt&ust=1694068741223000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLCng4GwlYEDFQAAAAAdAAAAABAE",
-            "4","r3","Paw",79,true,""),
-        Item("Corn Cheese Pizaa","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DgUlsgxzY9GU&psig=AOvVaw31fPOVe6NOew5kV1kP_TMM&ust=1694068680660000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPCimuWvlYEDFQAAAAAdAAAAABAW",
-            "5","r4","Pizza",109,true,"delicious pizza"),
-        Item("Sandwich","https://www.google.com/url?sa=i&url=https%3A%2F%2Frecipes.timesofindia.com%2Frecipes%2Fclub-sandwich%2Frs83740315.cms&psig=AOvVaw1ToSeMDSbZB9PyJvRA_jGJ&ust=1694068766370000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJC5qIuwlYEDFQAAAAAdAAAAABAJ",
-            "6","r5","Sandwich",89,true,"delicious pizza"),
-        Item("Choco Lava Cake","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pressurecookrecipes.com%2Finstant-pot-lava-cake%2F&psig=AOvVaw1GC-nGziX7Eau1fWZfFtSL&ust=1694068617475000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCNj0hcivlYEDFQAAAAAdAAAAABAJ",
-            "7","r5","Cake",109,true,"delicious Cake"),
+        Item("Steamed Momo","https://www.thespruceeats.com/thmb/T_R22QniykdQ9aPCLKIk-O22Gh4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/steamed-momos-wontons-1957616-hero-01-1c59e22bad0347daa8f0dfe12894bc3c.jpg",
+            "12","r1","momo",149,true,"momo"),
+        Item("Chicken Momo","https://www.archanaskitchen.com/images/archanaskitchen/1-Author/shaikh.khalid7-gmail.com/Chicken_Momos_Recipe_Delicious_Steamed_Chicken_Dumplings.jpg",
+            "13","r1","momo",199,false,"delicious momo"),
+        Item("Pan Fried Momo","https://indianheartbeat.in/wp-content/uploads/2023/01/6b106be2fe5ad0b986a3450a20b94f51-scaled-1.webp",
+            "14","r1","momo",179,true,"delicious momo"),
+        Item("Chinese Noodles","https://bellyfull.net/wp-content/uploads/2022/08/Lo-Mein-blog-3.jpg",
+            "15","r1","noodles",119,false,"delicious noodles")
+//        Item("Choco Lava Cake","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pressurecookrecipes.com%2Finstant-pot-lava-cake%2F&psig=AOvVaw1GC-nGziX7Eau1fWZfFtSL&ust=1694068617475000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCNj0hcivlYEDFQAAAAAdAAAAABAJ",
+//            "7","r5","Cake",109,true,"delicious Cake"),
     )
     var address : MutableList<Address>? = mutableListOf()
     var user:User?=null
