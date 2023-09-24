@@ -41,6 +41,8 @@ class SuccessFragment : Fragment() {
         val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
         navBar.visibility = View.GONE
 
+
+
         // clear data from shared preference on successfully order
         clearData()
 

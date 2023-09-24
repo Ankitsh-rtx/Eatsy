@@ -73,6 +73,21 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        val extra = intent.extras
+        val paymentSuccess = extra?.getString("paymentSuccess")
+        val paymentFailed = extra?.getString("paymentFailed")
+        if(paymentSuccess!=null){
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,SuccessFragment())
+                .commit()
+        }
+        else if(paymentFailed!=null){
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView,CartFragment())
+                .commit()
+        }
+
+
+
+
         // shared preference
         readData()
 

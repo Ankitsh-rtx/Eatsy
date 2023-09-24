@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -17,27 +16,34 @@
         android:theme="@style/Theme.Eatsy"
         tools:targetApi="31">
         <activity
+            android:name=".views.PaymentActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.LoginActivity"
-            android:screenOrientation="portrait"
-            android:exported="true" >
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".views.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"></activity>
 
-        </activity>
+        <service
+            android:name=".services.OrderService"
+            android:stopWithTask="false" />
 
-        <service android:name=".services.OrderService"
-            android:stopWithTask="false"/>
-
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_QL0EfBlXFzpQYZ" />
+        <meta-data
+            android:name="com.google.gms.wallet.api.enabled"
+            android:value="true" />
     </application>
 
 </manifest>

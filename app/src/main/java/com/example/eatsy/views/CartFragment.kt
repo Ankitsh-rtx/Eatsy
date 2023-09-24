@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.arch.core.executor.DefaultTaskExecutor
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -37,6 +38,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.razorpay.Checkout
+import org.json.JSONObject
 
 import java.lang.reflect.Array
 
@@ -73,7 +76,6 @@ class CartFragment : Fragment() {
 
         } else cartList
 
-//        readData()
 
         if(cartItemList.size==0) {
             binding.emptyCart.visibility=View.VISIBLE
@@ -98,7 +100,6 @@ class CartFragment : Fragment() {
 
         //payment fragment
         binding.proceedToPayTV.setOnClickListener{
-
             // update code ---
             if(DataSource.orderList.first?.name == "") {
                 activity?.supportFragmentManager?.beginTransaction()
@@ -110,13 +111,25 @@ class CartFragment : Fragment() {
                 binding.selectAddressBtn.performClick()
                 return@setOnClickListener
             }
-            val bundle=Bundle()
-            bundle.putString("Final Amount",(totalPrice()-70+80).toString())
-            val paymentFragment=PaymentFragment()
-            paymentFragment.arguments=bundle
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragmentContainerView,paymentFragment)?.addToBackStack(null)
-                ?.commit()
+            val email = DataSource.user?.email.toString()
+            val phone = DataSource.user?.phone.toString()
+            val amount = totalPrice().toString()
+
+//            makePayment(email,phone,amount)
+            val intent = Intent(requireActivity(),PaymentActivity::class.java)
+            intent.putExtra("email",email)
+                .putExtra("phone",phone)
+                .putExtra("amount",amount)
+            startActivity(intent)
+
+
+//            val bundle=Bundle()
+//            bundle.putString("Final Amount",(totalPrice()-70+80).toString())
+//            val paymentFragment=PaymentFragment()
+//            paymentFragment.arguments=bundle
+//            activity?.supportFragmentManager?.beginTransaction()
+//                ?.replace(R.id.fragmentContainerView,paymentFragment)?.addToBackStack(null)
+//                ?.commit()
         }
 
         binding.goToMenu.setOnClickListener {
@@ -200,6 +213,32 @@ class CartFragment : Fragment() {
 
         return binding.root
     }
+
+//    private fun makePayment(email:String,contact:String, amount:Long) {
+//        val co = Checkout()
+//        try {
+//            val options = JSONObject()
+//            options.put("name","Eatsy")
+//            options.put("description","Demoing Charges")
+//            //You can omit the image option to fetch the image from the dashboard
+//            options.put("image",R.mipmap.ic_launcher)
+//            options.put("theme.color", "#3399cc");
+//            options.put("currency","INR");
+////            options.put("order_id", orderID);
+//            options.put("amount",amount)//pass amount in currency subunits
+//
+//
+//            val prefill = JSONObject()
+//            prefill.put("email","")
+//            prefill.put("contact","")
+//
+//            options.put("prefill",prefill)
+//            co.open(activity,options)
+//        }catch (e: Exception){
+//            Toast.makeText(requireActivity(),"Error in payment: "+ e.message,Toast.LENGTH_LONG).show()
+//            e.printStackTrace()
+//        }
+//    }
 
     private fun totalPrice():Long{
         var totalPrice:Long = 0
