@@ -28,7 +28,7 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(layoutInflater)
         firebaseAuth = FirebaseAuth.getInstance()
-        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
         navBar.visibility = View.GONE
 
         binding.backBtn.setOnClickListener{
