@@ -19,6 +19,7 @@ import java.util.Date
 
 class PaymentActivity : AppCompatActivity(), PaymentResultListener {
     private lateinit var finalAmout: String
+    private lateinit var orderid: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
@@ -28,6 +29,7 @@ class PaymentActivity : AppCompatActivity(), PaymentResultListener {
             val phone = extras.getString("phone")
             val amount = extras.getString("amount")
             finalAmout=amount.toString()
+            orderid=extras.getString("ORDER_ID").toString()
             makePayment(email,phone,amount+"00")
         }
 
@@ -68,22 +70,9 @@ class PaymentActivity : AppCompatActivity(), PaymentResultListener {
         val intent = Intent(this,MainActivity::class.java)
         intent.putExtra("paymentSuccess",p0)
         val firebaseDB  = FirebaseFirestore.getInstance()
-        val Order= Order(
-            DataSource!!.user!!.id.toString(),
-            DataSource.orderList.first?.id.toString(),
-            DataSource.orderList.second.values.toList(),
-            Timestamp( Date().time),
-            finalAmout.toInt(),
-            0,
-            DataSource.orderAddress,
-            0,
-            p0)
-        Log.d("order",Order.toString())
-        firebaseDB.collection("orders").add(Order).addOnSuccessListener { document ->
-            intent.putExtra("ORDER_ID", document.id)
+        firebaseDB.collection("orders").document(orderid).update("transactionId",p0,"status",0).addOnSuccessListener { document ->
+            intent.putExtra("ORDER_ID", orderid)
             // order list cleared on order success
-            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-
             DataSource.orderList = Pair(null, HashMap<String, CartItem>())
             clearData()
             startActivity(intent)

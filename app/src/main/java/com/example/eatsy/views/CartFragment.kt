@@ -30,6 +30,7 @@ import com.example.eatsy.databinding.FragmentCartBinding
 import com.example.eatsy.databinding.FragmentPaymentBinding
 import com.example.eatsy.model.Address
 import com.example.eatsy.model.CartItem
+import com.example.eatsy.model.Order
 import com.example.eatsy.model.Restaurants
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -42,6 +43,8 @@ import com.razorpay.Checkout
 import org.json.JSONObject
 
 import java.lang.reflect.Array
+import java.sql.Timestamp
+import java.util.Date
 
 
 class CartFragment : Fragment() {
@@ -157,11 +160,27 @@ class CartFragment : Fragment() {
             val amount = totalPrice().toString()
 
 //            makePayment(email,phone,amount)
-            val intent = Intent(requireActivity(),PaymentActivity::class.java)
-            intent.putExtra("email",email)
-                .putExtra("phone",phone)
-                .putExtra("amount",amount)
-            startActivity(intent)
+            val firebaseDB  = FirebaseFirestore.getInstance()
+            val Order= Order(
+                DataSource!!.user!!.id.toString(),
+                DataSource.orderList.first?.id.toString(),
+                DataSource.orderList.second.values.toList(),
+                Timestamp( Date().time),
+                amount.toInt(),
+                -1,
+                DataSource.orderAddress,
+                0,
+                null)
+            Log.d("order",Order.toString())
+            firebaseDB.collection("orders").add(Order).addOnSuccessListener { document ->
+                val intent = Intent(requireActivity(),PaymentActivity::class.java)
+                intent.putExtra("email",email)
+                    .putExtra("phone",phone)
+                    .putExtra("amount",amount)
+                    .putExtra("ORDER_ID",document.id)
+                startActivity(intent)
+            }
+
 
 
 //            val bundle=Bundle()
