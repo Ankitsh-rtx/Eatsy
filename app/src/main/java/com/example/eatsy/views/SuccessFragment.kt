@@ -42,19 +42,19 @@ class SuccessFragment : Fragment() {
         navBar.visibility = View.GONE
 
 
-
         // clear data from shared preference on successfully order
         clearData()
 
-        binding.orderId.text=this.arguments?.getString("ORDER_ID")
-        val service= Intent(requireContext(), OrderService::class.java)
-        service.putExtra("ORDER_ID",this.arguments?.getString("ORDER_ID"))
+        binding.orderId.text = this.arguments?.getString("ORDER_ID")
+        val service = Intent(requireContext(), OrderService::class.java)
+        service.putExtra("ORDER_ID", this.arguments?.getString("ORDER_ID"))
         requireActivity().startService(service)
 
 //        requireActivity().supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        binding.trackOrder.setOnClickListener{
+        binding.trackOrder.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragmentContainerView,TrackOrderFragment())?.addToBackStack(R.id.homeFragment.toString())
+                ?.replace(R.id.fragmentContainerView, TrackOrderFragment())
+                ?.addToBackStack(R.id.homeFragment.toString())
                 ?.commit()
         }
         return binding.root
@@ -65,4 +65,5 @@ class SuccessFragment : Fragment() {
             editor?.clear()
             editor?.apply()
     }
+
 }

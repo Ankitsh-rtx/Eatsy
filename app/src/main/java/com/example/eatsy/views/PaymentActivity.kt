@@ -1,5 +1,6 @@
 package com.example.eatsy.views
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -81,12 +82,16 @@ class PaymentActivity : AppCompatActivity(), PaymentResultListener {
         firebaseDB.collection("orders").add(Order).addOnSuccessListener { document ->
             intent.putExtra("ORDER_ID", document.id)
             // order list cleared on order success
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
             DataSource.orderList = Pair(null, HashMap<String, CartItem>())
+            clearData()
             startActivity(intent)
             finish()
         }
 //        Toast.makeText(this,"Payment Successfully Done: $p0",Toast.LENGTH_SHORT).show()
     }
+
 
     override fun onPaymentError(p0: Int, p1: String?) {
         val intent = Intent(this,MainActivity::class.java)
@@ -94,5 +99,11 @@ class PaymentActivity : AppCompatActivity(), PaymentResultListener {
         startActivity(intent)
         finish()
 //        Toast.makeText(this,"Payment Failed: $p1",Toast.LENGTH_SHORT).show()
+    }
+    private fun clearData(){
+        val sharedPreferences = this.getSharedPreferences("cart", Context.MODE_PRIVATE)
+        val editor = sharedPreferences?.edit()
+        editor?.clear()
+        editor?.apply()
     }
 }

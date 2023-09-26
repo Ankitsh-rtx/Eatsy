@@ -62,6 +62,47 @@ class CartFragment : Fragment() {
             R.color.white
         )
 
+
+        return binding.root
+    }
+
+//    private fun makePayment(email:String,contact:String, amount:Long) {
+//        val co = Checkout()
+//        try {
+//            val options = JSONObject()
+//            options.put("name","Eatsy")
+//            options.put("description","Demoing Charges")
+//            //You can omit the image option to fetch the image from the dashboard
+//            options.put("image",R.mipmap.ic_launcher)
+//            options.put("theme.color", "#3399cc");
+//            options.put("currency","INR");
+////            options.put("order_id", orderID);
+//            options.put("amount",amount)//pass amount in currency subunits
+//
+//
+//            val prefill = JSONObject()
+//            prefill.put("email","")
+//            prefill.put("contact","")
+//
+//            options.put("prefill",prefill)
+//            co.open(activity,options)
+//        }catch (e: Exception){
+//            Toast.makeText(requireActivity(),"Error in payment: "+ e.message,Toast.LENGTH_LONG).show()
+//            e.printStackTrace()
+//        }
+//    }
+
+    private fun totalPrice():Long{
+        var totalPrice:Long = 0
+        cartItemList.forEach { (key, value) -> totalPrice+= value.getItem().price
+            ?.times(value.getItemQuantity()) ?: 0 }
+        return totalPrice
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("hoja re baba", "onResume:i was called ")
+
         val cartList = DataSource.orderList.second
         Log.d("cart fragment","cartList = ${cartList.size}")
         val cartListHM = this.arguments?.getSerializable("cartItems")
@@ -69,7 +110,7 @@ class CartFragment : Fragment() {
         if(cartListHM!=null) {
             v = cartListHM as HashMap<String, CartItem>
         }
-            Log.d("cart fragment","cartListHm = ${(v).size}")
+        Log.d("cart fragment","cartListHm = ${(v).size}")
 
         cartItemList = if(cartListHM!=null){
             cartListHM as HashMap<String, CartItem>
@@ -210,41 +251,7 @@ class CartFragment : Fragment() {
         binding.payableAmount.text = "₹ "+ (total-70+80).toString()
         binding.finalAmount.text = "₹ "+ (total-70+80).toString()
 
-
-        return binding.root
     }
 
-//    private fun makePayment(email:String,contact:String, amount:Long) {
-//        val co = Checkout()
-//        try {
-//            val options = JSONObject()
-//            options.put("name","Eatsy")
-//            options.put("description","Demoing Charges")
-//            //You can omit the image option to fetch the image from the dashboard
-//            options.put("image",R.mipmap.ic_launcher)
-//            options.put("theme.color", "#3399cc");
-//            options.put("currency","INR");
-////            options.put("order_id", orderID);
-//            options.put("amount",amount)//pass amount in currency subunits
-//
-//
-//            val prefill = JSONObject()
-//            prefill.put("email","")
-//            prefill.put("contact","")
-//
-//            options.put("prefill",prefill)
-//            co.open(activity,options)
-//        }catch (e: Exception){
-//            Toast.makeText(requireActivity(),"Error in payment: "+ e.message,Toast.LENGTH_LONG).show()
-//            e.printStackTrace()
-//        }
-//    }
-
-    private fun totalPrice():Long{
-        var totalPrice:Long = 0
-        cartItemList.forEach { (key, value) -> totalPrice+= value.getItem().price
-            ?.times(value.getItemQuantity()) ?: 0 }
-        return totalPrice
-    }
 
 }
