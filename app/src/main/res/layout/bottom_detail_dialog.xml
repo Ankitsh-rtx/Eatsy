@@ -85,23 +85,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/itemRating" />
 
-            <TextView
-                android:id="@+id/addBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/background_button"
-                android:elevation="4dp"
-                android:fontFamily="@font/metropolis_bold"
-                android:paddingStart="36dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="36dp"
-                android:paddingBottom="12dp"
-                android:text="ADD"
-                android:textColor="@color/green_500"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/titleText" />
+        <TextView
+            android:id="@+id/addBtn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_button"
+            android:elevation="2dp"
+            android:fontFamily="@font/metropolis_bold"
+            android:paddingStart="36dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="36dp"
+            android:paddingBottom="12dp"
+            android:text="ADD"
+            android:textColor="@color/green_500"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/titleText"
+            android:layout_marginStart="16dp"
+            android:gravity="center"
+            />
+
+
 
             <ImageView
                 android:id="@+id/icon_star"
@@ -112,6 +117,39 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/itemPrice"
                 app:srcCompat="@drawable/icon_star" />
+        <ImageView
+            android:id="@+id/item_add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:visibility="invisible"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?actionBarItemBackground"
+            android:elevation="3dp"
+            app:tint="@color/green_500"
+            app:layout_constraintBottom_toBottomOf="@+id/addBtn"
+            app:layout_constraintEnd_toEndOf="@+id/addBtn"
+            app:layout_constraintTop_toTopOf="@+id/addBtn"
+            app:srcCompat="@drawable/icon_add" />
+
+        <ImageView
+            android:id="@+id/item_remove_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="4dp"
+            android:padding="4dp"
+            android:elevation="3dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?actionBarItemBackground"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/addBtn"
+            app:layout_constraintStart_toStartOf="@+id/addBtn"
+            app:layout_constraintTop_toTopOf="@+id/addBtn"
+            app:srcCompat="@drawable/icon_minus"
+            app:tint="@color/green_500" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
