@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.FragmentManager
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.databinding.FragmentPaymentBinding
@@ -16,11 +15,8 @@ import com.example.eatsy.model.Order
 import com.example.eatsy.model.CartItem
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.type.DateTime
 import java.sql.Timestamp
-import java.time.LocalDateTime
 import java.util.Date
-import java.util.SimpleTimeZone
 
 class PaymentFragment : Fragment() {
     private lateinit var binding: FragmentPaymentBinding

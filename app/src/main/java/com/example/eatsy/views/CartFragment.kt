@@ -1,20 +1,15 @@
 package com.example.eatsy.views
 import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.ArrayMap
 import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
-import android.widget.Toast
-import androidx.arch.core.executor.DefaultTaskExecutor
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -24,25 +19,16 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.adapter.AddressViewAdapter
 import com.example.eatsy.adapter.CartViewAdapter
-import com.example.eatsy.adapter.MenuListAdapter
-import com.example.eatsy.databinding.ActivityMainBinding
 import com.example.eatsy.databinding.FragmentCartBinding
-import com.example.eatsy.databinding.FragmentPaymentBinding
 import com.example.eatsy.model.Address
 import com.example.eatsy.model.CartItem
 import com.example.eatsy.model.Order
 import com.example.eatsy.model.Restaurants
 import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.razorpay.Checkout
-import org.json.JSONObject
 
-import java.lang.reflect.Array
 import java.sql.Timestamp
 import java.util.Date
 

@@ -90,8 +90,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-
         // shared preference
         readData()
 
