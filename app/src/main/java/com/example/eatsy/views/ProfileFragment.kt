@@ -13,14 +13,18 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.databinding.ActivityMainBinding
 import com.example.eatsy.databinding.FragmentProfileBinding
+import com.example.eatsy.model.Item
+import com.example.eatsy.model.Order
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +32,8 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(layoutInflater)
         firebaseAuth = FirebaseAuth.getInstance()
-        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        db = FirebaseFirestore.getInstance()
+        val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
         navBar.visibility = View.GONE
 
         binding.backBtn.setOnClickListener{
@@ -49,6 +54,21 @@ class ProfileFragment : Fragment() {
         binding.editProfileBtn.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null)
                 .replace(R.id.fragmentContainerView,Add_basic_detail_fragment()).commit()
+        }
+        binding.accountTabLayout.setOnClickListener{
+            val view = binding.accountDetails.visibility
+            if (view==View.VISIBLE) binding.accountDetails.visibility = View.GONE
+            else binding.accountDetails.visibility = View.VISIBLE
+        }
+        binding.orderTab.setOnClickListener{val orders = db.collection("orders").whereEqualTo("userId",firebaseAuth.currentUser!!.uid)
+            orders.get().addOnSuccessListener {
+                it.forEach { orders ->
+                    val res = orders.toObject(Order::class.java)
+                    Log.d("ProfileFragment:","${res.restaurantId}-> ${res.totalPrice}")
+                }
+            }.addOnFailureListener {
+                Log.d("ProfileFragment:", "$it ")
+            }
         }
 
         binding.logout.setOnClickListener {

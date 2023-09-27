@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.Image
 import android.os.Bundle
 import android.provider.ContactsContract.Data
 import android.util.Log
@@ -208,6 +209,70 @@ class MenuListAdapter (
 
 
             dialog.setContentView(bottomSheetDialog)
+            dialog.findViewById<TextView>(R.id.addBtn)?.setOnClickListener {
+                if( DataSource.orderList.first==null) {
+                    cartItemList.clear()
+                    DataSource.orderList= Pair(res,cartItemList)
+                    addItemDialog(dialog,items,value)
+                }
+                else if( DataSource.orderList.first!=res) {
+                    val str = replaceItemString(DataSource.orderList.first,res)
+                    replaceText.text = str
+                    replaceDialog.show()
+
+                }
+                else {
+                    addItemDialog(dialog,items,value)
+                }
+                storeData()
+                notifyDataSetChanged()
+            }
+            dialog.findViewById<ImageView>(R.id.item_add_btn)?.setOnClickListener {
+                cartItemList.put(items.id.toString(), CartItem(items,value+1))
+                if(cartItemList.size!=0) {
+                    v.goToCartDialog.visibility= View.VISIBLE
+                    v.price.text = "₹"+totalPrice().toString()
+                }
+                else v.goToCartDialog.visibility= View.GONE
+                dialog.findViewById<TextView>(R.id.addBtn)?.text = (++value).toString()
+                storeData()
+                notifyDataSetChanged()
+            }
+            dialog.findViewById<ImageView>(R.id.item_remove_btn)?.setOnClickListener{
+                if (value <= 1) {
+                    dialog.findViewById<TextView>(R.id.addBtn)?.text = "ADD"
+                    dialog.findViewById<ImageView>(R.id.item_add_btn)?.visibility = View.INVISIBLE
+                    dialog.findViewById<ImageView>(R.id.item_remove_btn)?.visibility = View.INVISIBLE
+                    cartItemList.remove(items.id)
+                } else{
+                    v.itemCount.text = cartItemList.size.toString()+ " Item"
+                    v.price.text = "₹"+totalPrice().toString()
+                    dialog.findViewById<TextView>(R.id.addBtn)?.text = (--value).toString()
+                    cartItemList.put(items.id.toString(),CartItem(items,value))
+                }
+                if(cartItemList.size!=0) {
+                    v.goToCartDialog.visibility= View.VISIBLE
+                    v.itemCount.text = cartItemList.size.toString()+ " Item"
+                    v.price.text = "₹"+totalPrice().toString()
+
+                }
+                else v.goToCartDialog.visibility= View.GONE
+                storeData()
+                notifyDataSetChanged()
+            }
+            var valueItem = holder.binding.itemAddButton.text.toString()
+            if (valueItem!="ADD") {
+                Log.d("help", "onBindViewHolder: value ")
+                dialog.findViewById<TextView>(R.id.addBtn)?.text = (valueItem).toString()
+                dialog.findViewById<ImageView>(R.id.item_add_btn)?.visibility = View.VISIBLE
+                dialog.findViewById<ImageView>(R.id.item_remove_btn)?.visibility = View.VISIBLE
+            }
+            else {
+                dialog.findViewById<TextView>(R.id.addBtn)?.text = "ADD"
+                dialog.findViewById<ImageView>(R.id.item_add_btn)?.visibility = View.INVISIBLE
+                dialog.findViewById<ImageView>(R.id.item_remove_btn)?.visibility = View.INVISIBLE
+            }
+
             val image = dialog.findViewById<ImageView>(R.id.itemImage)
             if (image != null) {
                 Glide.with(context).load(items.image).into(image)
@@ -226,7 +291,6 @@ class MenuListAdapter (
                 vegIcon?.setImageResource(R.drawable.ic_non_veg)
                 vegIcon?.setColorFilter(ContextCompat.getColor(context, R.color.red_500), android.graphics.PorterDuff.Mode.SRC_IN)
             }
-
 
             dialog.show()
         }
@@ -282,6 +346,22 @@ class MenuListAdapter (
         }
         else v.goToCartDialog.visibility= View.GONE
         holder.binding.itemAddButton.text = (value).toString()
+
+    }
+    private fun addItemDialog(holder :Dialog,items:Item ,value:Int){
+//        notifyDataSetChanged()
+        if (holder.findViewById<ImageView>(R.id.item_add_btn)?.visibility == View.INVISIBLE && holder.findViewById<ImageView>(R.id.item_remove_btn)?.visibility == View.INVISIBLE) {
+            holder.findViewById<ImageView>(R.id.item_add_btn)?.visibility = View.VISIBLE
+            holder.findViewById<ImageView>(R.id.item_remove_btn)?.visibility = View.VISIBLE
+        }
+        cartItemList.put(items.id.toString(), CartItem(items, value))
+        if(cartItemList.size!=0) {
+            v.goToCartDialog.visibility= View.VISIBLE
+            v.itemCount.text = cartItemList.size.toString()+ " Items"
+            v.price.text = "₹"+totalPrice().toString()
+        }
+        else v.goToCartDialog.visibility= View.GONE
+        holder.findViewById<TextView>(R.id.addBtn)?.text=(value).toString()
 
     }
 

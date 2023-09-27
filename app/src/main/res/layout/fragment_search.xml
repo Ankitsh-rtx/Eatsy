@@ -6,16 +6,16 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".views.SearchFragment">
 
-
     <TextView
         android:id="@+id/textView14"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="32dp"
-        android:fontFamily="@font/metropolis_regular"
+        android:layout_marginEnd="48dp"
+        android:gravity="center"
+        android:fontFamily="@font/metropolis_semibold"
         android:text="Search Restaurant or Dishes"
-        android:textColor="@color/black_900"
+        android:textColor="@color/black_800"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/backSearchBtn"
         app:layout_constraintEnd_toEndOf="parent"

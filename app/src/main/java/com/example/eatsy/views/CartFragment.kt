@@ -1,19 +1,15 @@
 package com.example.eatsy.views
 import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.ArrayMap
 import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
-import androidx.arch.core.executor.DefaultTaskExecutor
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -23,22 +19,18 @@ import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.adapter.AddressViewAdapter
 import com.example.eatsy.adapter.CartViewAdapter
-import com.example.eatsy.adapter.MenuListAdapter
-import com.example.eatsy.databinding.ActivityMainBinding
 import com.example.eatsy.databinding.FragmentCartBinding
-import com.example.eatsy.databinding.FragmentPaymentBinding
 import com.example.eatsy.model.Address
 import com.example.eatsy.model.CartItem
+import com.example.eatsy.model.Order
 import com.example.eatsy.model.Restaurants
 import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
-import java.lang.reflect.Array
+import java.sql.Timestamp
+import java.util.Date
 
 
 class CartFragment : Fragment() {
@@ -59,6 +51,47 @@ class CartFragment : Fragment() {
             R.color.white
         )
 
+
+        return binding.root
+    }
+
+//    private fun makePayment(email:String,contact:String, amount:Long) {
+//        val co = Checkout()
+//        try {
+//            val options = JSONObject()
+//            options.put("name","Eatsy")
+//            options.put("description","Demoing Charges")
+//            //You can omit the image option to fetch the image from the dashboard
+//            options.put("image",R.mipmap.ic_launcher)
+//            options.put("theme.color", "#3399cc");
+//            options.put("currency","INR");
+////            options.put("order_id", orderID);
+//            options.put("amount",amount)//pass amount in currency subunits
+//
+//
+//            val prefill = JSONObject()
+//            prefill.put("email","")
+//            prefill.put("contact","")
+//
+//            options.put("prefill",prefill)
+//            co.open(activity,options)
+//        }catch (e: Exception){
+//            Toast.makeText(requireActivity(),"Error in payment: "+ e.message,Toast.LENGTH_LONG).show()
+//            e.printStackTrace()
+//        }
+//    }
+
+    private fun totalPrice():Long{
+        var totalPrice:Long = 0
+        cartItemList.forEach { (key, value) -> totalPrice+= value.getItem().price
+            ?.times(value.getItemQuantity()) ?: 0 }
+        return totalPrice
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("hoja re baba", "onResume:i was called ")
+
         val cartList = DataSource.orderList.second
         Log.d("cart fragment","cartList = ${cartList.size}")
         val cartListHM = this.arguments?.getSerializable("cartItems")
@@ -66,14 +99,13 @@ class CartFragment : Fragment() {
         if(cartListHM!=null) {
             v = cartListHM as HashMap<String, CartItem>
         }
-            Log.d("cart fragment","cartListHm = ${(v).size}")
+        Log.d("cart fragment","cartListHm = ${(v).size}")
 
         cartItemList = if(cartListHM!=null){
             cartListHM as HashMap<String, CartItem>
 
         } else cartList
 
-//        readData()
 
         if(cartItemList.size==0) {
             binding.emptyCart.visibility=View.VISIBLE
@@ -98,7 +130,6 @@ class CartFragment : Fragment() {
 
         //payment fragment
         binding.proceedToPayTV.setOnClickListener{
-
             // update code ---
             if(DataSource.orderList.first?.name == "") {
                 activity?.supportFragmentManager?.beginTransaction()
@@ -110,13 +141,41 @@ class CartFragment : Fragment() {
                 binding.selectAddressBtn.performClick()
                 return@setOnClickListener
             }
-            val bundle=Bundle()
-            bundle.putString("Final Amount",(totalPrice()-70+80).toString())
-            val paymentFragment=PaymentFragment()
-            paymentFragment.arguments=bundle
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragmentContainerView,paymentFragment)?.addToBackStack(null)
-                ?.commit()
+            val email = DataSource.user?.email.toString()
+            val phone = DataSource.user?.phone.toString()
+            val amount = totalPrice().toString()
+
+//            makePayment(email,phone,amount)
+            val firebaseDB  = FirebaseFirestore.getInstance()
+            val Order= Order(
+                DataSource!!.user!!.id.toString(),
+                DataSource.orderList.first?.id.toString(),
+                DataSource.orderList.second.values.toList(),
+                Timestamp( Date().time),
+                amount.toInt(),
+                -1,
+                DataSource.orderAddress,
+                0,
+                null)
+            Log.d("order",Order.toString())
+            firebaseDB.collection("orders").add(Order).addOnSuccessListener { document ->
+                val intent = Intent(requireActivity(),PaymentActivity::class.java)
+                intent.putExtra("email",email)
+                    .putExtra("phone",phone)
+                    .putExtra("amount",amount)
+                    .putExtra("ORDER_ID",document.id)
+                startActivity(intent)
+            }
+
+
+
+//            val bundle=Bundle()
+//            bundle.putString("Final Amount",(totalPrice()-70+80).toString())
+//            val paymentFragment=PaymentFragment()
+//            paymentFragment.arguments=bundle
+//            activity?.supportFragmentManager?.beginTransaction()
+//                ?.replace(R.id.fragmentContainerView,paymentFragment)?.addToBackStack(null)
+//                ?.commit()
         }
 
         binding.goToMenu.setOnClickListener {
@@ -197,15 +256,7 @@ class CartFragment : Fragment() {
         binding.payableAmount.text = "₹ "+ (total-70+80).toString()
         binding.finalAmount.text = "₹ "+ (total-70+80).toString()
 
-
-        return binding.root
     }
 
-    private fun totalPrice():Long{
-        var totalPrice:Long = 0
-        cartItemList.forEach { (key, value) -> totalPrice+= value.getItem().price
-            ?.times(value.getItemQuantity()) ?: 0 }
-        return totalPrice
-    }
 
 }

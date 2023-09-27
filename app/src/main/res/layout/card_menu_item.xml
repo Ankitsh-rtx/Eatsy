@@ -21,8 +21,8 @@
 
             <ImageView
                 android:id="@+id/item_veg"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
                 android:layout_marginStart="2dp"
                 android:src="@drawable/ic_veg"
                 app:layout_constraintStart_toStartOf="parent"
@@ -35,12 +35,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="20dp"
-
                 android:fontFamily="@font/metropolis_semibold"
                 android:text="Margherita Pizza"
                 android:textColor="#121212"
-                android:textSize="20sp"
-
+                android:textSize="19sp"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_veg" />

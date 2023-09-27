@@ -22,6 +22,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.LocalCacheSettings
 import java.util.Locale
+import kotlin.math.log
 
 class SearchFragment : Fragment() {
     private lateinit var binding:FragmentSearchBinding
@@ -44,14 +45,14 @@ class SearchFragment : Fragment() {
         binding.searchResultRecyclerview.layoutManager = LinearLayoutManager(requireContext())
 
         binding.searchEdBtn.setOnClickListener {
-            Log.d("SearchFragment", "clicked")
+//            Log.d("SearchFragment", "clicked")
             DataSource.itemSearchList.clear()
             val queryString = binding.searchEdittext.text?.trim().toString()
             binding.searchResultTv.text = "Showing results for '$queryString'"
             val items:MutableList<Item> = mutableListOf()
             db.collection("Items").whereLessThanOrEqualTo("name",queryString).get()
-                .addOnSuccessListener {
-                for(doc in it.documents){
+                .addOnSuccessListener { it ->
+                    for(doc in it.documents){
                     val res = doc.toObject(Item::class.java)
                     if(res?.name?.lowercase(Locale.ROOT)?.contains(queryString) == true) {
                         items.add(res)
@@ -59,18 +60,20 @@ class SearchFragment : Fragment() {
                     }
                 }
                     for (restaurant in DataSource.restaurants) {
-
+//                        Log.d("SearchFragment", "restaurant:${restaurant.id} ")
+                        val tmpItemList = mutableListOf<Item>()
                         restaurant.menus?.forEach {
-                            var tmpItemList = mutableListOf<Item>()
                             for (item in items) {
                                 if (item.id == it) {
-                                        tmpItemList.add(item)
+                                    tmpItemList.add(item)
                                 }
                             }
-                            if (tmpItemList.isNotEmpty()) DataSource.itemSearchList.put(
+                            if (tmpItemList.isNotEmpty()) {
+                                DataSource.itemSearchList.put(
                                     restaurant,
                                     tmpItemList
-                            )
+                                )
+                            }
                         }
                     }
                     binding.resultLayout.visibility = View.VISIBLE
