@@ -1,5 +1,6 @@
 package com.example.eatsy.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
@@ -38,7 +39,27 @@ class OrderHistoryAdapter(
             1-> "Dispatched"
             else-> "Delivered"
         }
-        holder.binding.orderDetailsTv.text = order.getItemString()
+        holder.binding.orderDetailsTv.text = getItemString(order.items)
         holder.binding.orderDateTv.text = order.timeZone?.toString()
+    }
+    fun getItemString(items:List<Any>?): String {
+        val str = StringBuilder()
+
+        items?.forEach { item ->
+
+            val ite=item as HashMap<String,Any>
+            Log.d("Noob", "getItemString: "+ ite["itemQuantity"].toString())
+            val menu = (ite["item"] ) as HashMap<String,Any>
+            val quantity = ite["itemQuantity"] as Long
+            str.append("${menu["name"]}($quantity), ")
+        }
+
+        // Remove the trailing comma and space if there are items in the list
+        if (str.isNotEmpty()) {
+            str.deleteCharAt(str.length - 1) // Remove the trailing comma
+            str.deleteCharAt(str.length - 1) // Remove the trailing space
+        }
+
+        return str.toString()
     }
 }
