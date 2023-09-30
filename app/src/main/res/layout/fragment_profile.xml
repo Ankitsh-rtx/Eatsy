@@ -365,6 +365,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:padding="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -380,14 +384,15 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/metropolis_regular"
+                android:fontFamily="@font/metropolis_medium"
                 android:gravity="center_vertical"
                 android:text="Orders"
-                android:textStyle="bold" />
+                />
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                app:tint="#80000000"
                 android:src="@drawable/icon_arrow_right" />
         </LinearLayout>
 
@@ -397,14 +402,18 @@
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
+            android:padding="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/order_tab">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
+                android:layout_width="17dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center|center_horizontal"
                 android:src="@drawable/icon_heart_black" />
 
             <TextView
@@ -412,14 +421,15 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/metropolis_regular"
+                android:fontFamily="@font/metropolis_medium"
                 android:gravity="center_vertical"
                 android:text="Favourite Restaurants"
-                android:textStyle="bold" />
+                 />
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                app:tint="#80000000"
                 android:src="@drawable/icon_arrow_right" />
         </LinearLayout>
 
@@ -429,6 +439,10 @@
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
+            android:padding="4dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/favourite_tab">
@@ -445,16 +459,18 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:fontFamily="@font/metropolis_regular"
+                android:fontFamily="@font/metropolis_medium"
                 android:gravity="center_vertical"
                 android:text="Settings"
-                android:textStyle="bold" />
+                />
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/icon_arrow_right" />
+                android:src="@drawable/icon_arrow_right"
+                app:tint="#80000000" />
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
