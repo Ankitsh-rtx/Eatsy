@@ -22,6 +22,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import kotlin.math.log
 
 class OrderHistoryFragment : Fragment() {
     private lateinit var binding:FragmentOrderHistoryBinding
@@ -44,9 +45,8 @@ class OrderHistoryFragment : Fragment() {
 
 
         CoroutineScope(Dispatchers.IO).launch {
-            val ord = loadOrderHistory(db,firebaseAuth,orderList)
+            val ord = loadOrderHistory(db,firebaseAuth,orderList).await()
             withContext(Dispatchers.Main){
-                ord.await()
                 Toast.makeText(requireContext(),"orders->${orderList.size}",Toast.LENGTH_SHORT).show()
                 binding.recyclerView.adapter = OrderHistoryAdapter(orderList)
 
@@ -64,10 +64,14 @@ private fun loadOrderHistory(
 
     val ord = db.collection("orders")
         .whereEqualTo("userId",firebaseAuth.currentUser!!.uid)
-        .get().addOnSuccessListener {
-            it.forEach { orders ->
+        .get().addOnSuccessListener {doc->
+            Log.d("TRY", "loadOrderHistory: "+doc.documents.size.toString())
+            doc.documents.forEach { orders ->
+                Log.d("TRY", "loadOrderHistory: "+orders.toString())
                 val res = orders.toObject(Order::class.java)
-                orderList.add(res)
+                if (res != null) {
+                    orderList.add(res)
+                }
             }
         }.addOnFailureListener {
             Log.d("ProfileFragment:", "$it ")

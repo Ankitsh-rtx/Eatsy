@@ -1,5 +1,6 @@
 package com.example.eatsy.model
 
+import android.util.Log
 import com.example.eatsy.DataSource
 import java.sql.Timestamp
 import java.util.Date
@@ -20,20 +21,12 @@ data class Order(
         val str = StringBuilder()
 
         items?.forEach { item ->
-            if (item is HashMap<*, *>) {
-                val itemEntry = item.entries.firstOrNull()
-                if (itemEntry != null && itemEntry.key is Item && itemEntry.value is Int) {
-                    val menu = itemEntry.key as Item
-                    val quantity = itemEntry.value as Int
-                    str.append("${menu.name}($quantity), ")
-                } else {
-                    // Print a message to help debug the data
-                    println("Invalid data: $item")
-                }
-            } else {
-                // Print a message to help debug the data
-                println("Invalid data type: $item")
-            }
+
+            val ite=item as HashMap<String,Any>
+            Log.d("Noob", "getItemString: "+ ite["itemQuantity"].toString())
+            val menu = (ite["item"] ) as HashMap<String,Any>
+            val quantity = ite["itemQuantity"] as Long
+            str.append("${menu["name"]}($quantity), ")
         }
 
         // Remove the trailing comma and space if there are items in the list
