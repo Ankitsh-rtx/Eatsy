@@ -46,6 +46,7 @@ class SearchAdapter(private val context: Context, private val itemMap: HashMap<R
                 onItemClickListener!!.onClick(restaurant)
             }
         }
+
     }
     fun  setOnClickListener(onItemClickListener: OnItemClickListener){
         this.onItemClickListener=onItemClickListener
