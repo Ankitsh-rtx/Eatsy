@@ -1,21 +1,24 @@
 package com.example.eatsy.adapter
 
 import android.content.Context
-import android.graphics.drawable.GradientDrawable.Orientation
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.eatsy.databinding.AddressViewBinding
+import com.example.eatsy.R
 import com.example.eatsy.databinding.CardSearchItemBinding
-import com.example.eatsy.model.Address
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
+import com.example.eatsy.views.MainActivity
+import com.example.eatsy.views.RestaurantDetailsFragment
+import com.example.eatsy.views.SearchFragment
 
-class SearchAdapter(private val context: Context, private val itemMap: HashMap<Restaurants,MutableList<Item>> )
+class SearchAdapter(private val context: Context, private val itemMap: HashMap<Restaurants,MutableList<Item>>, val activity:FragmentActivity )
     :RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
     private lateinit var onItemClickListener: OnItemClickListener
+
     private val restaurantList: MutableList<Restaurants> = itemMap.keys.toMutableList()
 
     class SearchViewHolder(val binding: CardSearchItemBinding) :
@@ -39,14 +42,28 @@ class SearchAdapter(private val context: Context, private val itemMap: HashMap<R
         holder.binding.searchRecyclerview.setHasFixedSize(true)
         holder.binding.searchRecyclerview.layoutManager =
             StaggeredGridLayoutManager(1, RecyclerView.HORIZONTAL)
-        val adapter = SearchAdapterChildItems(context, itemsList)
+        val adapter = SearchAdapterChildItems(context, itemsList, restaurant)
+        adapter.setOnClickListener(object : SearchAdapterChildItems.OnItemClickListener{
+            override fun onItemClick(restaurants: Restaurants) {
+                val args = Bundle()
+                args.putSerializable("res",restaurants)
+                val newFragment = RestaurantDetailsFragment()
+                newFragment.arguments = args
+                // Log.d("Restaurant Adapter", "onBindViewHolder: ${item.name}")
+
+                activity.supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerView, newFragment).addToBackStack(null)
+                    .commit()
+            }
+        })
+
         holder.binding.searchRecyclerview.adapter = adapter
+
         holder.itemView.setOnClickListener {
             if (onItemClickListener != null) {
                 onItemClickListener!!.onClick(restaurant)
             }
         }
-
     }
     fun  setOnClickListener(onItemClickListener: OnItemClickListener){
         this.onItemClickListener=onItemClickListener
