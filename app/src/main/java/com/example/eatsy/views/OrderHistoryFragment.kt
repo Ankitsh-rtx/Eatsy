@@ -43,13 +43,15 @@ class OrderHistoryFragment : Fragment() {
         val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
         navBar.visibility = View.GONE
 
+        binding.imageView24.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStackImmediate()
+        }
 
         CoroutineScope(Dispatchers.IO).launch {
-            val ord = loadOrderHistory(db,firebaseAuth,orderList).await()
+            loadOrderHistory(db,firebaseAuth,orderList).await()
             withContext(Dispatchers.Main){
                 Toast.makeText(requireContext(),"orders->${orderList.size}",Toast.LENGTH_SHORT).show()
                 binding.recyclerView.adapter = OrderHistoryAdapter(orderList)
-
             }
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -57,7 +59,7 @@ class OrderHistoryFragment : Fragment() {
         return binding.root
     }
 }
-private fun loadOrderHistory(
+private  fun  loadOrderHistory(
     db: FirebaseFirestore,
     firebaseAuth: FirebaseAuth,
     orderList:MutableList<Order>): Task<QuerySnapshot> {
@@ -78,3 +80,5 @@ private fun loadOrderHistory(
         }
     return ord
 }
+
+

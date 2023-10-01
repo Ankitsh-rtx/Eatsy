@@ -30,8 +30,8 @@ class OrderHistoryAdapter(
                     order.restaurantName.toString()
                 else order.restaurantId.toString()
                 )
-        holder.binding.orderRestaurantAddressTv.text = order.restaurantId.toString()
-        holder.binding.orderPriceTv.text = "$"+order.totalPrice.toString()
+//        holder.binding.orderRestaurantAddressTv.text = order.restaurantId.toString()
+        holder.binding.orderPriceTv.text = "₹"+order.totalPrice.toString()
 
         holder.binding.orderStatusTv.text = when(order.status){
             -1-> "Cancelled"
@@ -51,7 +51,7 @@ class OrderHistoryAdapter(
             Log.d("Noob", "getItemString: "+ ite["itemQuantity"].toString())
             val menu = (ite["item"] ) as HashMap<String,Any>
             val quantity = ite["itemQuantity"] as Long
-            str.append("${menu["name"]}($quantity), ")
+            str.append("${menu["name"]} ($quantity) ₹${menu["price"]}, ")
         }
 
         // Remove the trailing comma and space if there are items in the list

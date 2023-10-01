@@ -56,7 +56,6 @@ class HomeFragment : Fragment() {
                         it
                     )
                 }
-
         }.addOnFailureListener {
             Log.d("firebase", "onCreateView: error on loading data",it)
         }

@@ -35,156 +35,6 @@
         app:tint="@color/black_200" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/help_tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:background="@color/white"
-        android:paddingStart="8dp"
-        android:paddingTop="20dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="20dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/refund_tab_layout">
-
-        <TextView
-            android:id="@+id/help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/metropolis_semibold"
-            android:text="Help"
-            android:textColor="@color/black_800"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/links"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/metropolis_regular"
-            android:text="FAQs &amp; Links"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/help"
-            app:layout_constraintTop_toBottomOf="@+id/help" />
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_arrow_right"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/refund_tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:background="@color/white"
-        android:paddingStart="8dp"
-        android:paddingTop="20dp"
-        android:paddingEnd="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        android:paddingBottom="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_tab_layout">
-
-        <ImageView
-            android:id="@+id/imageDrop2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_arrow_down"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/refundPaymentStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/metropolis_semibold"
-            android:text="Refunds &amp; Payment"
-            android:textColor="@color/black_800"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/refundHelperText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/metropolis_regular"
-            android:text="Refund Stauts &amp; Payment Modes"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/refundPaymentStatus"
-            app:layout_constraintTop_toBottomOf="@+id/refundPaymentStatus" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/address_tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:background="@color/white"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
-        android:paddingStart="8dp"
-        android:paddingTop="20dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_details">
-
-        <TextView
-            android:id="@+id/address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/metropolis_semibold"
-            android:text="Address"
-            android:textColor="@color/black_800"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/addressInfoText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/metropolis_regular"
-            android:text="Share, Edit &amp; Add New Address"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/address"
-            app:layout_constraintTop_toBottomOf="@+id/address" />
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_arrow_right"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -252,6 +102,13 @@
             app:layout_constraintTop_toTopOf="@+id/username" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/account_tab_layout"
@@ -262,7 +119,6 @@
         android:paddingStart="8dp"
         android:paddingTop="20dp"
         android:paddingEnd="8dp"
-        android:paddingBottom="20dp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackgroundBorderless"
@@ -296,63 +152,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/metropolis_regular"
             android:text="Orders, Favourites &amp; Settings"
             android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/account"
             app:layout_constraintTop_toBottomOf="@+id/account" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/logout"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:background="@color/white"
-        android:paddingStart="8dp"
-        android:paddingTop="24dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="24dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:layout_height="1dp"
+        android:background="@color/black_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/help_tab_layout">
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_arrow_right"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/log_out_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/metropolis_semibold"
-            android:text="logout options"
-            android:textAllCaps="true"
-            android:textColor="@color/black_900"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView6"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/account_details"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/account_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:padding="8dp"
+        android:background="@color/white"
+        android:padding="4dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:visibility="gone"
@@ -400,7 +222,7 @@
             android:id="@+id/favourite_tab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:orientation="horizontal"
             android:padding="4dp"
             android:clickable="true"
@@ -437,7 +259,7 @@
             android:id="@+id/settings_tab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:orientation="horizontal"
             android:padding="4dp"
             android:clickable="true"
@@ -470,6 +292,221 @@
                 android:src="@drawable/icon_arrow_right"
                 app:tint="#80000000" />
         </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address_tab_layout"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/address_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:paddingStart="8dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_details">
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/metropolis_semibold"
+            android:text="Address"
+            android:textColor="@color/black_800"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/addressInfoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/metropolis_regular"
+            android:text="Share, Edit &amp; Add New Address"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/address"
+            app:layout_constraintTop_toBottomOf="@+id/address" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_arrow_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/help_tab_layout"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/refund_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingStart="8dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:paddingBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/address_tab_layout">
+
+        <ImageView
+            android:id="@+id/imageDrop2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_arrow_down"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/refundPaymentStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/metropolis_semibold"
+            android:text="Refunds &amp; Payment"
+            android:textColor="@color/black_800"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/refundHelperText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/metropolis_regular"
+            android:text="Refund Stauts &amp; Payment Modes"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/refundPaymentStatus"
+            app:layout_constraintTop_toBottomOf="@+id/refundPaymentStatus" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/refund_tab_layout"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/help_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingStart="8dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="20dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/refund_tab_layout">
+
+        <TextView
+            android:id="@+id/help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/metropolis_semibold"
+            android:text="Help"
+            android:textColor="@color/black_800"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/links"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/metropolis_regular"
+            android:text="FAQs &amp; Links"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/help"
+            app:layout_constraintTop_toBottomOf="@+id/help" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_arrow_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@color/white"
+        android:paddingStart="8dp"
+        android:paddingTop="24dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/help_tab_layout">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_arrow_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/log_out_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/metropolis_semibold"
+            android:text="logout"
+            android:textAllCaps="true"
+            android:textColor="@color/black_900"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView6"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

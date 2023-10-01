@@ -63,9 +63,18 @@ class ProfileFragment : Fragment() {
                 .replace(R.id.fragmentContainerView,Add_basic_detail_fragment()).commit()
         }
         binding.accountTabLayout.setOnClickListener{
+            val open = binding.accountHelper.visibility
             val view = binding.accountDetails.visibility
-            if (view==View.VISIBLE) binding.accountDetails.visibility = View.GONE
-            else binding.accountDetails.visibility = View.VISIBLE
+            if (view==View.VISIBLE){
+                binding.accountDetails.visibility = View.GONE
+                binding.accountHelper.visibility = View.VISIBLE
+            }
+            else {
+                binding.accountDetails.visibility = View.VISIBLE
+                binding.accountHelper.visibility = View.GONE
+
+            }
+
         }
         binding.orderTab.setOnClickListener{
             requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null)

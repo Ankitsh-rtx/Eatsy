@@ -31,9 +31,16 @@ class DiscoverFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDiscoverBinding.inflate(layoutInflater)
 
-        val navBar = activity!!.findViewById<BottomAppBar>(R.id.bottomAppBar)
+        val navBar = requireActivity().findViewById<BottomAppBar>(R.id.bottomAppBar)
         if(navBar.visibility==View.GONE)
             navBar.visibility = View.VISIBLE
+
+        binding.searchEdittext.setOnClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView,SearchFragment())
+                .addToBackStack(null)
+                .commit()
+        }
 
         //instantiation of database
         firebaseDB  = FirebaseFirestore.getInstance()
@@ -62,7 +69,6 @@ class DiscoverFragment : Fragment() {
                         it
                     )
                 }
-//
         }.addOnFailureListener {
             Log.d("firebase", "onCreateView: error on loading data",it)
         }
