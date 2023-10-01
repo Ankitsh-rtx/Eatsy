@@ -22,6 +22,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.LocalCacheSettings
 import java.util.Locale
+import java.util.Objects
 import kotlin.math.log
 
 class SearchFragment : Fragment() {
@@ -79,7 +80,21 @@ class SearchFragment : Fragment() {
                     binding.resultLayout.visibility = View.VISIBLE
                     binding.recentSearchLayout.visibility = View.INVISIBLE
                     val adapter = SearchAdapter(requireContext(),DataSource.itemSearchList)
+                    adapter.setOnClickListener(object : SearchAdapter.OnItemClickListener{
+                        override fun onClick(restaurants: Restaurants) {
+                            val args = Bundle()
+                            args.putSerializable("res",restaurants)
+                            val newFragment = RestaurantDetailsFragment()
+                            newFragment.arguments = args
+                            // Log.d("Restaurant Adapter", "onBindViewHolder: ${item.name}")
+
+                            requireActivity().supportFragmentManager.beginTransaction()
+                                .replace(R.id.fragmentContainerView, newFragment).addToBackStack(R.id.homeFragment.toString())
+                                .commit()
+                        }
+                    })
                     binding.searchResultRecyclerview.adapter = adapter
+
 
             }.addOnFailureListener {
                 Log.d("SearchFragment","failed due to $it")
