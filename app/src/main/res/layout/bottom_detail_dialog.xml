@@ -49,16 +49,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vegIcon" />
 
-            <TextView
-                android:id="@+id/itemPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/metropolis_semibold"
-                android:text="40"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleText" />
+        <TextView
+            android:id="@+id/itemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/metropolis_semibold"
+            android:text="40"
+            android:textColor="@color/black_200"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
             <TextView
                 android:id="@+id/itemRating"
@@ -73,17 +74,18 @@
                 app:layout_constraintStart_toEndOf="@+id/icon_star"
                 app:layout_constraintTop_toTopOf="@+id/icon_star" />
 
-            <TextView
-                android:id="@+id/itemDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+        <TextView
+            android:id="@+id/itemDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
 
-                android:text="this is sample info about the item. this is sample info about the item.this is sample info about the item.this is sample info about the item."
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/itemRating" />
+            android:text="this is sample info about the item. this is sample info about the item.this is sample info about the item.this is sample info about the item."
+            android:textColor="@color/black_200"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemRating" />
 
         <TextView
             android:id="@+id/addBtn"

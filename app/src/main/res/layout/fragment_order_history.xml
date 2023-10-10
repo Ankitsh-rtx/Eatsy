@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".views.OrderHistoryFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,15 +17,15 @@
             android:layout_height="32dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="8dp"
-            android:elevation="2dp"
-            android:padding="4dp"
-            app:tint="@color/black_200"
             android:clickable="true"
+            android:elevation="2dp"
             android:focusable="true"
             android:foreground="@drawable/ripple_effect"
+            android:padding="4dp"
             android:src="@drawable/icon_arrow_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black_200" />
 
         <TextView
             android:id="@+id/textView15"

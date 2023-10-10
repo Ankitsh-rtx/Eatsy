@@ -41,6 +41,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/metropolis_semibold"
         android:text="$420"
+        android:textColor="@color/black_200"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/search_item_image"
         app:layout_constraintStart_toStartOf="parent"

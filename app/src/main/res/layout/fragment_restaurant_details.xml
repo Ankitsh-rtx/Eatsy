@@ -10,6 +10,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +49,7 @@
                     android:fontFamily="@font/metropolis_regular"
                     android:gravity="center"
                     android:text="Sort"
+                    android:textColor="#595959"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -104,6 +106,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/white"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -204,6 +207,7 @@
                             android:layout_marginEnd="16dp"
                             android:fontFamily="@font/metropolis_regular"
                             android:text="Tibetian, Healthy Food"
+                            android:textColor="@color/black_200"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -254,6 +258,7 @@
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/metropolis_medium"
                             android:text="Location"
+                            android:textColor="@color/black_200"
                             android:textSize="13sp"
                             app:layout_constraintBottom_toBottomOf="@+id/textView13"
                             app:layout_constraintStart_toEndOf="@+id/textView13"
@@ -281,6 +286,7 @@
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/metropolis_medium"
                             android:text="20min"
+                            android:textColor="@color/black_200"
                             android:textSize="12sp"
                             app:layout_constraintBottom_toBottomOf="@+id/delivery_time_title"
                             app:layout_constraintStart_toEndOf="@+id/delivery_time_title"
@@ -373,6 +379,7 @@
                     android:fontFamily="@font/metropolis_regular"
                     android:gravity="center"
                     android:text="Veg"
+                    android:textColor="#595959"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -416,6 +423,7 @@
                     android:fontFamily="@font/metropolis_regular"
                     android:gravity="center"
                     android:text="Non-veg"
+                    android:textColor="#595959"
                     android:textStyle="bold" />
 
             </LinearLayout>

@@ -16,11 +16,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view10">
 
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/metropolis_medium"
+            android:text="Select Country"
+            android:textColor="@color/black_200"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <Spinner
             android:id="@+id/country"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_button"
             android:includeFontPadding="false"
@@ -29,33 +44,48 @@
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/metropolis_medium"
+            android:text="Select State"
+            android:textColor="@color/black_200"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/country" />
 
         <Spinner
             android:id="@+id/state"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_button"
             android:hint="state"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/country" />
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
         <EditText
             android:id="@+id/city"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_button"
             android:hint="city"
             android:inputType="textPostalAddress"
             android:padding="8dp"
+            android:textColorHint="@color/black_200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/state" />
@@ -65,13 +95,14 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_button"
             android:ems="10"
             android:hint="street"
             android:inputType="textPostalAddress"
             android:padding="8dp"
+            android:textColorHint="@color/black_200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/city" />
@@ -81,12 +112,13 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_button"
             android:hint="pincode"
             android:inputType="number"
             android:padding="8dp"
+            android:textColorHint="@color/black_200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/street" />
@@ -96,12 +128,13 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_button"
             android:hint="landmark"
             android:inputType="textPersonName"
             android:padding="8dp"
+            android:textColorHint="@color/black_200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pincode" />
@@ -113,6 +146,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/background_button"
             android:backgroundTint="@color/orange_500"
             android:clickable="true"

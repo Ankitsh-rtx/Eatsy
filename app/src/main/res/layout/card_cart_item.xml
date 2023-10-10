@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal"
-        android:paddingEnd="20dp"
         android:paddingStart="20dp"
         android:paddingTop="10dp"
+        android:paddingEnd="20dp"
         android:paddingBottom="10dp">
 
         <TextView
             android:id="@+id/cart_item_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
             android:fontFamily="@font/metropolis_medium"
             android:text="Chicken Zinger Burger - Classic"
+            android:textColor="@color/black_200"
             android:textSize="16sp"
-            android:layout_marginEnd="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/count_linear_layout"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/count_linear_layout"
@@ -44,10 +45,10 @@
                 android:id="@+id/cart_item_remove_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/icon_minus"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="@drawable/ripple_effect"
+                app:srcCompat="@drawable/icon_minus"
                 app:tint="@color/green_500" />
 
             <TextView
@@ -65,10 +66,10 @@
                 android:id="@+id/cart_item_add_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/icon_add"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="@drawable/ripple_effect"
+                app:srcCompat="@drawable/icon_add"
                 app:tint="@color/green_500" />
         </LinearLayout>
 
@@ -77,21 +78,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/metropolis_semibold"
-            android:text="Rs 251542107"
-            android:textSize="14sp"
             android:gravity="end"
+            android:text="Rs 251542107"
+            android:textColor="@color/black_200"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/count_linear_layout"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintGuide_percent="0.5"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

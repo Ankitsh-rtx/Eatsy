@@ -50,7 +50,8 @@
             android:buttonTint="@color/red_700"
             android:layoutDirection="rtl"
             android:text="Cost: High to Low"
-            android:textAlignment="textStart" />
+            android:textAlignment="textStart"
+            android:textColor="@color/black_800" />
 
         <RadioButton
             android:id="@+id/ascending"
@@ -60,7 +61,8 @@
             android:buttonTint="@color/red_700"
             android:layoutDirection="rtl"
             android:text="Cost: Low to High"
-            android:textAlignment="textStart" />
+            android:textAlignment="textStart"
+            android:textColor="@color/black_800" />
 
     </RadioGroup>
 
