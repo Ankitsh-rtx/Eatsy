@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://play.google.com/store/apps/your-app-link"><img src="google-play-badge.png" alt="Download on Google Play"></a>
+  <a href="eatsy.apk"><img src="google-play-badge.png" alt="Download on Google Play"></a>
 </p>
 
 ## Overview
