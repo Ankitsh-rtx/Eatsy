@@ -183,18 +183,25 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ScrollView
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recent_search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/result_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="@color/silver_white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/recent_search_layout"
-        app:layout_constraintVertical_bias="0.003">
+        app:layout_constraintVertical_bias="0.324">
 
         <TextView
             android:id="@+id/search_result_tv"
@@ -216,19 +223,22 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@+id/search_result_recyclerview1"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_result_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/search_result_tv"
+            app:layout_constraintVertical_bias="0.076" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_result_recyclerview1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

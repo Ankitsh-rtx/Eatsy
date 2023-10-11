@@ -45,7 +45,7 @@ class SearchFragment : Fragment() {
 
             val queryString = binding.searchEdittext.text?.trim().toString()
             var restaurantslist= DataSource.restaurants.filter {
-                it.name.contains(queryString)
+                it.name.lowercase().contains(queryString)
             }
             binding.searchResultTv.text = "Showing results for '$queryString'"
             val items:MutableList<Item> = mutableListOf()

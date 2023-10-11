@@ -29,6 +29,7 @@ class SearchRestaurantAdaptor(private val context: Context, private val itemsLis
 
         holder.binding.searchRestaurantName.text = item.name
         Glide.with(context).load(item.image).into(holder.binding.searchRestaurantImage)
+        holder.binding.searchRating.text=item.rating.toString()
     }
 
 }
