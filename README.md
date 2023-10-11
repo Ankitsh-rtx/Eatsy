@@ -37,9 +37,21 @@ EATSY is a feature-rich food delivery application that allows you to order delic
 
 <!-- Add screenshots or GIFs of your app in action -->
 <p align="center">
-  <img src="screenshot1.png" alt="Screenshot 1" width="200">
-  <img src="screenshot2.png" alt="Screenshot 2" width="200">
-  <img src="screenshot3.png" alt="Screenshot 3" width="200">
+  <img src="splash.png" alt="Screenshot 1" width="200">
+  <img src="signup.png" alt="Screenshot 2" width="200">
+  <img src="loading splash.png" alt="Screenshot 3" width="200">
+  <img src="home page.png" alt="Screenshot 3" width="200">
+  <img src="restaurant details.png" alt="Screenshot 3" width="200">
+  <img src="item detail.png" alt="Screenshot 3" width="200">
+  <img src="sort.png" alt="Screenshot 3" width="200">
+  <img src="nonveg.png" alt="Screenshot 3" width="200">
+  <img src="replace item.png" alt="Screenshot 3" width="200">
+  <img src="cart.png" alt="Screenshot 3" width="200">
+  <img src="order confirm.png" alt="Screenshot 3" width="200">
+  <img src="order notification.png" alt="Screenshot 3" width="200">
+  <img src="search page.png" alt="Screenshot 3" width="200">
+  <img src="profile page.png" alt="Screenshot 3" width="200">
+  <img src="order history.png" alt="Screenshot 3" width="200">
 </p>
 
 ## Getting Started
