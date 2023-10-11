@@ -59,3 +59,6 @@ EATSY is a feature-rich food delivery application that allows you to order delic
 1. Clone the repository
    ```sh
    git clone https://github.com/yourusername/EATSY.git
+
+2. Open the project in Android Studio.
+3. Build and run the app on your Android device or emulator.
