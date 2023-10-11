@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/metropolis_regular"
             android:text="West Bengal, India"
+            android:textColor="@color/black_200"
             app:layout_constraintEnd_toStartOf="@+id/profileImage"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/location"
@@ -155,6 +156,7 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/metropolis_semibold"
                 android:text="EXPLORE"
+                android:textColor="@color/black_200"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -188,12 +190,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     app:cardCornerRadius="20dp"
                     app:cardUseCompatPadding="true">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/white"
                         android:padding="8dp">
 
                         <ImageView
@@ -244,12 +248,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     app:cardCornerRadius="20dp"
                     app:cardUseCompatPadding="true">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/white"
                         android:padding="8dp">
 
                         <ImageView
@@ -283,7 +289,7 @@
                             android:layout_marginBottom="4dp"
                             android:fontFamily="@font/metropolis_medium"
                             android:text="Selections"
-                            android:textColor="#8F9193"
+                            android:textColor="#595959"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -300,12 +306,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/white"
                     app:cardCornerRadius="20dp"
                     app:cardUseCompatPadding="true">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/white"
                         android:padding="8dp">
 
                         <ImageView
@@ -339,7 +347,7 @@
                             android:layout_marginBottom="4dp"
                             android:fontFamily="@font/metropolis_medium"
                             android:text="Curated dishes"
-                            android:textColor="#8F9193"
+                            android:textColor="#595959"
                             android:textSize="12sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -371,6 +379,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/metropolis_semibold"
                 android:text="WHAT'S ON YOUR MIND?"
+                android:textColor="@color/black_200"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -415,6 +424,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/metropolis_semibold"
                 android:text="ALL RESTAURANTS"
+                android:textColor="@color/black_200"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

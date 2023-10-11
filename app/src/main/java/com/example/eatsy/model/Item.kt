@@ -1,7 +1,4 @@
 package com.example.eatsy.model
-
-import java.lang.invoke.TypeDescriptor
-
 data class Item @JvmOverloads constructor(
         val name: String?="",
         val image: String? = null,

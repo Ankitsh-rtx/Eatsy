@@ -1,24 +1,31 @@
 package com.example.eatsy.views
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import androidx.core.content.ContextCompat
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
-import com.example.eatsy.databinding.ActivityMainBinding
 import com.example.eatsy.databinding.FragmentProfileBinding
-import com.example.eatsy.model.Item
 import com.example.eatsy.model.Order
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks.await
 import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 
 class ProfileFragment : Fragment() {
@@ -56,30 +63,31 @@ class ProfileFragment : Fragment() {
                 .replace(R.id.fragmentContainerView,Add_basic_detail_fragment()).commit()
         }
         binding.accountTabLayout.setOnClickListener{
+            val open = binding.accountHelper.visibility
             val view = binding.accountDetails.visibility
-            if (view==View.VISIBLE) binding.accountDetails.visibility = View.GONE
-            else binding.accountDetails.visibility = View.VISIBLE
-        }
-        binding.orderTab.setOnClickListener{val orders = db.collection("orders").whereEqualTo("userId",firebaseAuth.currentUser!!.uid)
-            orders.get().addOnSuccessListener {
-                it.forEach { orders ->
-                    val res = orders.toObject(Order::class.java)
-                    Log.d("ProfileFragment:","${res.restaurantId}-> ${res.totalPrice}")
-                }
-            }.addOnFailureListener {
-                Log.d("ProfileFragment:", "$it ")
+            if (view==View.VISIBLE){
+                binding.accountDetails.visibility = View.GONE
+                binding.accountHelper.visibility = View.VISIBLE
             }
-        }
+            else {
+                binding.accountDetails.visibility = View.VISIBLE
+                binding.accountHelper.visibility = View.GONE
 
+            }
+
+        }
+        binding.orderTab.setOnClickListener{
+            requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null)
+                .replace(R.id.fragmentContainerView,OrderHistoryFragment()).commit()
+
+        }
         binding.logout.setOnClickListener {
             firebaseAuth.signOut()
             val intent = Intent(requireContext(), LoginActivity::class.java)
             startActivity(intent)
             requireActivity().finish()
         }
-
         return binding.root
     }
-
-
 }
+

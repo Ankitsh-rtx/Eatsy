@@ -1,28 +1,22 @@
 package com.example.eatsy.views
 
 import android.os.Bundle
-import android.provider.ContactsContract.Data
-import android.provider.UserDictionary.Words.LOCALE
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.adapter.SearchAdapter
-import com.example.eatsy.adapter.SearchAdapterChildItems
+import com.example.eatsy.adapter.SearchRestaurantAdaptor
 import com.example.eatsy.databinding.FragmentSearchBinding
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.LocalCacheSettings
 import java.util.Locale
-import kotlin.math.log
 
 class SearchFragment : Fragment() {
     private lateinit var binding:FragmentSearchBinding
@@ -43,11 +37,16 @@ class SearchFragment : Fragment() {
         }
 
         binding.searchResultRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+        binding.searchResultRecyclerview1.layoutManager = LinearLayoutManager(requireContext())
 
         binding.searchEdBtn.setOnClickListener {
 //            Log.d("SearchFragment", "clicked")
             DataSource.itemSearchList.clear()
+
             val queryString = binding.searchEdittext.text?.trim().toString()
+            var restaurantslist= DataSource.restaurants.filter {
+                it.name.lowercase().contains(queryString)
+            }
             binding.searchResultTv.text = "Showing results for '$queryString'"
             val items:MutableList<Item> = mutableListOf()
             db.collection("Items").whereLessThanOrEqualTo("name",queryString).get()
@@ -78,8 +77,25 @@ class SearchFragment : Fragment() {
                     }
                     binding.resultLayout.visibility = View.VISIBLE
                     binding.recentSearchLayout.visibility = View.INVISIBLE
-                    val adapter = SearchAdapter(requireContext(),DataSource.itemSearchList)
+                    val adapter = SearchAdapter(requireContext(),DataSource.itemSearchList,requireActivity())
+                    adapter.setOnClickListener(object : SearchAdapter.OnItemClickListener{
+                        override fun onClick(restaurants: Restaurants) {
+                            val args = Bundle()
+                            args.putSerializable("res",restaurants)
+                            val newFragment = RestaurantDetailsFragment()
+                            newFragment.arguments = args
+                            // Log.d("Restaurant Adapter", "onBindViewHolder: ${item.name}")
+
+                            requireActivity().supportFragmentManager.beginTransaction()
+                                .replace(R.id.fragmentContainerView, newFragment).addToBackStack(R.id.homeFragment.toString())
+                                .commit()
+                        }
+                    })
                     binding.searchResultRecyclerview.adapter = adapter
+
+                    val adapterRsetaurant = SearchRestaurantAdaptor(requireContext(),restaurantslist)
+                    binding.searchResultRecyclerview1.adapter=adapterRsetaurant
+
 
             }.addOnFailureListener {
                 Log.d("SearchFragment","failed due to $it")

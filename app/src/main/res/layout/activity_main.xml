@@ -25,18 +25,18 @@
             android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hideOnScroll="true"
-            android:layout_gravity="bottom">
+            android:layout_gravity="bottom"
+            app:hideOnScroll="true">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigationView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
                 android:layout_marginEnd="16dp"
                 app:itemIconSize="24dp"
                 app:itemRippleColor="@null"
                 app:labelVisibilityMode="labeled"
+                app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
                 app:menu="@menu/menu" />
 
         </com.google.android.material.bottomappbar.BottomAppBar>

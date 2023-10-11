@@ -51,8 +51,9 @@ class PaymentFragment : Fragment() {
             val Order=Order(
                 DataSource!!.user!!.id.toString(),
                 DataSource.orderList.first?.id.toString(),
+                DataSource.orderList.first?.name.toString(),
                 DataSource.orderList.second.values.toList(),
-                Timestamp( Date().time),
+                Timestamp(Date().time),
                 this.arguments?.getString("Final Amount")?.toInt(),
                 0,
                 DataSource.orderAddress,

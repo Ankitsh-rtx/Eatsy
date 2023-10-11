@@ -35,29 +35,16 @@ class MenuListAdapter (
     private val context: Context,
     val item: MutableList<Item>,
     // menu item received from the restaurant details activity
-//    val view :FragmentRestaurantDetailBinding
     val view: FragmentRestaurantDetailsBinding,
     val res: Restaurants?
 ) : RecyclerView.Adapter<MenuListAdapter.MenuViewHolder>() {
 
-     private  lateinit var v: FragmentRestaurantDetailsBinding
-     val cartItemList = DataSource.orderList.second
+     private lateinit var v: FragmentRestaurantDetailsBinding
+     private val cartItemList = DataSource.orderList.second
     private var cart = DataSource.orderList
-//    private lateinit var mListener: OnItemClickListener
-
-//    interface OnItemClickListener{
-//        fun onItemClick(view:View, position: Int)
-//        fun onItemAddClick(view:View, position: Int)
-//        fun onItemRemoveClick(view: View, position: Int)
-//    }
-//
-//    fun setOnItemClickListener(listener: OnItemClickListener){
-//        mListener = listener
-//    }
 
     class MenuViewHolder (val binding: CardMenuItemBinding):
         RecyclerView.ViewHolder(binding.root){
-
 
         //constructor
 //        init{
@@ -78,7 +65,6 @@ class MenuListAdapter (
         viewType: Int
     ): MenuViewHolder {
         v= FragmentRestaurantDetailsBinding.bind(view.root)
-
         val binding = CardMenuItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MenuViewHolder(binding)
     }

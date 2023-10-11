@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
         android:layout_height="wrap_content"
     >
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,6 +75,7 @@
                     android:fontFamily="@font/metropolis_regular"
                     android:paddingStart="4dp"
                     android:text="More details"
+                    android:textColor="@color/black_200"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/item_price"
                     app:layout_constraintTop_toBottomOf="@+id/item_price" />
@@ -143,28 +146,28 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_margin="4dp"
-            android:padding="4dp"
-            android:visibility="invisible"
             android:clickable="true"
+            android:elevation="3dp"
             android:focusable="true"
             android:foreground="?actionBarItemBackground"
-            android:elevation="3dp"
-            app:tint="@color/green_500"
+            android:padding="4dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/item_add_button"
             app:layout_constraintEnd_toEndOf="@+id/item_add_button"
             app:layout_constraintTop_toTopOf="@+id/item_add_button"
-            app:srcCompat="@drawable/icon_add" />
+            app:srcCompat="@drawable/icon_add"
+            app:tint="@color/green_500" />
 
         <ImageView
             android:id="@+id/item_remove_btn"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_margin="4dp"
-            android:padding="4dp"
-            android:elevation="3dp"
             android:clickable="true"
+            android:elevation="3dp"
             android:focusable="true"
             android:foreground="?actionBarItemBackground"
+            android:padding="4dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/item_add_button"
             app:layout_constraintStart_toStartOf="@+id/item_add_button"

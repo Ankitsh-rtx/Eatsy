@@ -10,6 +10,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +21,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
             <LinearLayout
                 android:id="@+id/sort"
@@ -37,25 +39,26 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/icon_filter"
-                     />
+                    android:src="@drawable/icon_filter" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/metropolis_regular"
+                    android:gravity="center"
                     android:text="Sort"
+                    android:textColor="#595959"
                     android:textStyle="bold" />
+
                 <ImageView
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:layout_marginStart="4dp"
                     android:layout_gravity="center"
-                    app:tint="@color/gray_700"
-                    android:src="@drawable/icon_arrow_down"/>
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/icon_arrow_down"
+                    app:tint="@color/gray_700" />
 
             </LinearLayout>
 
@@ -63,14 +66,14 @@
                 android:id="@+id/back_btn"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:padding="4dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="6dp"
-                android:elevation="2dp"
-                android:src="@drawable/icon_arrow_back"
                 android:clickable="true"
+                android:elevation="2dp"
                 android:focusable="true"
                 android:foreground="@drawable/ripple_effect"
+                android:padding="4dp"
+                android:src="@drawable/icon_arrow_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/gray_700" />
@@ -103,6 +106,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/white"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -130,20 +134,20 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="15dp"
-                                android:padding="4dp"
                                 android:clickable="true"
                                 android:focusable="true"
                                 android:foreground="@drawable/ripple_effect"
+                                android:padding="4dp"
                                 android:src="@drawable/icon_share" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="15dp"
-                                android:padding="4dp"
                                 android:clickable="true"
                                 android:focusable="true"
                                 android:foreground="@drawable/ripple_effect"
+                                android:padding="4dp"
                                 android:src="@drawable/icon_heart_black" />
                         </LinearLayout>
 
@@ -203,6 +207,7 @@
                             android:layout_marginEnd="16dp"
                             android:fontFamily="@font/metropolis_regular"
                             android:text="Tibetian, Healthy Food"
+                            android:textColor="@color/black_200"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -253,6 +258,7 @@
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/metropolis_medium"
                             android:text="Location"
+                            android:textColor="@color/black_200"
                             android:textSize="13sp"
                             app:layout_constraintBottom_toBottomOf="@+id/textView13"
                             app:layout_constraintStart_toEndOf="@+id/textView13"
@@ -280,6 +286,7 @@
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/metropolis_medium"
                             android:text="20min"
+                            android:textColor="@color/black_200"
                             android:textSize="12sp"
                             app:layout_constraintBottom_toBottomOf="@+id/delivery_time_title"
                             app:layout_constraintStart_toEndOf="@+id/delivery_time_title"
@@ -344,32 +351,36 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/menu_item_recyclerview" />
+
             <LinearLayout
+                android:id="@+id/veg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/veg"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
                 android:background="@drawable/background_switch"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toEndOf="@id/sort"
                 app:layout_constraintTop_toBottomOf="@id/textView7">
+
                 <ImageView
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    app:tint="@color/green_700"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_veg"/>
+                    android:src="@drawable/ic_veg"
+                    app:tint="@color/green_700" />
+
                 <TextView
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
                     android:fontFamily="@font/metropolis_regular"
-                    android:text="Veg"/>
+                    android:gravity="center"
+                    android:text="Veg"
+                    android:textColor="#595959"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -407,11 +418,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="4dp"
                     android:fontFamily="@font/metropolis_regular"
+                    android:gravity="center"
                     android:text="Non-veg"
+                    android:textColor="#595959"
                     android:textStyle="bold" />
 
             </LinearLayout>

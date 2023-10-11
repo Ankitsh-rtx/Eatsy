@@ -2,7 +2,6 @@ package com.example.eatsy.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +11,10 @@ import com.example.eatsy.databinding.CardSearchItemChildBinding
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
 
-class SearchAdapterChildItems(private val context: Context, private val itemsList: MutableList<Item>):
+class SearchAdapterChildItems(private val context: Context, private val itemsList: MutableList<Item>,
+private val restaurants:Restaurants):
     RecyclerView.Adapter<SearchAdapterChildItems.SearchChildItemViewHolder>() {
+    private lateinit var onItemClickListener: OnItemClickListener
     inner class SearchChildItemViewHolder(val binding:CardSearchItemChildBinding)
         :RecyclerView.ViewHolder(binding.root){
 
@@ -48,6 +49,18 @@ class SearchAdapterChildItems(private val context: Context, private val itemsLis
             }
         }
         Glide.with(context).load(item.image).into(holder.binding.searchItemImage)
+
+
+        holder.itemView.setOnClickListener{
+            onItemClickListener.onItemClick(restaurants)
+        }
+    }
+    fun  setOnClickListener(onItemClickListener: OnItemClickListener){
+        this.onItemClickListener=onItemClickListener
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(restaurants: Restaurants)
     }
 
 }

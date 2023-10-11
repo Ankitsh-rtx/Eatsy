@@ -55,31 +55,6 @@ class CartFragment : Fragment() {
         return binding.root
     }
 
-//    private fun makePayment(email:String,contact:String, amount:Long) {
-//        val co = Checkout()
-//        try {
-//            val options = JSONObject()
-//            options.put("name","Eatsy")
-//            options.put("description","Demoing Charges")
-//            //You can omit the image option to fetch the image from the dashboard
-//            options.put("image",R.mipmap.ic_launcher)
-//            options.put("theme.color", "#3399cc");
-//            options.put("currency","INR");
-////            options.put("order_id", orderID);
-//            options.put("amount",amount)//pass amount in currency subunits
-//
-//
-//            val prefill = JSONObject()
-//            prefill.put("email","")
-//            prefill.put("contact","")
-//
-//            options.put("prefill",prefill)
-//            co.open(activity,options)
-//        }catch (e: Exception){
-//            Toast.makeText(requireActivity(),"Error in payment: "+ e.message,Toast.LENGTH_LONG).show()
-//            e.printStackTrace()
-//        }
-//    }
 
     private fun totalPrice():Long{
         var totalPrice:Long = 0
@@ -90,8 +65,6 @@ class CartFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        Log.d("hoja re baba", "onResume:i was called ")
-
         val cartList = DataSource.orderList.second
         Log.d("cart fragment","cartList = ${cartList.size}")
         val cartListHM = this.arguments?.getSerializable("cartItems")
@@ -105,7 +78,6 @@ class CartFragment : Fragment() {
             cartListHM as HashMap<String, CartItem>
 
         } else cartList
-
 
         if(cartItemList.size==0) {
             binding.emptyCart.visibility=View.VISIBLE
@@ -150,8 +122,9 @@ class CartFragment : Fragment() {
             val Order= Order(
                 DataSource!!.user!!.id.toString(),
                 DataSource.orderList.first?.id.toString(),
+                DataSource.orderList.first?.name,
                 DataSource.orderList.second.values.toList(),
-                Timestamp( Date().time),
+                Timestamp(Date().time),
                 amount.toInt(),
                 -1,
                 DataSource.orderAddress,
@@ -166,16 +139,6 @@ class CartFragment : Fragment() {
                     .putExtra("ORDER_ID",document.id)
                 startActivity(intent)
             }
-
-
-
-//            val bundle=Bundle()
-//            bundle.putString("Final Amount",(totalPrice()-70+80).toString())
-//            val paymentFragment=PaymentFragment()
-//            paymentFragment.arguments=bundle
-//            activity?.supportFragmentManager?.beginTransaction()
-//                ?.replace(R.id.fragmentContainerView,paymentFragment)?.addToBackStack(null)
-//                ?.commit()
         }
 
         binding.goToMenu.setOnClickListener {

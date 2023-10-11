@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/restaurant_image"
@@ -50,10 +50,11 @@
             android:id="@+id/restaurant_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:layout_marginStart="2dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/metropolis_medium"
             android:text="Pizza"
+            android:textColor="@color/black_200"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/restaurant_name"
             app:layout_constraintTop_toBottomOf="@+id/restaurant_name" />

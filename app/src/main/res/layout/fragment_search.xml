@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".views.SearchFragment">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".views.SearchFragment">
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginEnd="64dp"
+        android:fontFamily="@font/metropolis_bold"
         android:gravity="center"
-        android:fontFamily="@font/metropolis_semibold"
         android:text="Search Restaurant or Dishes"
         android:textColor="@color/black_800"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/backSearchBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/backSearchBtn"
@@ -28,15 +29,15 @@
         android:layout_height="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        app:tint="@color/gray_700"
-        android:elevation="2dp"
-        android:padding="4dp"
         android:clickable="true"
+        android:elevation="2dp"
         android:focusable="true"
         android:foreground="@drawable/ripple_effect"
+        android:padding="4dp"
         android:src="@drawable/icon_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/gray_700" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/search_edittext"
@@ -57,6 +58,7 @@
         android:maxLines="1"
         android:paddingStart="16dp"
         android:paddingEnd="28dp"
+        android:textColor="@color/black_200"
         android:textColorHint="#80121212"
         android:textCursorDrawable="@drawable/cursor_drawable"
         android:textSize="15sp"
@@ -89,11 +91,11 @@
             android:id="@+id/recent_searches_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recent_searches_tv">
 
@@ -118,7 +120,8 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="4dp"
                     android:gravity="center"
-                    android:text="Wow! momo" />
+                    android:text="Wow! momo"
+                    android:textColor="@color/black_200" />
 
             </LinearLayout>
 
@@ -142,7 +145,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:text="Arsalan Briyani" />
+                    android:text="Arsalan Briyani"
+                    android:textColor="@color/black_200" />
             </LinearLayout>
 
             <LinearLayout
@@ -165,7 +169,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:text="Kfc" />
+                    android:text="Kfc"
+                    android:textColor="@color/black_200" />
             </LinearLayout>
 
         </LinearLayout>
@@ -183,17 +188,25 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ScrollView
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recent_search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/result_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
         android:background="@color/silver_white"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_edittext">
+        app:layout_constraintTop_toTopOf="@+id/recent_search_layout"
+        app:layout_constraintVertical_bias="0.324">
 
         <TextView
             android:id="@+id/search_result_tv"
@@ -211,13 +224,26 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_result_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/search_result_recyclerview1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_result_tv"
+            app:layout_constraintVertical_bias="0.076" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/search_result_recyclerview1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_result_tv" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
