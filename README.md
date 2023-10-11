@@ -4,9 +4,10 @@
   <img src="ic_launcher.png" alt="EATSY Logo">
 </p>
 
-<p align="center">
-  <a href="eatsy.apk"><img src="google-play-badge.png" alt="Download on Google Play"></a>
-</p>
+[![Download EATSY APK](https://img.shields.io/badge/Download%20APK-1.0.0-brightgreen.svg)](eatsy.apk)
+
+
+
 
 ## Overview
 
