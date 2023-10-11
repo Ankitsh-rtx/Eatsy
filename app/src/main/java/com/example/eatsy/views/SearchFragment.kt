@@ -77,7 +77,7 @@ class SearchFragment : Fragment() {
                     }
                     binding.resultLayout.visibility = View.VISIBLE
                     binding.recentSearchLayout.visibility = View.INVISIBLE
-                    val adapter = SearchAdapter(requireContext(),DataSource.itemSearchList)
+                    val adapter = SearchAdapter(requireContext(),DataSource.itemSearchList,requireActivity())
                     adapter.setOnClickListener(object : SearchAdapter.OnItemClickListener{
                         override fun onClick(restaurants: Restaurants) {
                             val args = Bundle()
