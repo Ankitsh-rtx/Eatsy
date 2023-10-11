@@ -2,14 +2,15 @@ package com.example.eatsy.views
 
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eatsy.DataSource
 import com.example.eatsy.R
 import com.example.eatsy.adapter.SearchAdapter
+import com.example.eatsy.adapter.SearchRestaurantAdaptor
 import com.example.eatsy.databinding.FragmentSearchBinding
 import com.example.eatsy.model.Item
 import com.example.eatsy.model.Restaurants
@@ -36,11 +37,16 @@ class SearchFragment : Fragment() {
         }
 
         binding.searchResultRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+        binding.searchResultRecyclerview1.layoutManager = LinearLayoutManager(requireContext())
 
         binding.searchEdBtn.setOnClickListener {
-
+//            Log.d("SearchFragment", "clicked")
             DataSource.itemSearchList.clear()
+
             val queryString = binding.searchEdittext.text?.trim().toString()
+            var restaurantslist= DataSource.restaurants.filter {
+                it.name.lowercase().contains(queryString)
+            }
             binding.searchResultTv.text = "Showing results for '$queryString'"
             val items:MutableList<Item> = mutableListOf()
             db.collection("Items").whereLessThanOrEqualTo("name",queryString).get()
@@ -49,7 +55,7 @@ class SearchFragment : Fragment() {
                     val res = doc.toObject(Item::class.java)
                     if(res?.name?.lowercase(Locale.ROOT)?.contains(queryString) == true) {
                         items.add(res)
-//                        Log.d("SearchFragment:", "doc ${res.name}")
+                        Log.d("SearchFragment:", "doc ${res.name}")
                     }
                 }
                     for (restaurant in DataSource.restaurants) {
@@ -70,8 +76,8 @@ class SearchFragment : Fragment() {
                         }
                     }
                     binding.resultLayout.visibility = View.VISIBLE
-                    binding.recentSearchLayout.visibility = View.GONE
-                    val adapter = SearchAdapter(requireContext(),DataSource.itemSearchList, requireActivity())
+                    binding.recentSearchLayout.visibility = View.INVISIBLE
+                    val adapter = SearchAdapter(requireContext(),DataSource.itemSearchList)
                     adapter.setOnClickListener(object : SearchAdapter.OnItemClickListener{
                         override fun onClick(restaurants: Restaurants) {
                             val args = Bundle()
@@ -81,11 +87,14 @@ class SearchFragment : Fragment() {
                             // Log.d("Restaurant Adapter", "onBindViewHolder: ${item.name}")
 
                             requireActivity().supportFragmentManager.beginTransaction()
-                                .replace(R.id.fragmentContainerView, newFragment).addToBackStack(null)
+                                .replace(R.id.fragmentContainerView, newFragment).addToBackStack(R.id.homeFragment.toString())
                                 .commit()
                         }
                     })
                     binding.searchResultRecyclerview.adapter = adapter
+
+                    val adapterRsetaurant = SearchRestaurantAdaptor(requireContext(),restaurantslist)
+                    binding.searchResultRecyclerview1.adapter=adapterRsetaurant
 
 
             }.addOnFailureListener {
@@ -96,6 +105,5 @@ class SearchFragment : Fragment() {
 
         return binding.root
     }
-
 
 }
