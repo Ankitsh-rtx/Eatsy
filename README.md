@@ -1,7 +1,7 @@
 <h1 align="center">EATSY - Food Delivery App</h1>
 
 <p align="center">
-  <img src="your-app-logo.png" alt="EATSY Logo">
+  <img src="ic_launcher.png" alt="EATSY Logo">
 </p>
 
 <p align="center">
