@@ -51,7 +51,7 @@ EATSY is a feature-rich food delivery application that allows you to order delic
   <img src="order confirm.png" alt="Screenshot 3" width="200">
   <img src="order notification.png" alt="Screenshot 3" width="200">
   <img src="search page.png" alt="Screenshot 3" width="200">
-  <img src="profile page.png" alt="Screenshot 3" width="200">
+  
   <img src="order history.png" alt="Screenshot 3" width="200">
 </p>
 
