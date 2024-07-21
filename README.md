@@ -4,10 +4,11 @@
   <img src="ic_launcher.png" alt="EATSY Logo">
 </p>
 
-[![Download EATSY APK](https://img.shields.io/badge/Download%20APK-1.0.0-brightgreen.svg)](eatsy.apk)
-
-
-
+<p align="center">
+  <a href="eatsy.apk">
+    <img src="https://img.shields.io/badge/Download%20APK-1.0.0-brightgreen.svg" alt="Download EATSY APK" width="350" height="55">
+  </a>
+</p>
 
 ## Overview
 
@@ -51,7 +52,6 @@ EATSY is a feature-rich food delivery application that allows you to order delic
   <img src="order confirm.png" alt="Screenshot 3" width="200">
   <img src="order notification.png" alt="Screenshot 3" width="200">
   <img src="search page.png" alt="Screenshot 3" width="200">
-  
   <img src="order history.png" alt="Screenshot 3" width="200">
 </p>
 
@@ -60,6 +60,3 @@ EATSY is a feature-rich food delivery application that allows you to order delic
 1. Clone the repository
    ```sh
    git clone https://github.com/yourusername/EATSY.git
-
-2. Open the project in Android Studio.
-3. Build and run the app on your Android device or emulator.
