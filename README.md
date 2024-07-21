@@ -5,9 +5,12 @@
 </p>
 
 <p align="center">
+  <strong><em>Get Started with EATSY Now!</em></strong><br>
   <a href="eatsy.apk">
-    <img src="https://img.shields.io/badge/Download%20APK-1.0.0-brightgreen.svg" alt="Download EATSY APK" width="350" height="55">
+    <img src="https://img.shields.io/badge/Download%20APK-1.0.0-brightgreen.svg" alt="Download EATSY APK" width="360" height="55" style="border: 2px solid #4CAF50; border-radius: 10px;">
   </a>
+  <br>
+  <small>Click the button above to download the latest version of EATSY APK and start exploring the app.</small>
 </p>
 
 ## Overview
